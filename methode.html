@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Méthodologie et transparence — Projet documentaire sur le repositionnement de molécules en oncologie.">
+  <title>Méthodologie et transparence — RepoOnco</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
+    <link rel="stylesheet" href="./assets/css/style.css">
+  <style>
+    /* Page-specific additions */
+    .page-hero {
+      padding: var(--space-10) 0 var(--space-8);
+      border-bottom: 1px solid var(--color-divider);
+      margin-bottom: var(--space-10);
+    }
+    .page-hero .breadcrumb {
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-3);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .page-hero .breadcrumb a {
+      color: var(--color-text-faint);
+    }
+    .page-hero .breadcrumb a:hover {
+      color: var(--color-primary);
+    }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: var(--space-3);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-hero .page-subtitle {
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+    .toc-nav {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5) var(--space-6);
+      margin-bottom: var(--space-10);
+    }
+    .toc-nav h3 {
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-4);
+    }
+    .toc-nav ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-1) var(--space-8);
+    }
+    .toc-nav li {
+      margin: 0;
+    }
+    .toc-nav a {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) 0;
+      transition: color var(--transition);
+    }
+    .toc-nav a:hover {
+      color: var(--color-primary);
+    }
+    .toc-nav .toc-num {
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      color: var(--color-primary);
+      opacity: 0.7;
+      min-width: 1.8rem;
+    }
+
+    .content-section {
+      scroll-margin-top: 5rem;
+    }
+    .content-section h2 {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-divider);
+      margin-bottom: var(--space-6);
+    }
+    .section-num {
+      font-family: var(--font-display);
+      font-size: var(--text-sm);
+      color: var(--color-primary);
+      background: var(--color-primary-glow);
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-sm);
+      min-width: 2rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    /* Source list */
+    .source-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      list-style: none;
+      padding: 0;
+      margin-bottom: var(--space-4);
+    }
+    .source-list li {
+      margin: 0;
+    }
+    .source-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-4);
+      padding: var(--space-4) var(--space-5);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      transition: border-color var(--transition);
+    }
+    .source-item:hover {
+      border-color: var(--color-border-strong);
+    }
+    .source-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      background: var(--color-primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--color-primary);
+    }
+    .source-info strong {
+      display: block;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--space-1);
+      font-size: var(--text-sm);
+    }
+    .source-info span {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+
+    /* Bias cards */
+    .bias-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .bias-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-5);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--space-4);
+    }
+    .bias-number {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--color-text-faint);
+      line-height: 1;
+      padding-top: 2px;
+    }
+    .bias-content strong {
+      display: block;
+      color: var(--color-text);
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-1);
+    }
+    .bias-content p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-3);
+      line-height: 1.6;
+    }
+    .bias-mitigation {
+      font-size: var(--text-xs);
+      color: var(--color-teal);
+      background: var(--color-teal-bg);
+      border-radius: var(--radius-sm);
+      padding: var(--space-2) var(--space-3);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+    .bias-mitigation::before {
+      content: "→";
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
+    /* Score levels */
+    .score-levels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+    .score-level-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+    }
+    .score-level-label {
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      margin-bottom: var(--space-2);
+    }
+    .score-level-desc {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+    .score-bar-container { margin-bottom: var(--space-2); }
+
+    /* Tech stack grid */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+    .tech-item {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+    }
+    .tech-item dt {
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-1);
+    }
+    .tech-item dd {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    /* Limits list */
+    .limits-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .limits-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+    .limits-list li::before {
+      content: "—";
+      color: var(--color-danger);
+      font-family: var(--font-display);
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
+    /* Keyword code */
+    code {
+      font-family: var(--font-display);
+      font-size: 0.85em;
+      background: var(--color-surface-3);
+      color: var(--color-primary);
+      padding: 0.1em 0.4em;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Collection steps */
+    .steps-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: var(--space-4);
+      counter-reset: steps;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .steps-list li {
+      counter-increment: steps;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-4);
+      margin: 0;
+      padding: var(--space-4) var(--space-5);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    .steps-list li::before {
+      content: counter(steps, decimal-leading-zero);
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--color-primary);
+      flex-shrink: 0;
+      min-width: 2rem;
+    }
+
+    /* Maintenance steps */
+    .maintenance-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .maintenance-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+    .maintenance-list li .maint-icon {
+      color: var(--color-teal);
+      flex-shrink: 0;
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      padding-top: 2px;
+    }
+
+    /* Evidence table wrapper */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      margin-bottom: var(--space-4);
+    }
+    .table-wrapper .data-table {
+      border: none;
+    }
+    .table-wrapper .data-table th:first-child,
+    .table-wrapper .data-table td:first-child {
+      width: 80px;
+    }
+    .color-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="site-wrapper">
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="./index.html" class="site-logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo">
+            <path d="M16 2L28.66 9.5V24.5L16 30L3.34 24.5V9.5L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <circle cx="16" cy="16" r="4" fill="currentColor" opacity="0.3"/>
+            <circle cx="16" cy="8" r="2" fill="currentColor"/>
+            <circle cx="22.93" cy="12" r="2" fill="currentColor"/>
+            <circle cx="22.93" cy="20" r="2" fill="currentColor"/>
+            <circle cx="16" cy="24" r="2" fill="currentColor"/>
+            <circle cx="9.07" cy="20" r="2" fill="currentColor"/>
+            <circle cx="9.07" cy="12" r="2" fill="currentColor"/>
+            <line x1="16" y1="8" x2="22.93" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <line x1="22.93" y1="12" x2="22.93" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <line x1="22.93" y1="20" x2="16" y2="24" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <line x1="16" y1="24" x2="9.07" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <line x1="9.07" y1="20" x2="9.07" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <line x1="9.07" y1="12" x2="16" y2="8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          </svg>
+          <span>RepoOnco<span class="logo-sub">Base documentaire</span></span>
+        </a>
+        <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+        <nav><ul class="nav-links">
+          <li><a href="./index.html">Accueil</a></li>
+          <li><a href="./dashboard.html">Dashboard</a></li>
+          <li><a href="./methode.html" class="active">Méthodologie</a></li>
+          <li><a href="./documentation.html">Documentation</a></li>
+        </ul></nav>
+      </div>
+    </header>
+
+    <!-- STATUS BAR -->
+    <div class="status-bar">
+      <div class="status-item"><span class="status-dot green"></span> 40 études indexées</div>
+      <div class="status-item"><span class="status-dot blue"></span> 7 molécules suivies</div>
+      <div class="status-item"><span class="status-dot yellow"></span> Dernière maj : 07/04/2026</div>
+      <div class="status-item"><span class="status-dot green"></span> Sources : PMC/PubMed</div>
+    </div>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+      <!-- Page Hero -->
+      <div class="page-hero">
+        <div class="breadcrumb">
+          <a href="./index.html">Accueil</a>
+          <span>/</span>
+          <span>Méthodologie</span>
+        </div>
+        <h1>Méthodologie et transparence</h1>
+        <p class="page-subtitle">
+          Documentation complète de la démarche, des sources, des critères de sélection, des biais identifiés
+          et des limites de ce projet documentaire sur le repositionnement de molécules en oncologie.
+        </p>
+      </div>
+
+      <!-- Alert -->
+      <div class="alert-box warning" style="margin-bottom: var(--space-10);">
+        <strong>⚠ Avertissement médical.</strong> Ce projet est exclusivement documentaire. Il ne constitue pas un avis médical, une recommandation thérapeutique ou un protocole clinique. Aucune information présentée ici ne doit guider une décision de santé sans consultation d'un professionnel médical qualifié.
+      </div>
+
+      <!-- Table of Contents -->
+      <nav class="toc-nav" aria-label="Table des matières">
+        <h3>Table des matières</h3>
+        <ol>
+          <li><a href="#objectif"><span class="toc-num">01</span>Objectif et périmètre</a></li>
+          <li><a href="#sources"><span class="toc-num">02</span>Sources consultées</a></li>
+          <li><a href="#collecte"><span class="toc-num">03</span>Méthode de collecte</a></li>
+          <li><a href="#niveaux"><span class="toc-num">04</span>Niveaux de preuve</a></li>
+          <li><a href="#score"><span class="toc-num">05</span>Score de potentiel</a></li>
+          <li><a href="#outils"><span class="toc-num">06</span>Outils et technologies</a></li>
+          <li><a href="#biais"><span class="toc-num">07</span>Biais potentiels identifiés</a></li>
+          <li><a href="#limites"><span class="toc-num">08</span>Limites</a></li>
+          <li><a href="#maintenance"><span class="toc-num">09</span>Mise à jour et maintenance</a></li>
+        </ol>
+      </nav>
+
+      <!-- SECTION 1: Objectif -->
+      <section class="content-section" id="objectif">
+        <h2>
+          <span class="section-num">01</span>
+          Objectif et périmètre
+        </h2>
+        <p>
+          Ce projet a pour objectif de <strong>cartographier la littérature scientifique disponible</strong> sur le repositionnement de molécules antiparasitaires et hors-brevet en oncologie. Il s'inscrit dans une démarche documentaire et ne prétend pas établir de nouvelles données cliniques.
+        </p>
+
+        <h3>Molécules suivies</h3>
+        <p>Le périmètre couvre deux catégories de molécules :</p>
+        <ul>
+          <li><strong>Molécules principales :</strong> Ivermectine, Fenbendazole, Mébendazole — antiparasitaires dont les propriétés anticancéreuses font l'objet d'un nombre croissant de publications.</li>
+          <li><strong>Molécules complémentaires :</strong> Metformine, Disulfirame, Propranolol, Chloroquine/Hydroxychloroquine — molécules hors-brevet repositionnées en oncologie dans le cadre de l'initiative ReDO et d'essais cliniques formels.</li>
+        </ul>
+
+        <h3>Cancers prioritaires</h3>
+        <p>
+          Une attention particulière est portée aux cancers <strong>pulmonaires</strong> et <strong>colorectaux</strong>, en raison de leur prévalence et du volume de littérature disponible. Un panorama général est également établi pour d'autres types (glioblastome, cancer du sein, cancers pancréatiques, etc.) lorsque des études significatives sont disponibles.
+        </p>
+
+        <h3>Fenêtre temporelle</h3>
+        <p>
+          L'indexation porte sur la littérature accessible au <strong>7 avril 2026</strong>. Les données constituent un instantané figé à cette date ; elles ne sont pas mises à jour automatiquement.
+        </p>
+      </section>
+
+      <!-- SECTION 2: Sources -->
+      <section class="content-section" id="sources">
+        <h2>
+          <span class="section-num">02</span>
+          Sources consultées
+        </h2>
+        <p>Les données bibliographiques proviennent exclusivement de sources académiques ouvertes et vérifiables :</p>
+
+        <ul class="source-list">
+          <li>
+            <div class="source-item">
+              <div class="source-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div class="source-info">
+                <strong><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener noreferrer">PubMed / PubMed Central (PMC)</a></strong>
+                <span>Source primaire pour la littérature scientifique évaluée par les pairs. Toutes les études référencées sont indexées dans PubMed. Les articles en accès libre sont prioritairement issus de PMC.</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="source-item">
+              <div class="source-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div class="source-info">
+                <strong><a href="https://clinicaltrials.gov/" target="_blank" rel="noopener noreferrer">ClinicalTrials.gov</a></strong>
+                <span>Registre officiel des essais cliniques en cours et terminés. Utilisé pour vérifier le statut des essais humains et identifier les phases de développement clinique.</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="source-item">
+              <div class="source-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div class="source-info">
+                <strong><a href="https://www.cancer.gov/" target="_blank" rel="noopener noreferrer">National Cancer Institute (NCI)</a></strong>
+                <span>Utilisé comme référence contextuelle pour les mécanismes biologiques, les définitions des types de cancer et les données épidémiologiques de fond.</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="source-item">
+              <div class="source-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              </div>
+              <div class="source-info">
+                <strong><a href="https://www.redo-project.org/" target="_blank" rel="noopener noreferrer">ReDO Project (Repurposing Drugs in Oncology)</a></strong>
+                <span>Initiative spécialisée dans le repositionnement de molécules hors-brevet en oncologie. Source de synthèse et de contextualisation pour les molécules complémentaires du périmètre.</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- SECTION 3: Collecte -->
+      <section class="content-section" id="collecte">
+        <h2>
+          <span class="section-num">03</span>
+          Méthode de collecte
+        </h2>
+        <p>
+          La collecte s'est déroulée selon un protocole structuré de recherche bibliographique, sans prétention à une revue systématique formelle (cf. <a href="#limites">section 8 — Limites</a>).
+        </p>
+
+        <ol class="steps-list">
+          <li>
+            <strong>Recherches sur PubMed</strong> via des combinaisons de mots-clés standardisés : <code>[nom_molécule] cancer</code>, <code>[nom_molécule] anticancer</code>, <code>[nom_molécule] oncology</code>. Variantes orthographiques et DCI utilisées.
+          </li>
+          <li>
+            <strong>Filtres appliqués :</strong> articles évalués par les pairs (<em>peer-reviewed</em>), indexés dans PubMed, avec préférence pour les articles en accès libre via PMC. Aucun filtre de date n'a été appliqué ; la priorité est donnée aux publications récentes (2015–2026).
+          </li>
+          <li>
+            <strong>Classification de chaque étude</strong> selon quatre critères : type d'étude (in vitro, in vivo, essai clinique, revue, méta-analyse), niveau de preuve (1 à 6), type de cancer concerné, et molécule étudiée.
+          </li>
+          <li>
+            <strong>Vérification des identifiants PMC</strong> : chaque identifiant PMC référencé a été vérifié via une requête HTTP directe sur <code>pmc.ncbi.nlm.nih.gov</code> pour confirmer l'existence et l'accessibilité de l'article.
+          </li>
+          <li>
+            <strong>Date de collecte :</strong> toutes les données ont été collectées et vérifiées le <strong>7 avril 2026</strong>. Les nouvelles publications postérieures à cette date ne sont pas incluses dans la version actuelle.
+          </li>
+        </ol>
+      </section>
+
+      <!-- SECTION 4: Niveaux de preuve -->
+      <section class="content-section" id="niveaux">
+        <h2>
+          <span class="section-num">04</span>
+          Niveaux de preuve
+        </h2>
+        <p>
+          Chaque étude est classée selon une échelle de 1 à 6, inspirée des systèmes de niveaux de preuve médicaux (HAS, Oxford CEBM), adaptée au contexte du repositionnement moléculaire.
+        </p>
+
+        <div class="table-wrapper">
+          <table class="data-table" aria-label="Niveaux de preuve">
+            <thead>
+              <tr>
+                <th>Niveau</th>
+                <th>Type d'étude</th>
+                <th>Description</th>
+                <th>Fiabilité</th>
+                <th>Code couleur</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="evidence-badge evidence-1">N1</span></td>
+                <td>Méta-analyse / Revue systématique</td>
+                <td>Synthèse quantitative ou qualitative de plusieurs études primaires, avec protocole défini</td>
+                <td class="text-success">La plus élevée</td>
+                <td><span class="color-dot" style="background:var(--color-success)"></span>Vert</td>
+              </tr>
+              <tr>
+                <td><span class="evidence-badge evidence-2">N2</span></td>
+                <td>Essai contrôlé randomisé (RCT)</td>
+                <td>Essai humain avec randomisation et groupe contrôle — standard de référence clinique</td>
+                <td class="text-teal" style="color:var(--color-teal)">Élevée</td>
+                <td><span class="color-dot" style="background:var(--color-teal)"></span>Teal</td>
+              </tr>
+              <tr>
+                <td><span class="evidence-badge evidence-3">N3</span></td>
+                <td>Cohorte / Cas-témoin</td>
+                <td>Étude épidémiologique observationnelle sur une population humaine définie</td>
+                <td class="text-primary">Modérée</td>
+                <td><span class="color-dot" style="background:var(--color-primary)"></span>Bleu</td>
+              </tr>
+              <tr>
+                <td><span class="evidence-badge evidence-4">N4</span></td>
+                <td>Série / Rapport de cas</td>
+                <td>Observations cliniques individuelles ou séries de cas sans contrôle systématique</td>
+                <td class="text-warning">Faible</td>
+                <td><span class="color-dot" style="background:var(--color-warning)"></span>Jaune</td>
+              </tr>
+              <tr>
+                <td><span class="evidence-badge evidence-5">N5</span></td>
+                <td>Étude animale in vivo</td>
+                <td>Tests sur modèles animaux (souris, rats) — valeur translationnelle limitée vers l'humain</td>
+                <td class="text-warning" style="color:var(--color-orange)">Très faible (translationnelle)</td>
+                <td><span class="color-dot" style="background:var(--color-orange)"></span>Orange</td>
+              </tr>
+              <tr>
+                <td><span class="evidence-badge evidence-6">N6</span></td>
+                <td>Étude cellulaire in vitro</td>
+                <td>Tests en laboratoire sur cultures cellulaires — résultats non directement extrapolables</td>
+                <td class="text-danger">La plus faible</td>
+                <td><span class="color-dot" style="background:var(--color-danger)"></span>Rouge</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert-box info">
+          <strong>Note :</strong> Un niveau de preuve faible ne signifie pas que la molécule est inefficace — il indique simplement que les données disponibles sont préliminaires. La progression in vitro → in vivo → essai humain est le parcours normal de la recherche translationnelle.
+        </div>
+      </section>
+
+      <!-- SECTION 5: Score de potentiel -->
+      <section class="content-section" id="score">
+        <h2>
+          <span class="section-num">05</span>
+          Score de potentiel
+        </h2>
+        <p>
+          Le <strong>score de potentiel</strong> est un indicateur composite exprimé en pourcentage, calculé pour chaque molécule. Il est conçu comme un <em>index de documentation</em>, non comme une évaluation d'efficacité clinique.
+        </p>
+
+        <h3>Composantes du score</h3>
+        <ul>
+          <li><strong>Volume de littérature :</strong> nombre d'études publiées référencées dans la base.</li>
+          <li><strong>Niveau de preuve maximal atteint :</strong> présence ou non d'essais humains.</li>
+          <li><strong>Nombre d'essais humains :</strong> RCT, essais de phase I/II, études de cohorte.</li>
+          <li><strong>Profil de tolérance :</strong> données disponibles sur la sécurité et les effets indésirables.</li>
+          <li><strong>Cohérence des résultats :</strong> convergence ou divergence entre études indépendantes.</li>
+        </ul>
+
+        <div class="alert-box warning" style="margin-bottom: var(--space-6);">
+          <strong>Important :</strong> Ce score est subjectif et ne repose pas sur un algorithme validé. Il reflète l'état de la littérature documentée dans ce projet à une date donnée. Il ne constitue en aucun cas une recommandation clinique.
+        </div>
+
+        <h3>Interprétation des niveaux</h3>
+        <div class="score-levels">
+          <div class="score-level-card">
+            <div class="score-bar-container">
+              <div class="score-bar score-high" style="width:75%"></div>
+            </div>
+            <div class="score-level-label text-success">&gt; 60% — Signal solide</div>
+            <div class="score-level-desc">Littérature abondante, présence d'essais humains, profil de tolérance documenté, résultats convergents.</div>
+          </div>
+          <div class="score-level-card">
+            <div class="score-bar-container">
+              <div class="score-bar score-mid" style="width:50%"></div>
+            </div>
+            <div class="score-level-label text-warning">40–60% — Signal intermédiaire</div>
+            <div class="score-level-desc">Données précliniques significatives, quelques études humaines, résultats partiellement cohérents.</div>
+          </div>
+          <div class="score-level-card">
+            <div class="score-bar-container">
+              <div class="score-bar score-low" style="width:25%"></div>
+            </div>
+            <div class="score-level-label" style="color:var(--color-orange)">&lt; 40% — Signal précoce</div>
+            <div class="score-level-desc">Études essentiellement in vitro ou in vivo, peu ou pas d'essais humains, données limitées.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: Outils -->
+      <section class="content-section" id="outils">
+        <h2>
+          <span class="section-num">06</span>
+          Outils et technologies utilisés
+        </h2>
+        <p>
+          Dans un souci de transparence totale, voici l'ensemble des outils mobilisés pour ce projet :
+        </p>
+
+        <dl class="tech-grid">
+          <div class="tech-item">
+            <dt>Assistance IA</dt>
+            <dd>Perplexity Computer (basé sur Claude Sonnet) — accélération de la recherche bibliographique, structuration des données et génération du dashboard</dd>
+          </div>
+          <div class="tech-item">
+            <dt>Vérification</dt>
+            <dd>Tous les identifiants PMC vérifiés manuellement via requête HTTP directe sur les serveurs NCBI</dd>
+          </div>
+          <div class="tech-item">
+            <dt>Format des données</dt>
+            <dd>JSON structuré : <code>sources.json</code>, <code>molecules.json</code>, <code>essais.json</code>, <code>changelog.json</code></dd>
+          </div>
+          <div class="tech-item">
+            <dt>Frontend</dt>
+            <dd>HTML5, CSS3, JavaScript vanilla, Chart.js pour les visualisations de données</dd>
+          </div>
+          <div class="tech-item">
+            <dt>Hébergement</dt>
+            <dd>GitHub Pages — site statique, sans base de données ni backend</dd>
+          </div>
+          <div class="tech-item">
+            <dt>Confidentialité</dt>
+            <dd>Aucune clé API, aucun backend, aucun tracking, aucun cookie. Données 100% statiques.</dd>
+          </div>
+        </dl>
+
+        <div class="alert-box info">
+          <strong>Transparence IA :</strong> L'utilisation d'un assistant IA (Perplexity Computer / Claude Sonnet) est assumée et documentée. Chaque PMC ID et chaque lien a été vérifié par une requête HTTP directe, indépendamment des suggestions de l'IA.
+        </div>
+      </section>
+
+      <!-- SECTION 7: Biais -->
+      <section class="content-section" id="biais">
+        <h2>
+          <span class="section-num">07</span>
+          Biais potentiels identifiés
+        </h2>
+        <p>
+          Tout projet documentaire est sujet à des biais. Nous en identifions ici sept catégories, avec pour chacune une stratégie d'atténuation mise en œuvre.
+        </p>
+
+        <div class="bias-list">
+          <div class="bias-card">
+            <div class="bias-number">01</div>
+            <div class="bias-content">
+              <strong>Biais de publication (Publication bias)</strong>
+              <p>Les résultats positifs sont significativement plus susceptibles d'être publiés que les résultats négatifs ou nuls. La littérature disponible sur PubMed surestime donc probablement les effets anticancéreux de ces molécules.</p>
+              <div class="bias-mitigation">Atténuation : recherche active de rapports de cas négatifs, prise en compte des essais cliniques négatifs (ex. DIRECT Trial pour le Disulfirame dans le GBM), mention explicite des limites dans les fiches molécules.</div>
+            </div>
+          </div>
+
+          <div class="bias-card">
+            <div class="bias-number">02</div>
+            <div class="bias-content">
+              <strong>Biais de sélection (Selection bias)</strong>
+              <p>La recherche par mots-clés peut ne pas capturer toutes les études pertinentes. Des publications utilisant des terminologies différentes, ou publiées dans des revues moins bien indexées, peuvent être manquées.</p>
+              <div class="bias-mitigation">Atténuation : utilisation de plusieurs combinaisons de termes de recherche (DCI, noms génériques, noms courants). Consultation de revues systématiques existantes pour identifier des études additionnelles.</div>
+            </div>
+          </div>
+
+          <div class="bias-card">
+            <div class="bias-number">03</div>
+            <div class="bias-content">
+              <strong>Biais de langue (Language bias)</strong>
+              <p>PubMed est dominé par les publications en anglais. Des études potentiellement significatives publiées en français, en chinois ou dans d'autres langues peuvent être sous-représentées.</p>
+              <div class="bias-mitigation">Atténuation : limitation assumée et documentée. Le périmètre est restreint aux publications indexées dans PubMed sans filtre de langue ; toutefois, la majorité des résultats sont en anglais.</div>
+            </div>
+          </div>
+
+          <div class="bias-card">
+            <div class="bias-number">04</div>
+            <div class="bias-content">
+              <strong>Biais de confirmation (Confirmation bias)</strong>
+              <p>La thématique même du projet (repositionnement de molécules bon marché en oncologie) peut inconsciemment orienter la sélection des études vers des résultats favorables.</p>
+              <div class="bias-mitigation">Atténuation : inclusion systématique des études négatives identifiées, classification rigoureuse du niveau de preuve, mention explicite des limites de chaque molécule dans les fiches.</div>
+            </div>
+          </div>
+
+          <div class="bias-card">
+            <div class="bias-number">05</div>
+            <div class="bias-content">
+              <strong>Biais d'outil (Tool bias)</strong>
+              <p>L'utilisation d'un assistant IA pour accélérer la recherche bibliographique peut introduire des biais de correspondance de patterns : l'IA peut sur-représenter les thèmes fréquents dans ses données d'entraînement.</p>
+              <div class="bias-mitigation">Atténuation : chaque suggestion de l'IA a été vérifiée manuellement via PubMed. Aucun article n'a été inclus sans vérification indépendante de son identifiant et de sa disponibilité.</div>
+            </div>
+          </div>
+
+          <div class="bias-card">
+            <div class="bias-number">06</div>
+            <div class="bias-content">
+              <strong>Biais d'interprétation (Interpretation bias)</strong>
+              <p>Les résultats in vitro sont fréquemment extrapolés à tort aux applications humaines. Une molécule efficace sur des cellules cancéreuses en culture ne l'est pas nécessairement in vivo, encore moins chez l'humain.</p>
+              <div class="bias-mitigation">Atténuation : classification explicite du niveau de preuve pour chaque étude, avec un code couleur visuel. Mise en garde systématique dans la documentation sur la valeur translationnelle limitée des études in vitro.</div>
+            </div>
+          </div>
+
+          <div class="bias-card">
+            <div class="bias-number">07</div>
+            <div class="bias-content">
+              <strong>Biais de popularité (Popularity bias)</strong>
+              <p>Certaines molécules (notamment l'ivermectine) ont bénéficié d'une visibilité médiatique disproportionnée pendant la période COVID-19 (2020–2022), générant un volume de publications qui ne reflète pas nécessairement leur potentiel oncologique intrinsèque.</p>
+              <div class="bias-mitigation">Atténuation : distinction explicite entre études antérieures et postérieures à 2020 pour l'ivermectine, signalement du contexte COVID dans l'interprétation du volume de littérature.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: Limites -->
+      <section class="content-section" id="limites">
+        <h2>
+          <span class="section-num">08</span>
+          Limites
+        </h2>
+        <p>
+          Au-delà des biais identifiés, ce projet présente des limites structurelles inhérentes à sa nature documentaire :
+        </p>
+
+        <ul class="limits-list">
+          <li>Ce projet est documentaire et non clinique. Il ne produit pas de nouvelles données, ne constitue pas une revue systématique au sens PRISMA, et ne peut servir de base à des décisions médicales.</li>
+          <li>Aucun protocole de revue systématique (PRISMA, PROSPERO) n'a été suivi. La sélection des études est guidée par des critères de pertinence, non par un protocole enregistré et auditable.</li>
+          <li>Le score de potentiel est subjectif, non validé par des pairs et ne doit pas guider des décisions médicales ou thérapeutiques.</li>
+          <li>Les données constituent un instantané figé au 7 avril 2026. Les nouvelles publications, les résultats d'essais cliniques en cours, ou les retraits d'articles ne sont pas reflétés automatiquement.</li>
+          <li>Aucune relecture indépendante par des pairs de cette compilation n'a été effectuée. Les erreurs de classification ou d'interprétation ne peuvent être exclues.</li>
+          <li>Les liens hypertextes vers PubMed et PMC peuvent devenir caducs si des articles sont retirés ou si les URL changent.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 9: Maintenance -->
+      <section class="content-section" id="maintenance">
+        <h2>
+          <span class="section-num">09</span>
+          Mise à jour et maintenance
+        </h2>
+        <p>
+          Ce projet est conçu pour être mis à jour manuellement selon un format de données structuré. Voici le protocole de maintenance :
+        </p>
+
+        <ul class="maintenance-list">
+          <li>
+            <span class="maint-icon">+</span>
+            <span><strong>Ajouter une nouvelle étude :</strong> éditer le fichier <code>data/sources.json</code> en ajoutant un nouvel objet avec les champs : <code>id</code>, <code>molecule</code>, <code>titre</code>, <code>auteurs</code>, <code>annee</code>, <code>type</code>, <code>cancer</code>, <code>niveau</code>, <code>lien</code>. Vérifier l'identifiant PMC via requête HTTP avant inclusion.</span>
+          </li>
+          <li>
+            <span class="maint-icon">✎</span>
+            <span><strong>Traçabilité des modifications :</strong> chaque modification est documentée dans <code>data/changelog.json</code> avec la date, la nature de la modification, et l'auteur. Ce fichier permet de retracer l'historique complet des mises à jour.</span>
+          </li>
+          <li>
+            <span class="maint-icon">◎</span>
+            <span><strong>Versioning :</strong> l'historique des versions principales est maintenu dans le fichier <code>README.md</code> à la racine du projet. Chaque version majeure correspond à une mise à jour significative du corpus documentaire.</span>
+          </li>
+          <li>
+            <span class="maint-icon">↻</span>
+            <span><strong>Fréquence recommandée :</strong> révision trimestrielle du corpus pour intégrer les nouvelles publications significatives, en particulier les résultats d'essais cliniques en cours (ClinicalTrials.gov).</span>
+          </li>
+        </ul>
+
+        <div class="alert-box info">
+          <strong>Fichiers de données :</strong> Les données sont stockées au format JSON dans le répertoire <code>data/</code> — <code>sources.json</code> (bibliographie), <code>molecules.json</code> (fiches molécules), <code>essais.json</code> (essais cliniques), <code>changelog.json</code> (historique des modifications). Ces fichiers constituent la source de vérité du projet.
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <p>Projet documentaire — Données collectées le 07/04/2026</p>
+      <p>Sources : <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener noreferrer">PubMed/PMC</a> · <a href="https://clinicaltrials.gov/" target="_blank" rel="noopener noreferrer">ClinicalTrials.gov</a></p>
+      <p style="margin-top: 0.5rem;">Ce projet ne constitue pas un avis médical. <a href="./methode.html">Voir la méthodologie complète</a>.</p>
+    </footer>
+
+  </div><!-- /site-wrapper -->
+</body>
+</html>

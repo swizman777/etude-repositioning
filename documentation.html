@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bibliothèque documentaire — 40 études indexées sur le repositionnement de molécules en oncologie.">
+  <title>Bibliothèque documentaire — RepoOnco</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
+    <link rel="stylesheet" href="./assets/css/style.css">
+  <style>
+    /* Page-specific additions */
+    .page-hero {
+      padding: var(--space-10) 0 var(--space-8);
+      border-bottom: 1px solid var(--color-divider);
+      margin-bottom: var(--space-8);
+    }
+    .page-hero .breadcrumb {
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-3);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .page-hero .breadcrumb a {
+      color: var(--color-text-faint);
+    }
+    .page-hero .breadcrumb a:hover {
+      color: var(--color-primary);
+    }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: var(--space-3);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-hero .page-subtitle {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+
+    /* KPI row */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+    @media (max-width: 640px) {
+      .kpi-row { grid-template-columns: 1fr; }
+    }
+
+    /* Filter bar extended */
+    .filter-bar {
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .filter-bar .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      flex: 1;
+    }
+    .filter-bar .search-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-shrink: 0;
+    }
+    .search-input {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: var(--space-1) var(--space-3);
+      color: var(--color-text);
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      width: 220px;
+      transition: border-color var(--transition);
+    }
+    .search-input::placeholder {
+      color: var(--color-text-faint);
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      background: var(--color-surface-3);
+    }
+    @media (max-width: 768px) {
+      .search-input { width: 100%; }
+      .filter-bar .search-group { width: 100%; }
+    }
+
+    /* Table wrapper */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      margin-bottom: var(--space-8);
+    }
+    .table-wrapper .data-table {
+      border: none;
+      min-width: 900px;
+    }
+    .data-table td:nth-child(1) { /* # */
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      width: 48px;
+      text-align: right;
+    }
+    .data-table td:nth-child(2) { /* Molécule */
+      white-space: nowrap;
+    }
+    .data-table td:nth-child(3) { /* Titre */
+      min-width: 260px;
+      font-size: var(--text-xs);
+      line-height: 1.5;
+    }
+    .data-table td:nth-child(4) { /* Auteurs */
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      white-space: nowrap;
+    }
+    .data-table td:nth-child(5) { /* Année */
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      text-align: center;
+      width: 64px;
+    }
+    .data-table td:nth-child(6) { /* Type */
+      white-space: nowrap;
+      font-size: var(--text-xs);
+    }
+    .data-table td:nth-child(7) { /* Cancer */
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+    .data-table td:nth-child(8) { /* Niveau */
+      text-align: center;
+      white-space: nowrap;
+    }
+    .data-table td:nth-child(9) { /* Lien */
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .mol-badge {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      padding: 2px var(--space-2);
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+    .mol-ivermectin   { background: rgba(167,139,250,0.12); color: var(--color-purple); }
+    .mol-fenbendazole { background: rgba(249,115,22,0.1);   color: var(--color-orange); }
+    .mol-mebendazole  { background: rgba(56,189,248,0.1);   color: var(--color-primary); }
+    .mol-metformin    { background: rgba(34,197,94,0.1);    color: var(--color-success); }
+    .mol-disulfiram   { background: rgba(239,68,68,0.1);    color: var(--color-danger); }
+    .mol-propranolol  { background: rgba(234,179,8,0.1);    color: var(--color-warning); }
+    .mol-chloroquine  { background: rgba(45,212,191,0.1);   color: var(--color-teal); }
+    .mol-general      { background: rgba(148,163,184,0.1);  color: var(--color-text-muted); }
+
+    .type-badge {
+      display: inline-block;
+      font-size: var(--text-xs);
+      padding: 2px var(--space-2);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface-3);
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-divider);
+    }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      padding: 3px var(--space-2);
+      border-radius: var(--radius-sm);
+      background: var(--color-primary-glow);
+      color: var(--color-primary);
+      border: 1px solid rgba(56,189,248,0.2);
+      text-decoration: none;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+    .link-btn:hover {
+      background: rgba(56,189,248,0.2);
+      color: var(--color-primary-hover);
+    }
+
+    /* No-results message */
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: var(--space-12) var(--space-4);
+      color: var(--color-text-faint);
+      font-family: var(--font-display);
+      font-size: var(--text-sm);
+    }
+    .no-results.visible { display: block; }
+
+    /* Result count */
+    .results-count {
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-3);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .results-count span {
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="site-wrapper">
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="./index.html" class="site-logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo">
+            <path d="M16 2L28.66 9.5V24.5L16 30L3.34 24.5V9.5L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <circle cx="16" cy="16" r="4" fill="currentColor" opacity="0.3"/>
+            <circle cx="16" cy="8" r="2" fill="currentColor"/>
+            <circle cx="22.93" cy="12" r="2" fill="currentColor"/>
+            <circle cx="22.93" cy="20" r="2" fill="currentColor"/>
+            <circle cx="16" cy="24" r="2" fill="currentColor"/>
+            <circle cx="9.07" cy="20" r="2" fill="currentColor"/>
+            <circle cx="9.07" cy="12" r="2" fill="currentColor"/>
+            <line x1="16" y1="8" x2="22.93" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <line x1="22.93" y1="12" x2="22.93" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <line x1="22.93" y1="20" x2="16" y2="24" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <line x1="16" y1="24" x2="9.07" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <line x1="9.07" y1="20" x2="9.07" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <line x1="9.07" y1="12" x2="16" y2="8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          </svg>
+          <span>RepoOnco<span class="logo-sub">Base documentaire</span></span>
+        </a>
+        <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+        <nav><ul class="nav-links">
+          <li><a href="./index.html">Accueil</a></li>
+          <li><a href="./dashboard.html">Dashboard</a></li>
+          <li><a href="./methode.html">Méthodologie</a></li>
+          <li><a href="./documentation.html" class="active">Documentation</a></li>
+        </ul></nav>
+      </div>
+    </header>
+
+    <!-- STATUS BAR -->
+    <div class="status-bar">
+      <div class="status-item"><span class="status-dot green"></span> 40 études indexées</div>
+      <div class="status-item"><span class="status-dot blue"></span> 7 molécules suivies</div>
+      <div class="status-item"><span class="status-dot yellow"></span> Dernière maj : 07/04/2026</div>
+      <div class="status-item"><span class="status-dot green"></span> Sources : PMC/PubMed</div>
+    </div>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+      <!-- Page Hero -->
+      <div class="page-hero">
+        <div class="breadcrumb">
+          <a href="./index.html">Accueil</a>
+          <span>/</span>
+          <span>Documentation</span>
+        </div>
+        <h1>Bibliothèque documentaire</h1>
+        <p class="page-subtitle">
+          Ensemble des 40 études indexées dans ce projet documentaire sur le repositionnement de molécules
+          antiparasitaires et hors-brevet en oncologie. Filtrable par molécule et recherchable par titre ou auteur.
+        </p>
+      </div>
+
+      <!-- KPI row -->
+      <div class="kpi-row" role="region" aria-label="Statistiques">
+        <div class="kpi-card">
+          <div class="kpi-label">Total études</div>
+          <div class="kpi-value" style="color:var(--color-primary)">40</div>
+          <div class="kpi-sub">indexées au 07/04/2026</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Essais humains</div>
+          <div class="kpi-value" style="color:var(--color-teal)">6</div>
+          <div class="kpi-sub">RCT &amp; essais de phase II</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Molécules</div>
+          <div class="kpi-value" style="color:var(--color-success)">7</div>
+          <div class="kpi-sub">dont 3 antiparasitaires</div>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar" id="filterBar" role="group" aria-label="Filtres par molécule">
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all">Toutes</button>
+          <button class="filter-btn" data-filter="Ivermectine">Ivermectine</button>
+          <button class="filter-btn" data-filter="Fenbendazole">Fenbendazole</button>
+          <button class="filter-btn" data-filter="Mébendazole">Mébendazole</button>
+          <button class="filter-btn" data-filter="Metformine">Metformine</button>
+          <button class="filter-btn" data-filter="Disulfirame">Disulfirame</button>
+          <button class="filter-btn" data-filter="Propranolol">Propranolol</button>
+          <button class="filter-btn" data-filter="Chloroquine/HCQ">Chloroquine/HCQ</button>
+          <button class="filter-btn" data-filter="Général">Général</button>
+        </div>
+        <div class="search-group">
+          <input type="search" id="searchInput" class="search-input" placeholder="Rechercher titre, auteurs…" aria-label="Rechercher dans les études">
+        </div>
+      </div>
+
+      <!-- Results count -->
+      <div class="results-count" id="resultsCount">
+        <span id="visibleCount">40</span> études affichées sur 40
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrapper">
+        <table class="data-table" id="studiesTable" aria-label="Tableau des 40 études indexées">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Molécule</th>
+              <th>Titre</th>
+              <th>Auteurs</th>
+              <th>Année</th>
+              <th>Type</th>
+              <th>Cancer</th>
+              <th>Niveau</th>
+              <th>Lien</th>
+            </tr>
+          </thead>
+          <tbody id="studiesBody">
+
+            <!-- ═══ IVERMECTINE ═══ -->
+            <tr data-molecule="Ivermectine" data-search="ivermectin potential anticancer drug tang m 2021 review multiple pmc7505114">
+              <td>1</td>
+              <td><span class="mol-badge mol-ivermectin">Ivermectine</span></td>
+              <td>Ivermectin, a potential anticancer drug derived from an antiparasitic drug</td>
+              <td>Tang M et al.</td>
+              <td>2021</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7505114/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Ivermectine" data-search="multitargeted drug ivermectin juarez m 2018 review multiple pmc5835698">
+              <td>2</td>
+              <td><span class="mol-badge mol-ivermectin">Ivermectine</span></td>
+              <td>The multitargeted drug ivermectin: from an antiparasitic agent to a repositioned cancer drug</td>
+              <td>Juarez M et al.</td>
+              <td>2018</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5835698/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Ivermectine" data-search="ivermectin induces pak1 mediated wang k 2016 in vitro breast pmc5173258">
+              <td>3</td>
+              <td><span class="mol-badge mol-ivermectin">Ivermectine</span></td>
+              <td>Ivermectin induces PAK1-mediated cytostatic autophagy in breast cancer cells</td>
+              <td>Wang K et al.</td>
+              <td>2016</td>
+              <td><span class="type-badge">In vitro</span></td>
+              <td>Sein</td>
+              <td><span class="evidence-badge evidence-6">N6</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5173258/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Ivermectine" data-search="ivermectin reverses drug resistance jiang l 2019 in vitro multiple pmc6580523">
+              <td>4</td>
+              <td><span class="mol-badge mol-ivermectin">Ivermectine</span></td>
+              <td>Ivermectin reverses the drug resistance in cancer cells through EGFR/ERK/Akt/NF-κB pathway</td>
+              <td>Jiang L et al.</td>
+              <td>2019</td>
+              <td><span class="type-badge">In vitro</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-6">N6</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6580523/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Ivermectine" data-search="integrated analysis foxa1 lv s 2022 in vitro prostate pmc9436997">
+              <td>5</td>
+              <td><span class="mol-badge mol-ivermectin">Ivermectine</span></td>
+              <td>Integrated analysis reveals FOXA1 as potential biomarker for ivermectin sensitivity in prostate cancer</td>
+              <td>Lv S et al.</td>
+              <td>2022</td>
+              <td><span class="type-badge">In vitro</span></td>
+              <td>Prostate</td>
+              <td><span class="evidence-badge evidence-6">N6</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9436997/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+
+            <!-- ═══ FENBENDAZOLE ═══ -->
+            <tr data-molecule="Fenbendazole" data-search="fenbendazole acts moderate microtubule dogra n 2018 in vitro multiple pmc6085345">
+              <td>6</td>
+              <td><span class="mol-badge mol-fenbendazole">Fenbendazole</span></td>
+              <td>Fenbendazole acts as a moderate microtubule destabilizing agent and causes cancer cell death by modulating multiple cellular pathways</td>
+              <td>Dogra N et al.</td>
+              <td>2018</td>
+              <td><span class="type-badge">In vitro</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-6">N6</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6085345/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Fenbendazole" data-search="fenbendazole potential anticancer drug duan q 2013 in vitro multiple pmc3580766">
+              <td>7</td>
+              <td><span class="mol-badge mol-fenbendazole">Fenbendazole</span></td>
+              <td>Fenbendazole as potential anticancer drug: antiproliferative effect on cancer cell lines</td>
+              <td>Duan Q et al.</td>
+              <td>2013</td>
+              <td><span class="type-badge">In vitro</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-6">N6</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3580766/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Fenbendazole" data-search="benzimidazoles downregulate mdm2 mrkvova z 2019 in vitro melanoma pmc6600429">
+              <td>8</td>
+              <td><span class="mol-badge mol-fenbendazole">Fenbendazole</span></td>
+              <td>Benzimidazoles Downregulate Mdm2 and MdmX and Activate p53 in MdmX Overexpressing Tumor Cells</td>
+              <td>Mrkvová Z et al.</td>
+              <td>2019</td>
+              <td><span class="type-badge">In vitro</span></td>
+              <td>Mélanome</td>
+              <td><span class="evidence-badge evidence-6">N6</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6600429/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Fenbendazole" data-search="antitumor potentials benzimidazole son ds 2020 review multiple pmc7458798">
+              <td>9</td>
+              <td><span class="mol-badge mol-fenbendazole">Fenbendazole</span></td>
+              <td>Antitumor Potentials of Benzimidazole Anthelmintics per Repurposing</td>
+              <td>Son DS et al.</td>
+              <td>2020</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7458798/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Fenbendazole" data-search="drug induced liver injury yamaguchi t 2021 case report nsclc pmc8255718">
+              <td>10</td>
+              <td><span class="mol-badge mol-fenbendazole">Fenbendazole</span></td>
+              <td>Drug-Induced Liver Injury Associated with Fenbendazole in a Patient with Non-Small Cell Lung Cancer</td>
+              <td>Yamaguchi T et al.</td>
+              <td>2021</td>
+              <td><span class="type-badge">Cas clinique</span></td>
+              <td>CBNPC</td>
+              <td><span class="evidence-badge evidence-4">N4</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8255718/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Fenbendazole" data-search="transcriptome analysis fenbendazole ovarian cancer wang x 2024 in vivo pmc11686899">
+              <td>11</td>
+              <td><span class="mol-badge mol-fenbendazole">Fenbendazole</span></td>
+              <td>Transcriptome analysis of the antitumor mechanism of fenbendazole on ovarian cancer</td>
+              <td>Wang X et al.</td>
+              <td>2024</td>
+              <td><span class="type-badge">In vivo</span></td>
+              <td>Ovarien</td>
+              <td><span class="evidence-badge evidence-5">N5</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11686899/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+
+            <!-- ═══ MÉBENDAZOLE ═══ -->
+            <tr data-molecule="Mébendazole" data-search="mebendazole candidate drug repurposing guerini ae 2019 review multiple pmc6769799">
+              <td>12</td>
+              <td><span class="mol-badge mol-mebendazole">Mébendazole</span></td>
+              <td>Mebendazole as Candidate for Drug Repurposing in Oncology: An Extensive Review of Current Literature</td>
+              <td>Guerini AE et al.</td>
+              <td>2019</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6769799/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Mébendazole" data-search="antiparasitic mebendazole survival benefit bai ry 2011 in vivo gbm pmc3158014">
+              <td>13</td>
+              <td><span class="mol-badge mol-mebendazole">Mébendazole</span></td>
+              <td>Antiparasitic mebendazole shows survival benefit in 2 preclinical models of glioblastoma multiforme</td>
+              <td>Bai RY et al.</td>
+              <td>2011</td>
+              <td><span class="type-badge">In vivo</span></td>
+              <td>GBM</td>
+              <td><span class="evidence-badge evidence-5">N5</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3158014/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Mébendazole" data-search="potential mechanism mebendazole ovarian cancer elayapillai s 2021 in vivo pmc8820236">
+              <td>14</td>
+              <td><span class="mol-badge mol-mebendazole">Mébendazole</span></td>
+              <td>Potential and mechanism of mebendazole for treatment and maintenance of ovarian cancer</td>
+              <td>Elayapillai S et al.</td>
+              <td>2021</td>
+              <td><span class="type-badge">In vivo</span></td>
+              <td>Ovarien</td>
+              <td><span class="evidence-badge evidence-5">N5</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8820236/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Mébendazole" data-search="benzimidazoles induce apoptosis pyroptosis ren lw 2022 in vitro gbm pmc8724275">
+              <td>15</td>
+              <td><span class="mol-badge mol-mebendazole">Mébendazole</span></td>
+              <td>Benzimidazoles induce apoptosis and pyroptosis of GBM through the PTEN/PI3K/Akt pathway</td>
+              <td>Ren LW et al.</td>
+              <td>2022</td>
+              <td><span class="type-badge">In vitro</span></td>
+              <td>GBM</td>
+              <td><span class="evidence-badge evidence-6">N6</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8724275/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Mébendazole" data-search="mebendazole anti parasitic repurposing hegazy sk 2022 rct colorectal pmid35385794">
+              <td>16</td>
+              <td><span class="mol-badge mol-mebendazole">Mébendazole</span></td>
+              <td>Mebendazole; from anti-parasitic to repurposing as add-on therapy in metastatic colorectal cancer</td>
+              <td>Hegazy SK et al.</td>
+              <td>2022</td>
+              <td><span class="type-badge">RCT</span></td>
+              <td>Colorectal</td>
+              <td><span class="evidence-badge evidence-2">N2</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/35385794/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Mébendazole" data-search="emerging perspectives mebendazole brain cancers meco d 2023 review pmc9862092">
+              <td>17</td>
+              <td><span class="mol-badge mol-mebendazole">Mébendazole</span></td>
+              <td>Emerging Perspectives on Mebendazole as Repurposed Drug for Central Nervous System and Brain Cancers</td>
+              <td>Meco D et al.</td>
+              <td>2023</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Cerveau</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9862092/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Mébendazole" data-search="repurposing mebendazole hedgehog inhibitor larsen ar 2015 in vivo medulloblastoma pmc4297232">
+              <td>18</td>
+              <td><span class="mol-badge mol-mebendazole">Mébendazole</span></td>
+              <td>Repurposing the antihelmintic mebendazole as a hedgehog inhibitor</td>
+              <td>Larsen AR et al.</td>
+              <td>2015</td>
+              <td><span class="type-badge">In vivo</span></td>
+              <td>Médulloblastome</td>
+              <td><span class="evidence-badge evidence-5">N5</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4297232/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Mébendazole" data-search="repurposing mebendazole tnbc cns metastasis rodrigues aj 2024 in vivo breast pmc11093727">
+              <td>19</td>
+              <td><span class="mol-badge mol-mebendazole">Mébendazole</span></td>
+              <td>Repurposing mebendazole against TNBC brain/CNS metastasis</td>
+              <td>Rodrigues AJ et al.</td>
+              <td>2024</td>
+              <td><span class="type-badge">In vivo</span></td>
+              <td>Sein (TNBC)</td>
+              <td><span class="evidence-badge evidence-5">N5</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11093727/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+            <tr data-molecule="Mébendazole" data-search="screening benzimidazole based anthelmintics florio r 2021 in vitro multiple pmc8072969">
+              <td>20</td>
+              <td><span class="mol-badge mol-mebendazole">Mébendazole</span></td>
+              <td>Screening of Benzimidazole-Based Anthelmintics and Their Derivatives in a Set of Human Cancer Cell Lines</td>
+              <td>Florio R et al.</td>
+              <td>2021</td>
+              <td><span class="type-badge">In vitro</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-6">N6</span></td>
+              <td><a class="link-btn" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8072969/" target="_blank" rel="noopener noreferrer">PMC</a></td>
+            </tr>
+
+            <!-- ═══ METFORMINE ═══ -->
+            <tr data-molecule="Metformine" data-search="metformin cancer risk systematic review gandini s 2014 meta-analysis multiple pmc4154969">
+              <td>21</td>
+              <td><span class="mol-badge mol-metformin">Metformine</span></td>
+              <td>Metformin and cancer risk and mortality: a systematic review and meta-analysis taking into account biases and confounders</td>
+              <td>Gandini S et al.</td>
+              <td>2014</td>
+              <td><span class="type-badge">Méta-analyse</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/24985407/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Metformine" data-search="metformin vs placebo ma32 trial goodwin pj 2022 rct breast pmc9131745">
+              <td>22</td>
+              <td><span class="mol-badge mol-metformin">Metformine</span></td>
+              <td>Effect of Metformin vs Placebo on Invasive Disease-Free Survival in Patients With Breast Cancer: The MA.32 Randomized Clinical Trial</td>
+              <td>Goodwin PJ et al.</td>
+              <td>2022</td>
+              <td><span class="type-badge">RCT</span></td>
+              <td>Sein</td>
+              <td><span class="evidence-badge evidence-2">N2</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/35608580/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Metformine" data-search="current status clinical trials metformin wu z 2023 review multiple pmc11798064">
+              <td>23</td>
+              <td><span class="mol-badge mol-metformin">Metformine</span></td>
+              <td>Current status and future perspectives of clinical trials on metformin's efficacy in treating malignant tumors</td>
+              <td>Wu Z et al.</td>
+              <td>2023</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/37698682/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Metformine" data-search="metformin cancer risk diabetic patients decensi a 2010 meta-analysis multiple pmid20947488">
+              <td>24</td>
+              <td><span class="mol-badge mol-metformin">Metformine</span></td>
+              <td>Metformin and cancer risk in diabetic patients: a systematic review and meta-analysis</td>
+              <td>Decensi A et al.</td>
+              <td>2010</td>
+              <td><span class="type-badge">Méta-analyse</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/20947488/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+
+            <!-- ═══ DISULFIRAME ═══ -->
+            <tr data-molecule="Disulfirame" data-search="disulfiram direct trial werlenius k 2023 rct gbm pmc10066460">
+              <td>25</td>
+              <td><span class="mol-badge mol-disulfiram">Disulfirame</span></td>
+              <td>Effect of Disulfiram on Survival in Patients with Recurrent Glioblastoma: A Randomized Clinical Trial (DIRECT)</td>
+              <td>Werlenius K et al.</td>
+              <td>2023</td>
+              <td><span class="type-badge">RCT</span></td>
+              <td>GBM</td>
+              <td><span class="evidence-badge evidence-2">N2</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/37000452/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Disulfirame" data-search="immunomodulatory function disulfiram zhang s 2023 review multiple pmc10275851">
+              <td>26</td>
+              <td><span class="mol-badge mol-disulfiram">Disulfirame</span></td>
+              <td>Immunomodulatory function of the tumor microenvironment and its application in disulfiram cancer treatment</td>
+              <td>Zhang S et al.</td>
+              <td>2023</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/37326784/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Disulfirame" data-search="disulfiram copper induces antitumor activity li y 2020 in vitro nasopharyngeal pmc7017005">
+              <td>27</td>
+              <td><span class="mol-badge mol-disulfiram">Disulfirame</span></td>
+              <td>Disulfiram/Copper Induces Antitumor Activity against Nasopharyngeal Carcinoma by Inhibiting ALDH1</td>
+              <td>Li Y et al.</td>
+              <td>2020</td>
+              <td><span class="type-badge">In vitro</span></td>
+              <td>Nasopharynx</td>
+              <td><span class="evidence-badge evidence-6">N6</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/31935835/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Disulfirame" data-search="disulfiram novel repurposed drug zeng m 2024 review multiple pmc11188872">
+              <td>28</td>
+              <td><span class="mol-badge mol-disulfiram">Disulfirame</span></td>
+              <td>Disulfiram: A novel repurposed drug for cancer treatment — a review</td>
+              <td>Zeng M et al.</td>
+              <td>2024</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/38275022/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+
+            <!-- ═══ PROPRANOLOL ═══ -->
+            <tr data-molecule="Propranolol" data-search="does propranolol have role cancer treatment o logbon j 2025 review multiple pmc12255574">
+              <td>29</td>
+              <td><span class="mol-badge mol-propranolol">Propranolol</span></td>
+              <td>Does propranolol have a role in cancer treatment? A systematic review and meta-analysis</td>
+              <td>O'Logbon J et al.</td>
+              <td>2025</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/40652143/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Propranolol" data-search="perioperative cox-2 beta adrenergic blockade shaashua l 2017 phase ii breast pmc5559335">
+              <td>30</td>
+              <td><span class="mol-badge mol-propranolol">Propranolol</span></td>
+              <td>Perioperative COX-2 and β-Adrenergic Blockade Improves Metastatic Biomarkers in Breast Cancer Patients in a Phase-II Randomized Trial</td>
+              <td>Shaashua L et al.</td>
+              <td>2017</td>
+              <td><span class="type-badge">Phase II</span></td>
+              <td>Sein</td>
+              <td><span class="evidence-badge evidence-2">N2</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/28490464/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Propranolol" data-search="propranolol survival breast cancer cardwell cr 2016 cohort pmc5133766">
+              <td>31</td>
+              <td><span class="mol-badge mol-propranolol">Propranolol</span></td>
+              <td>Propranolol and survival from breast cancer: a pooled analysis of European breast cancer cohorts</td>
+              <td>Cardwell CR et al.</td>
+              <td>2016</td>
+              <td><span class="type-badge">Cohorte</span></td>
+              <td>Sein</td>
+              <td><span class="evidence-badge evidence-3">N3</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/27906047/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Propranolol" data-search="propranolol sensitizes prostate cancer cells brohee l 2018 in vitro pmc5935740">
+              <td>32</td>
+              <td><span class="mol-badge mol-propranolol">Propranolol</span></td>
+              <td>Propranolol sensitizes prostate cancer cells to glucose metabolism inhibition and prevents cancer progression</td>
+              <td>Brohée L et al.</td>
+              <td>2018</td>
+              <td><span class="type-badge">In vitro</span></td>
+              <td>Prostate</td>
+              <td><span class="evidence-badge evidence-6">N6</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/29728578/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+
+            <!-- ═══ CHLOROQUINE/HCQ ═══ -->
+            <tr data-molecule="Chloroquine/HCQ" data-search="gemcitabine nab paclitaxel hcq karasic tb 2019 rct pancreas pmc6547080">
+              <td>33</td>
+              <td><span class="mol-badge mol-chloroquine">Chloroquine/HCQ</span></td>
+              <td>Gemcitabine and nab-Paclitaxel With or Without Hydroxychloroquine in Patients With Advanced Pancreatic Cancer</td>
+              <td>Karasic TB et al.</td>
+              <td>2019</td>
+              <td><span class="type-badge">RCT Phase 2</span></td>
+              <td>Pancréas</td>
+              <td><span class="evidence-badge evidence-2">N2</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/31120501/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Chloroquine/HCQ" data-search="autophagy inhibition high dose hcq zeh hj 2020 rct pancreas pmc8086597">
+              <td>34</td>
+              <td><span class="mol-badge mol-chloroquine">Chloroquine/HCQ</span></td>
+              <td>Autophagy Inhibition with High-Dose Hydroxychloroquine in Pancreatic Adenocarcinoma</td>
+              <td>Zeh HJ et al.</td>
+              <td>2020</td>
+              <td><span class="type-badge">RCT Phase 2</span></td>
+              <td>Pancréas</td>
+              <td><span class="evidence-badge evidence-2">N2</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/32156749/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Chloroquine/HCQ" data-search="chloroquine hydroxychloroquine cancer therapy manic g 2014 review multiple pmc4905171">
+              <td>35</td>
+              <td><span class="mol-badge mol-chloroquine">Chloroquine/HCQ</span></td>
+              <td>Chloroquine and hydroxychloroquine for cancer therapy</td>
+              <td>Manic G et al.</td>
+              <td>2014</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/27308318/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Chloroquine/HCQ" data-search="redo chloroquine hcq anti cancer agents verbaanderd c 2017 review multiple pmc5718030">
+              <td>36</td>
+              <td><span class="mol-badge mol-chloroquine">Chloroquine/HCQ</span></td>
+              <td>Repurposing Drugs in Oncology (ReDO) — chloroquine and hydroxychloroquine as anti-cancer agents</td>
+              <td>Verbaanderd C et al.</td>
+              <td>2017</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Multiple</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/29225688/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+
+            <!-- ═══ GÉNÉRAL ═══ -->
+            <tr data-molecule="Général" data-search="advancing human right health drug repurposing sakis n 2025 review general pmc12369116">
+              <td>37</td>
+              <td><span class="mol-badge mol-general">Général</span></td>
+              <td>Advancing the human right to health through collaborative drug repurposing in oncology</td>
+              <td>Sakis N et al.</td>
+              <td>2025</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Général</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/40842013/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Général" data-search="repurposing drugs oncology next steps verbaanderd c 2017 review general pmid28780930">
+              <td>38</td>
+              <td><span class="mol-badge mol-general">Général</span></td>
+              <td>Repurposing Drugs in Oncology (ReDO): Next Steps</td>
+              <td>Verbaanderd C et al.</td>
+              <td>2017</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Général</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/28780930/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Général" data-search="repurposing drugs oncology candidate selection pantziarka p 2021 review general pmid31982510">
+              <td>39</td>
+              <td><span class="mol-badge mol-general">Général</span></td>
+              <td>Repurposing drugs in oncology: From candidate selection to clinical adoption</td>
+              <td>Pantziarka P et al.</td>
+              <td>2021</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Général</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/31982510/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+            <tr data-molecule="Général" data-search="turning liabilities opportunities palve v 2021 review general pmc7415607">
+              <td>40</td>
+              <td><span class="mol-badge mol-general">Général</span></td>
+              <td>Turning Liabilities into Opportunities: Off-Target Based Drug Repurposing in Cancer</td>
+              <td>Palve V et al.</td>
+              <td>2021</td>
+              <td><span class="type-badge">Revue</span></td>
+              <td>Général</td>
+              <td><span class="evidence-badge evidence-1">N1</span></td>
+              <td><a class="link-btn" href="https://pubmed.ncbi.nlm.nih.gov/32044472/" target="_blank" rel="noopener noreferrer">PubMed</a></td>
+            </tr>
+
+          </tbody>
+        </table>
+        <div class="no-results" id="noResults">Aucune étude ne correspond à la recherche actuelle.</div>
+      </div>
+
+      <!-- Legend -->
+      <div class="card" style="margin-bottom: var(--space-8);">
+        <div style="font-family: var(--font-display); font-size: var(--text-xs); font-weight: 600; color: var(--color-text-faint); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-4);">Légende des niveaux de preuve</div>
+        <div style="display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center;">
+          <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);">
+            <span class="evidence-badge evidence-1">N1</span> Méta-analyse / Revue systématique
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);">
+            <span class="evidence-badge evidence-2">N2</span> Essai contrôlé randomisé (RCT)
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);">
+            <span class="evidence-badge evidence-3">N3</span> Cohorte / Cas-témoin
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);">
+            <span class="evidence-badge evidence-4">N4</span> Rapport de cas
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);">
+            <span class="evidence-badge evidence-5">N5</span> Étude animale in vivo
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);">
+            <span class="evidence-badge evidence-6">N6</span> Étude cellulaire in vitro
+          </div>
+        </div>
+        <div style="margin-top: var(--space-4); font-size: var(--text-xs); color: var(--color-text-faint); line-height: 1.6;">
+          Pour la description complète de l'échelle de niveaux de preuve utilisée dans ce projet, voir la <a href="./methode.html#niveaux">Méthodologie, section 4</a>.
+        </div>
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <p>Projet documentaire — Données collectées le 07/04/2026</p>
+      <p>Sources : <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener noreferrer">PubMed/PMC</a> · <a href="https://clinicaltrials.gov/" target="_blank" rel="noopener noreferrer">ClinicalTrials.gov</a></p>
+      <p style="margin-top: 0.5rem;">Ce projet ne constitue pas un avis médical. <a href="./methode.html">Voir la méthodologie complète</a>.</p>
+    </footer>
+
+  </div><!-- /site-wrapper -->
+
+  <script>
+    (function () {
+      'use strict';
+
+      var filterBtns = document.querySelectorAll('#filterBar .filter-btn');
+      var searchInput = document.getElementById('searchInput');
+      var tbody = document.getElementById('studiesBody');
+      var rows = Array.from(tbody.querySelectorAll('tr'));
+      var noResults = document.getElementById('noResults');
+      var visibleCount = document.getElementById('visibleCount');
+
+      var activeFilter = 'all';
+      var searchTerm = '';
+
+      function normalize(str) {
+        return str.toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
+      }
+
+      function applyFilters() {
+        var count = 0;
+
+        rows.forEach(function (row) {
+          var mol = row.getAttribute('data-molecule') || '';
+          var search = row.getAttribute('data-search') || '';
+          var titleCell = row.cells[2] ? row.cells[2].textContent : '';
+          var authorCell = row.cells[3] ? row.cells[3].textContent : '';
+          var combined = normalize(search + ' ' + titleCell + ' ' + authorCell);
+
+          var molMatch = (activeFilter === 'all') || (mol === activeFilter);
+          var searchMatch = (searchTerm === '') || (combined.indexOf(normalize(searchTerm)) !== -1);
+
+          if (molMatch && searchMatch) {
+            row.style.display = '';
+            count++;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        visibleCount.textContent = count;
+        noResults.classList.toggle('visible', count === 0);
+      }
+
+      filterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          filterBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          activeFilter = btn.getAttribute('data-filter');
+          applyFilters();
+        });
+      });
+
+      searchInput.addEventListener('input', function () {
+        searchTerm = searchInput.value.trim();
+        applyFilters();
+      });
+
+    })();
+  </script>
+</body>
+</html>

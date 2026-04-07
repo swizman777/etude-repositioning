@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Base documentaire publique sur le repositionnement de molécules en cancérologie. Antiparasitaires et molécules hors brevet étudiées pour leurs propriétés antitumorales. Données sourcées, niveaux de preuve classifiés." />
+  <meta name="robots" content="index, follow" />
+  <title>RepoOnco — Repositionnement de Molécules en Cancérologie</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+<body>
+<div class="site-wrapper">
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="./index.html" class="site-logo">
+        <!-- SVG logo: molecule/hexagon icon -->
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo Étude Repositionnement">
+          <path d="M16 2L28.66 9.5V24.5L16 30L3.34 24.5V9.5L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="16" cy="16" r="4" fill="currentColor" opacity="0.3"/>
+          <circle cx="16" cy="8" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="12" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="20" r="2" fill="currentColor"/>
+          <circle cx="16" cy="24" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="20" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="12" r="2" fill="currentColor"/>
+          <line x1="16" y1="8" x2="22.93" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="12" x2="22.93" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="20" x2="16" y2="24" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="16" y1="24" x2="9.07" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="20" x2="9.07" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="12" x2="16" y2="8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+        </svg>
+        <span>RepoOnco<span class="logo-sub">Base documentaire</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="./index.html" class="active">Accueil</a></li>
+          <li><a href="./dashboard.html">Dashboard</a></li>
+          <li><a href="./methode.html">Méthodologie</a></li>
+          <li><a href="./documentation.html">Documentation</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       STATUS BAR
+  ============================================================ -->
+  <div class="status-bar">
+    <div class="status-item"><span class="status-dot green"></span> 40 études indexées</div>
+    <div class="status-item"><span class="status-dot blue"></span> 7 molécules suivies</div>
+    <div class="status-item"><span class="status-dot yellow"></span> Dernière maj : 07/04/2026</div>
+    <div class="status-item"><span class="status-dot green"></span> Sources : PMC/PubMed</div>
+  </div>
+
+  <!-- ============================================================
+       MAIN CONTENT
+  ============================================================ -->
+  <main class="main-content">
+
+    <!-- HERO SECTION -->
+    <section class="intro-hero">
+      <h1>Repositionnement de Molécules en Cancérologie</h1>
+      <p class="subtitle">
+        Base documentaire publique sur les antiparasitaires et molécules hors brevet étudiées pour leurs propriétés antitumorales. Données sourcées, niveaux de preuve classifiés, approche transparente.
+      </p>
+
+      <div class="alert-box warning">
+        <strong>Avertissement important —</strong> Ce projet est strictement documentaire et informatif. Il ne constitue pas un avis médical. Les molécules présentées sont à des stades variés de recherche et ne doivent jamais être utilisées en automédication. Consultez toujours un professionnel de santé avant toute décision thérapeutique.
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 1 — Pourquoi ce projet existe
+    ============================================================ -->
+    <section class="content-section" id="pourquoi">
+      <div class="section-header">
+        <span class="section-tag">01</span>
+        <h2>Pourquoi ce projet existe</h2>
+      </div>
+
+      <h3>Le repositionnement : une stratégie thérapeutique sous-exploitée</h3>
+      <p>
+        Le repositionnement de molécules — ou <em>drug repurposing</em> en anglais — consiste à identifier de nouvelles indications thérapeutiques pour des médicaments déjà approuvés ou largement étudiés dans d'autres contextes. Cette approche présente des avantages considérables&nbsp;: les profils de sécurité sont connus, les coûts de développement initiaux sont réduits, et les délais d'accès aux patients peuvent être raccourcis. En oncologie, cette stratégie est particulièrement pertinente, car de nombreuses molécules anciennement développées pour d'autres pathologies présentent des mécanismes d'action susceptibles d'interférer avec la prolifération tumorale, l'angiogenèse ou les mécanismes d'évasion immunitaire. Selon <a href="https://pubmed.ncbi.nlm.nih.gov/31982510/" target="_blank" rel="noopener noreferrer">Pantziarka P et al., 2021</a>, le repositionnement représente une voie prometteuse et sous-exploitée dans l'arsenal thérapeutique contre le cancer.
+      </p>
+
+      <h3>Pourquoi les molécules hors brevet sont-elles si peu étudiées ?</h3>
+      <p>
+        La raison est structurelle et économique. Lorsqu'une molécule tombe dans le domaine public — c'est-à-dire lorsque son brevet expire —, n'importe quel fabricant peut la produire et la commercialiser sous forme générique. Cette perte d'exclusivité commerciale retire tout intérêt financier pour les entreprises pharmaceutiques à investir dans des essais cliniques coûteux. Pourquoi financer un essai de phase III pour démontrer l'efficacité d'une molécule générique dont vous ne pourrez pas récupérer l'investissement via un monopole commercial&nbsp;? Comme le soulignent <a href="https://pubmed.ncbi.nlm.nih.gov/28780930/" target="_blank" rel="noopener noreferrer">Verbaanderd C et al., 2017</a>, l'absence d'incitation financière pour les essais sur les médicaments génériques constitue l'un des obstacles majeurs au développement clinique des molécules repositionnées en oncologie.
+      </p>
+
+      <h3>Un modèle économique qui récompense la nouveauté brevetable, pas l'efficacité</h3>
+      <p>
+        Le système pharmaceutique actuel est construit autour du brevet. Une molécule innovante, brevetable, peut générer des milliards de revenus pendant vingt ans d'exclusivité. Ce modèle crée une distorsion profonde&nbsp;: l'industrie investit massivement dans la découverte de nouvelles entités chimiques, parfois marginalement plus efficaces que leurs prédécesseurs, au détriment d'une exploration sérieuse de médicaments existants, connus, disponibles à faible coût. L'analyse de <a href="https://pubmed.ncbi.nlm.nih.gov/40842013/" target="_blank" rel="noopener noreferrer">Sakis N et al., 2025</a> documente cette défaillance structurelle&nbsp;: le modèle économique pharmaceutique ne récompense pas le repositionnement, il le décourage activement, créant un angle mort scientifique d'une ampleur potentiellement significative.
+      </p>
+
+      <h3>L'objectif de cette base documentaire</h3>
+      <p>
+        Ce projet ne prétend ni promouvoir des traitements alternatifs, ni substituer à l'évaluation clinique rigoureuse. Son objectif est précis et limité&nbsp;: rassembler, organiser et présenter de façon transparente ce que la littérature scientifique dit effectivement sur les molécules hors brevet en oncologie. Chaque affirmation est sourcée. Chaque niveau de preuve est explicitement classifié. La distinction entre signal expérimental, hypothèse mécanistique, essai clinique et preuve exploitable est maintenue avec rigueur. Comme le soulignent <a href="https://pubmed.ncbi.nlm.nih.gov/32044472/" target="_blank" rel="noopener noreferrer">Palve V et al., 2021</a>, la transparence méthodologique et la classification explicite des niveaux de preuve sont indispensables pour que des données de repositionnement soient utilisables et interprétables de manière responsable.
+      </p>
+
+      <div class="alert-box info">
+        <strong>Distinction fondamentale —</strong> Ce projet distingue systématiquement quatre niveaux&nbsp;: (1) <strong>hypothèse mécanistique</strong> (rationnel théorique), (2) <strong>signal expérimental</strong> (résultat in vitro ou animal), (3) <strong>essai clinique</strong> (étude sur l'humain, avec ses propres niveaux de qualité), et (4) <strong>preuve exploitable</strong> (niveau de preuve suffisant pour guider une pratique clinique). La distance entre ces niveaux est souvent considérable.
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2 — Limites du niveau de preuve
+    ============================================================ -->
+    <section class="content-section" id="niveaux-preuve">
+      <div class="section-header">
+        <span class="section-tag">02</span>
+        <h2>Limites du niveau de preuve</h2>
+      </div>
+
+      <h3>Niveau 1 vs Niveau 6 : une hiérarchie qui compte</h3>
+      <p>
+        La médecine basée sur les preuves (<em>Evidence-Based Medicine</em>) classe les études selon leur capacité à établir une causalité avec fiabilité. Au sommet de la pyramide se trouvent les <strong>méta-analyses et revues systématiques (Niveau 1)</strong>&nbsp;: elles agrègent les résultats de plusieurs essais contrôlés randomisés pour dégager un signal robuste, corrigé des biais individuels. À l'opposé, les <strong>études in vitro (Niveau 6)</strong> observent l'effet d'une molécule sur des cellules en culture, dans des conditions qui ne reproduisent pas la complexité d'un organisme vivant. Entre ces deux extrêmes se situent les essais contrôlés randomisés (Niveau 2), les études de cohortes prospectives (Niveau 3), les études cas-témoins (Niveau 4), et les séries de cas ou rapports de cas (Niveau 5).
+      </p>
+
+      <h3>Pourquoi un résultat in vitro ne signifie pas que le médicament fonctionne chez l'humain</h3>
+      <p>
+        C'est l'erreur d'interprétation la plus courante et la plus dommageable. Lorsqu'une étude montre qu'une molécule tue des cellules cancéreuses en boîte de Pétri, cela ne démontre absolument pas qu'elle sera efficace, ni même sans danger, chez un patient humain. Les raisons sont multiples et fondamentales&nbsp;:
+      </p>
+      <ul>
+        <li><strong>Biodisponibilité</strong>&nbsp;: la quantité de molécule qui atteint effectivement les cellules tumorales après administration orale, intraveineuse ou autre peut être radicalement différente — souvent bien inférieure — aux concentrations utilisées in vitro.</li>
+        <li><strong>Formulation et voie d'administration</strong>&nbsp;: une molécule active en solution directe sur des cellules peut être dégradée, mal absorbée ou séquestrée dans des tissus non cibles une fois administrée à un organisme entier.</li>
+        <li><strong>Traduction des doses</strong>&nbsp;: les concentrations efficaces in vitro sont fréquemment impossibles à atteindre chez l'humain sans toxicité majeure. La fenêtre thérapeutique peut tout simplement être inexistante.</li>
+        <li><strong>Microenvironnement tumoral</strong>&nbsp;: les tumeurs in vivo bénéficient d'un environnement complexe — vascularisation, immunité locale, stroma, hypoxie — qui n'est pas reproduit dans les modèles cellulaires simples.</li>
+        <li><strong>Hétérogénéité tumorale</strong>&nbsp;: une lignée cellulaire homogène en culture ne reflète pas la diversité clonale d'une tumeur réelle, souvent composée de sous-populations avec des profils de résistance variés.</li>
+      </ul>
+
+      <h3>La « vallée de la mort » préclinique-clinique</h3>
+      <p>
+        Le développement pharmaceutique connaît bien ce phénomène&nbsp;: la grande majorité des molécules prometteuses en préclinique (cellules et animaux) échouent lors des essais cliniques humains. Les estimations varient, mais un taux d'échec de 90 à 95&nbsp;% entre la phase préclinique et la commercialisation est documenté dans la littérature. Cette « vallée de la mort » illustre pourquoi un signal in vitro enthousiaste, même reproduit sur plusieurs modèles, ne constitue qu'un point de départ et non une conclusion. Les essais cliniques bien conduits chez l'humain restent la seule manière de trancher sur l'efficacité et la sécurité réelles.
+      </p>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3 — Freins économiques au repositionnement
+    ============================================================ -->
+    <section class="content-section" id="freins-economiques">
+      <div class="section-header">
+        <span class="section-tag">03</span>
+        <h2>Les freins économiques au repositionnement</h2>
+      </div>
+
+      <h3>Hors brevet = absence de retour sur investissement</h3>
+      <p>
+        Le mécanisme est simple à comprendre, mais ses conséquences sont profondes. Financer un essai clinique de grande envergure coûte plusieurs dizaines à plusieurs centaines de millions d'euros. Pour une molécule brevetée nouvelle, cet investissement est potentiellement rentabilisé par des années de ventes exclusives. Pour un médicament générique, dont les prix sont tirés vers le bas par la concurrence et dont aucune exclusivité commerciale ne peut être obtenue, le modèle économique est défaillant. Aucun acteur privé n'a intérêt à financer un essai de phase III sur la metformine, l'ivermectine ou le mébendazole si d'autres fabricants peuvent immédiatement commercialiser le produit en s'appropriant les bénéfices de la démonstration clinique. Comme le documentent <a href="https://pubmed.ncbi.nlm.nih.gov/28780930/" target="_blank" rel="noopener noreferrer">Verbaanderd C et al., 2017</a>, ce déficit de financement pour les essais sur les médicaments hors brevet est une réalité structurelle qui freine le repositionnement.
+      </p>
+
+      <h3>Le coût des essais de phase III vs l'absence d'exclusivité</h3>
+      <p>
+        Les estimations du coût d'un essai clinique de phase III varient selon la pathologie, la taille de l'échantillon et la durée de suivi, mais se situent généralement entre 50 et plus de 100 millions de dollars pour les études oncologiques de grande ampleur. Ce coût doit être mis en regard du prix de vente des génériques, souvent de quelques euros par traitement mensuel, et de l'absence totale de protection commerciale. L'équation est impossible à résoudre pour un investisseur privé rationnel. Les analyses de <a href="https://pubmed.ncbi.nlm.nih.gov/40842013/" target="_blank" rel="noopener noreferrer">Sakis N et al., 2025</a> confirment que cette asymétrie entre le coût de preuve et le potentiel de retour commercial constitue le principal obstacle systémique au développement clinique des molécules repositionnées.
+      </p>
+
+      <h3>Les barrières réglementaires pour le repositionnement de génériques</h3>
+      <p>
+        Au-delà du financement, des obstacles réglementaires spécifiques compliquent le repositionnement. Les agences de santé (FDA, EMA) ont des procédures de mise sur le marché conçues pour des molécules nouvelles. Obtenir une nouvelle indication officielle pour un générique existant implique des processus complexes&nbsp;: qui dépose la demande&nbsp;? Qui finance les études nécessaires&nbsp;? Qui bénéficiera de l'approbation si elle est accordée&nbsp;? En l'absence d'un porteur institutionnel clair et d'un modèle économique viable, ces questions restent sans réponse satisfaisante. Le résultat pratique est qu'un médecin peut théoriquement prescrire un générique en dehors de son indication approuvée (<em>off-label</em>), mais sans guideline officielle fondée sur des essais de phase III, la pratique reste marginale et exposée à des incertitudes médico-légales.
+      </p>
+
+      <h3>Le rôle des initiatives académiques et philanthropiques</h3>
+      <p>
+        Face à cette défaillance de marché, des initiatives publiques et philanthropiques ont émergé. Le projet <strong>ReDO</strong> (<em>Repurposing Drugs in Oncology</em>), soutenu notamment par des fondations indépendantes, a été pionnier dans la compilation et la diffusion des données de repositionnement en oncologie. Il a développé une liste de médicaments prioritaires à étudier, en tenant compte à la fois de la robustesse des données précliniques et de la faisabilité d'essais cliniques. Comme le décrit <a href="https://pubmed.ncbi.nlm.nih.gov/29225688/" target="_blank" rel="noopener noreferrer">le projet ReDO (Pantziarka P et al., 2018)</a>, des initiatives collaboratives entre académiques, cliniciens et organisations à but non lucratif constituent aujourd'hui la voie la plus réaliste pour avancer dans le repositionnement en oncologie, en contournant les contraintes du modèle pharmaceutique classique.
+      </p>
+
+      <p>
+        D'autres initiatives comme le <em>NCI Cancer Therapy Evaluation Program</em> aux États-Unis ou les appels à projets de l'Institut National du Cancer en France tentent de combler partiellement ce fossé de financement. Ces mécanismes restent insuffisants au regard de l'ampleur du besoin, mais représentent des avancées réelles dans l'écosystème de recherche sur le repositionnement.
+      </p>
+    </section>
+
+    <!-- ============================================================
+         SECTION 4 — Navigation cards
+    ============================================================ -->
+    <section class="content-section" id="navigation">
+      <div class="section-header">
+        <span class="section-tag">04</span>
+        <h2>Explorer la base documentaire</h2>
+      </div>
+
+      <div class="card-grid">
+
+        <!-- Card : Dashboard -->
+        <a href="./dashboard.html" class="card" style="text-decoration: none; display: block;">
+          <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4);">
+            <div style="width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--color-primary-glow); border: 1px solid var(--color-border-strong); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.8" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+              </svg>
+            </div>
+            <div>
+              <div class="mol-name text-primary" style="font-size: var(--text-lg);">Dashboard</div>
+              <div class="mol-class">Explorer les données</div>
+            </div>
+          </div>
+          <p style="color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.6; max-width: none;">
+            Visualisez les 40 études indexées sous forme de tableaux interactifs, graphiques de distribution des niveaux de preuve, et scores par molécule. Filtres par type d'étude, cancer concerné et niveau de preuve.
+          </p>
+          <div style="margin-top: var(--space-4); font-family: var(--font-display); font-size: var(--text-xs); color: var(--color-primary);">
+            Accéder →
+          </div>
+        </a>
+
+        <!-- Card : Méthodologie -->
+        <a href="./methode.html" class="card" style="text-decoration: none; display: block;">
+          <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4);">
+            <div style="width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--color-teal-bg); border: 1px solid rgba(45,212,191,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-teal)" stroke-width="1.8" aria-hidden="true">
+                <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+              </svg>
+            </div>
+            <div>
+              <div class="mol-name" style="font-size: var(--text-lg); color: var(--color-teal);">Méthodologie</div>
+              <div class="mol-class">Comprendre la démarche</div>
+            </div>
+          </div>
+          <p style="color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.6; max-width: none;">
+            Critères d'inclusion des études, grille de classification des niveaux de preuve (1 à 6), identification des biais, transparence sur les limites du projet et sur l'usage d'outils d'assistance à la collecte de données.
+          </p>
+          <div style="margin-top: var(--space-4); font-family: var(--font-display); font-size: var(--text-xs); color: var(--color-teal);">
+            Lire →
+          </div>
+        </a>
+
+        <!-- Card : Documentation -->
+        <a href="./documentation.html" class="card" style="text-decoration: none; display: block;">
+          <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4);">
+            <div style="width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--color-success-bg); border: 1px solid rgba(34,197,94,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="1.8" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+              </svg>
+            </div>
+            <div>
+              <div class="mol-name" style="font-size: var(--text-lg); color: var(--color-success);">Documentation</div>
+              <div class="mol-class">Consulter les sources</div>
+            </div>
+          </div>
+          <p style="color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.6; max-width: none;">
+            Accédez à l'intégralité des 40 références indexées avec liens directs vers PubMed/PMC. Résumés structurés, niveaux de preuve, population étudiée, type de cancer, remarques critiques.
+          </p>
+          <div style="margin-top: var(--space-4); font-family: var(--font-display); font-size: var(--text-xs); color: var(--color-success);">
+            Consulter →
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <p>Projet documentaire — Données collectées le 07/04/2026</p>
+    <p>Sources : <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener noreferrer">PubMed/PMC</a> · <a href="https://clinicaltrials.gov/" target="_blank" rel="noopener noreferrer">ClinicalTrials.gov</a></p>
+    <p style="margin-top: var(--space-2);">Ce projet ne constitue pas un avis médical. <a href="./methode.html">Voir la méthodologie complète</a>.</p>
+  </footer>
+
+</div><!-- /.site-wrapper -->
+</body>
+</html>

@@ -1,0 +1,218 @@
+{
+  "molecules": [
+    {
+      "id": "ivermectine",
+      "name": "Ivermectine",
+      "class": "Avermectine (antiparasitaire)",
+      "original_indication": "Onchocercose, strongyloïdose, gale",
+      "status_brevet": "Hors brevet (générique)",
+      "mecanismes_anticancer": [
+        "Inhibition Wnt/β-caténine",
+        "Inhibition PAK1",
+        "Suppression EGFR/ERK/Akt/NF-κB",
+        "Induction autophagie cytotoxique",
+        "Inhibition MDM2",
+        "Ciblage FOXA1/Ku70-Ku80"
+      ],
+      "cancers_etudies": [
+        "Sein",
+        "Poumon",
+        "Colorectal",
+        "Prostate",
+        "Glioblastome",
+        "Leucémie"
+      ],
+      "niveau_preuve_max": 1,
+      "essai_clinique_humain": false,
+      "nb_etudes_indexees": 5,
+      "score_potentiel": 45,
+      "focus_poumon": true,
+      "focus_colon": true,
+      "alerte_securite": "Profil de sécurité bien connu à doses antiparasitaires. Données de sécurité à doses antitumorales limitées chez l'humain.",
+      "resume": "Signal préclinique solide et mécanismes multiples documentés, mais aucun essai clinique oncologique publié à ce jour. Biodisponibilité orale limitée à doses standard."
+    },
+    {
+      "id": "fenbendazole",
+      "name": "Fenbendazole",
+      "class": "Benzimidazole (antihelminthique vétérinaire)",
+      "original_indication": "Usage vétérinaire exclusif (vermifuge)",
+      "status_brevet": "Hors brevet",
+      "mecanismes_anticancer": [
+        "Déstabilisation microtubules",
+        "Inhibition GLUT4 (glucose)",
+        "Activation p53",
+        "Downregulation Mdm2/MdmX",
+        "Induction apoptose multivoie"
+      ],
+      "cancers_etudies": [
+        "Poumon",
+        "Mélanome",
+        "Ovaire",
+        "Lymphome",
+        "Colorectal"
+      ],
+      "niveau_preuve_max": 4,
+      "essai_clinique_humain": false,
+      "nb_etudes_indexees": 6,
+      "score_potentiel": 30,
+      "focus_poumon": true,
+      "focus_colon": false,
+      "alerte_securite": "Formulation vétérinaire non conçue pour usage humain. Un cas de toxicité hépatique documenté (automédication). Aucun essai de sécurité humain publié.",
+      "resume": "Signal préclinique intéressant mais exclusivement in vitro/in vivo. Aucune donnée clinique humaine. Viralité sur réseaux sociaux disproportionnée par rapport au niveau de preuve réel."
+    },
+    {
+      "id": "mebendazole",
+      "name": "Mébendazole",
+      "class": "Benzimidazole (antihelminthique humain)",
+      "original_indication": "Oxyurose, ascaridiose, ankylostomose (usage humain approuvé)",
+      "status_brevet": "Hors brevet (générique)",
+      "mecanismes_anticancer": [
+        "Déstabilisation microtubules",
+        "Inhibition Hedgehog/SMO",
+        "Inhibition VEGFR2",
+        "Induction apoptose + pyroptose",
+        "Arrêt cycle cellulaire G2/M"
+      ],
+      "cancers_etudies": [
+        "Colorectal",
+        "Glioblastome",
+        "Médulloblastome",
+        "Ovaire",
+        "Sein triple-négatif (métastases SNC)"
+      ],
+      "niveau_preuve_max": 2,
+      "essai_clinique_humain": true,
+      "nb_etudes_indexees": 9,
+      "score_potentiel": 70,
+      "focus_poumon": false,
+      "focus_colon": true,
+      "alerte_securite": "Profil de sécurité humain bien établi aux doses antiparasitaires. L'essai Hegazy 2022 utilise 500mg BID sans toxicité majeure rapportée.",
+      "resume": "Molécule la plus avancée du groupe : un essai randomisé contrôlé (Hegazy 2022) montre des résultats remarquables en colorectal métastatique. Essais en cours sur les tumeurs cérébrales. Base de preuves la plus solide."
+    },
+    {
+      "id": "metformine",
+      "name": "Metformine",
+      "class": "Biguanide (antidiabétique)",
+      "original_indication": "Diabète de type 2",
+      "status_brevet": "Hors brevet (générique)",
+      "mecanismes_anticancer": [
+        "Activation AMPK",
+        "Inhibition mTOR",
+        "Réduction insulinémie",
+        "Effets anti-inflammatoires"
+      ],
+      "cancers_etudies": [
+        "Sein",
+        "Colorectal",
+        "Prostate",
+        "Poumon",
+        "Pancréas",
+        "Hépatique"
+      ],
+      "niveau_preuve_max": 2,
+      "essai_clinique_humain": true,
+      "nb_etudes_indexees": 4,
+      "score_potentiel": 55,
+      "focus_poumon": true,
+      "focus_colon": true,
+      "alerte_securite": "Profil de sécurité excellent et très bien documenté (des décennies d'usage). L'essai MA.32 (n=3649) négatif chez les non-diabétiques.",
+      "resume": "Corpus d'études le plus volumineux. Signal épidémiologique fort chez les diabétiques, mais l'essai de référence MA.32 est négatif chez les non-diabétiques. L'effet pourrait être lié au contrôle glycémique plutôt qu'à un effet antitumoral direct."
+    },
+    {
+      "id": "disulfirame",
+      "name": "Disulfirame",
+      "class": "Dithiocarbamate (sevrage alcoolique)",
+      "original_indication": "Traitement de l'alcoolisme chronique",
+      "status_brevet": "Hors brevet (générique)",
+      "mecanismes_anticancer": [
+        "Inhibition ALDH",
+        "Ciblage p97/NPL4 (avec cuivre)",
+        "Inhibition protéasome",
+        "Induction ferroptose",
+        "Génération ROS"
+      ],
+      "cancers_etudies": [
+        "Glioblastome",
+        "Sein",
+        "Côlon",
+        "Poumon",
+        "Prostate",
+        "Nasopharynx"
+      ],
+      "niveau_preuve_max": 2,
+      "essai_clinique_humain": true,
+      "nb_etudes_indexees": 4,
+      "score_potentiel": 40,
+      "focus_poumon": true,
+      "focus_colon": true,
+      "alerte_securite": "L'essai DIRECT (glioblastome) montre un résultat négatif lié à la métabolisation rapide du disulfirame. Nécessite co-administration de cuivre.",
+      "resume": "Mécanisme d'action original (cuivre-dépendant) et multiples cibles. Mais l'essai clinique le plus avancé (DIRECT 2023) est négatif en raison de problèmes pharmacocinétiques. Nouvelle formulation nécessaire."
+    },
+    {
+      "id": "propranolol",
+      "name": "Propranolol",
+      "class": "Bêta-bloquant non sélectif",
+      "original_indication": "Hypertension, anxiété, migraine, hémangiome infantile",
+      "status_brevet": "Hors brevet (générique)",
+      "mecanismes_anticancer": [
+        "Blocage signalisation β-adrénergique",
+        "Réduction stress chirurgical",
+        "Inhibition angiogenèse",
+        "Sensibilisation métabolique"
+      ],
+      "cancers_etudies": [
+        "Sein",
+        "Mélanome",
+        "Prostate",
+        "Colorectal"
+      ],
+      "niveau_preuve_max": 2,
+      "essai_clinique_humain": true,
+      "nb_etudes_indexees": 4,
+      "score_potentiel": 50,
+      "focus_poumon": false,
+      "focus_colon": true,
+      "alerte_securite": "Profil de sécurité très bien connu. Usage périopératoire court terme bien toléré. Données épidémiologiques mixtes (cohorte européenne négative).",
+      "resume": "Approche originale ciblant le stress chirurgical et la signalisation adrénergique. Essai phase II positif en périopératoire (sein), mais large cohorte européenne négative. Signal prometteur en combinaison périopératoire."
+    },
+    {
+      "id": "chloroquine",
+      "name": "Chloroquine / HCQ",
+      "class": "Amino-4-quinoléine (antipaludéen)",
+      "original_indication": "Paludisme, lupus, polyarthrite rhumatoïde",
+      "status_brevet": "Hors brevet (générique)",
+      "mecanismes_anticancer": [
+        "Inhibition autophagie lysosomale",
+        "Sensitisation chimiothérapie",
+        "Perturbation pH tumoral",
+        "Effets immunomodulateurs"
+      ],
+      "cancers_etudies": [
+        "Pancréas",
+        "Sein",
+        "Glioblastome",
+        "Mélanome",
+        "Colorectal"
+      ],
+      "niveau_preuve_max": 2,
+      "essai_clinique_humain": true,
+      "nb_etudes_indexees": 4,
+      "score_potentiel": 45,
+      "focus_poumon": false,
+      "focus_colon": false,
+      "alerte_securite": "Profil de sécurité connu mais toxicité rétinienne au long cours. Essais cliniques pancréas montrent résultats hétérogènes.",
+      "resume": "Inhibiteur d'autophagie le plus étudié en oncologie. Essais cliniques en pancréas avec résultats mixtes (un positif en néoadjuvant, un négatif en avancé). Nécessite meilleure sélection des biomarqueurs d'autophagie."
+    }
+  ],
+  "metadata": {
+    "last_updated": "2026-04-07",
+    "evidence_levels": {
+      "1": "Méta-analyse / Revue systématique",
+      "2": "Essai contrôlé randomisé (RCT)",
+      "3": "Étude de cohorte / Cas-témoin",
+      "4": "Série de cas / Rapport de cas",
+      "5": "Étude animale in vivo",
+      "6": "Étude cellulaire in vitro"
+    }
+  }
+}
