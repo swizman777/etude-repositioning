@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fiche complète Metformine — Repositionnement en oncologie : structure, posologies, mécanismes, études, sécurité. RepoOnco." />
+  <title>Metformine — Fiche molécule | RepoOnco</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* ── Styles spécifiques aux fiches molécules ── */
+    .mol-hero {
+      background: linear-gradient(135deg, rgba(45,212,191,0.08) 0%, rgba(6,10,19,0) 60%);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-10) 0 var(--space-8);
+    }
+    .mol-hero-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+    }
+    .mol-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-3);
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .mol-section {
+      margin-bottom: var(--space-12);
+    }
+    .mol-section-title {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .mol-section-title h2 {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .mol-section-num {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      background: var(--color-surface-2);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    /* Identity grid */
+    .identity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-4);
+    }
+    .identity-item {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+    }
+    .identity-item dt {
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-1);
+    }
+    .identity-item dd {
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      font-weight: 500;
+    }
+    /* Timeline historique */
+    .history-timeline {
+      position: relative;
+      padding-left: var(--space-8);
+    }
+    .history-timeline::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--color-teal), rgba(45,212,191,0.1));
+    }
+    .timeline-entry {
+      position: relative;
+      margin-bottom: var(--space-5);
+    }
+    .timeline-entry::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-teal);
+      border: 2px solid var(--color-bg);
+      box-shadow: 0 0 8px rgba(45,212,191,0.4);
+    }
+    .timeline-year {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-teal);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .timeline-text {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Structure chimique */
+    .structure-box {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: var(--space-6);
+      display: flex;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .structure-svg-wrap {
+      flex: 0 0 auto;
+    }
+    .structure-props {
+      flex: 1;
+      min-width: 200px;
+    }
+    .prop-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-divider);
+      font-size: var(--text-sm);
+    }
+    .prop-row:last-child { border-bottom: none; }
+    .prop-label { color: var(--color-text-faint); font-family: var(--font-mono); font-size: var(--text-xs); }
+    .prop-value { color: var(--color-text); font-weight: 500; }
+    /* Posologies table */
+    .dosage-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 4px;
+      font-size: var(--text-sm);
+    }
+    .dosage-table thead th {
+      text-align: left;
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .dosage-table tbody tr {
+      background: var(--color-surface-2);
+    }
+    .dosage-table tbody tr:hover { background: var(--color-surface-3); }
+    .dosage-table tbody td {
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-muted);
+      vertical-align: top;
+    }
+    .dosage-table tbody td:first-child {
+      border-radius: 6px 0 0 6px;
+      font-weight: 600;
+    }
+    .dosage-table tbody td:last-child { border-radius: 0 6px 6px 0; }
+    .dose-val { font-family: var(--font-mono); color: var(--color-text); font-weight: 600; }
+    .dose-warning { color: var(--color-danger); font-size: var(--text-xs); }
+    .dose-ok { color: var(--color-success); font-size: var(--text-xs); }
+    /* Mécanismes */
+    .mechanism-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-4);
+    }
+    .mechanism-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: var(--space-4) var(--space-5);
+    }
+    .mechanism-card-title {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-teal);
+      margin-bottom: var(--space-2);
+    }
+    .mechanism-card-text {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Études timeline */
+    .studies-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .study-row {
+      display: flex;
+      gap: var(--space-4);
+      align-items: flex-start;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+    }
+    .study-row:hover { border-color: var(--color-border-strong); }
+    .study-level-badge {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 700;
+    }
+    .study-body { flex: 1; }
+    .study-title-text {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-text);
+      margin-bottom: var(--space-1);
+    }
+    .study-meta-line {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      font-family: var(--font-mono);
+      margin-bottom: var(--space-2);
+    }
+    .study-finding {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Safety table */
+    .safety-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--space-4);
+    }
+    .safety-card {
+      background: var(--color-surface-2);
+      border-radius: 10px;
+      padding: var(--space-4) var(--space-5);
+    }
+    .safety-card-label {
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-2);
+    }
+    .safety-card-content {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Breadcrumb */
+    .breadcrumb {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-4);
+      font-family: var(--font-mono);
+    }
+    .breadcrumb a { color: var(--color-text-faint); }
+    .breadcrumb a:hover { color: var(--color-teal); }
+    /* Mol color accent */
+    :root { --mol-color: #2dd4bf; --mol-color-bg: rgba(45,212,191,0.08); --color-teal: #2dd4bf; }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <!-- ═══════════════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../index.html" class="site-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo RepoOnco">
+          <path d="M16 2L28.66 9.5V24.5L16 30L3.34 24.5V9.5L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="16" cy="16" r="4" fill="currentColor" opacity="0.3"/>
+          <circle cx="16" cy="8" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="12" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="20" r="2" fill="currentColor"/>
+          <circle cx="16" cy="24" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="20" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="12" r="2" fill="currentColor"/>
+          <line x1="16" y1="8" x2="22.93" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="12" x2="22.93" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="20" x2="16" y2="24" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="16" y1="24" x2="9.07" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="20" x2="9.07" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="12" x2="16" y2="8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+        </svg>
+        <span>RepoOnco<span class="logo-sub">Base documentaire</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <nav><ul class="nav-links">
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../dashboard.html">Dashboard</a></li>
+        <li><a href="../methode.html">Méthodologie</a></li>
+        <li><a href="../documentation.html">Documentation</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar" role="status">
+    <div class="status-item"><span class="status-dot yellow" aria-hidden="true"></span><span>FICHE MOLÉCULE</span></div>
+    <div class="status-item"><span class="status-dot" style="background:#2dd4bf;" aria-hidden="true"></span><span>METFORMINE</span></div>
+    <div class="status-item"><span class="status-dot blue" aria-hidden="true"></span><span>4 ÉTUDES</span></div>
+    <div class="status-item"><span class="status-dot" style="background:#2dd4bf;" aria-hidden="true"></span><span>SCORE 55%</span></div>
+    <div class="status-item"><span class="status-dot red" aria-hidden="true"></span><span>SIGNAL LIMITÉ AUX DIABÉTIQUES</span></div>
+  </div>
+
+  <main class="main-content" id="main">
+
+    <!-- HERO -->
+    <div class="mol-hero">
+      <div class="content-section" style="padding-top:0; padding-bottom:0; margin-bottom:0;">
+        <div class="breadcrumb">
+          <a href="../dashboard.html">Dashboard</a> › <a href="../dashboard.html#molecules-section">Molécules</a> › Metformine
+        </div>
+        <div class="mol-hero-inner">
+          <div style="flex:1; min-width:260px;">
+            <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-3); flex-wrap:wrap;">
+              <span class="mol-hero-badge" style="background:rgba(45,212,191,0.12); color:#2dd4bf; border:1px solid rgba(45,212,191,0.3);">BIGUANIDE</span>
+              <span class="mol-hero-badge" style="background:rgba(249,115,22,0.1); color:var(--color-warning); border:1px solid rgba(249,115,22,0.25);">SIGNAL DIABÉTIQUES</span>
+              <span class="mol-hero-badge" style="background:var(--color-surface-2); color:var(--color-text-faint); border:1px solid var(--color-border);">HORS BREVET</span>
+            </div>
+            <h1 style="font-size:clamp(2rem,5vw,3rem); font-weight:700; color:#2dd4bf; font-family:var(--font-mono); margin-bottom:var(--space-2);">Metformine</h1>
+            <p style="font-size:var(--text-base); color:var(--color-text-muted); margin-bottom:var(--space-4);">Biguanide — Antidiabétique oral (Glucophage®)</p>
+            <p style="font-size:var(--text-sm); color:var(--color-text-muted); max-width:70ch; line-height:1.7;">
+              Médicament le plus prescrit au monde dans le diabète de type 2, la metformine suscite un intérêt oncologique depuis 2005. Des données épidémiologiques suggèrent une réduction du risque cancéreux chez les diabétiques. Cependant, l'essai MA.32 (RCT n=3 649) a été négatif chez les non-diabétiques, restreignant le signal probable aux patients avec hyperinsulinémie. Le mécanisme direct sur les cellules tumorales se heurte à un gap pharmacocinétique majeur entre IC50 in vitro et concentrations atteignables in vivo.
+            </p>
+          </div>
+          <!-- Score visuel -->
+          <div style="flex:0 0 auto; background:var(--color-surface-2); border:1px solid rgba(45,212,191,0.25); border-radius:16px; padding:var(--space-6); text-align:center; min-width:160px;">
+            <div style="font-size:var(--text-xs); font-family:var(--font-mono); color:var(--color-text-faint); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-2);">Score potentiel</div>
+            <div style="font-size:3rem; font-weight:700; color:#2dd4bf; font-family:var(--font-mono); line-height:1;">55%</div>
+            <div style="font-size:var(--text-xs); color:var(--color-text-faint); margin-top:var(--space-2);">Signal limité diabétiques</div>
+            <div style="margin-top:var(--space-4); height:6px; background:var(--color-surface-3); border-radius:3px; overflow:hidden;">
+              <div style="width:55%; height:100%; background:#2dd4bf; border-radius:3px; transition:width 1s;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+
+      <!-- ── 01. IDENTITÉ ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">01</span>
+          <h2>Identité chimique &amp; pharmacologique</h2>
+        </div>
+        <dl class="identity-grid">
+          <div class="identity-item"><dt>DCI</dt><dd>Metformine (metformin)</dd></div>
+          <div class="identity-item"><dt>Formule brute</dt><dd style="font-family:var(--font-mono);">C₄H₁₁N₅</dd></div>
+          <div class="identity-item"><dt>Masse molaire</dt><dd style="font-family:var(--font-mono);">129.16 g/mol</dd></div>
+          <div class="identity-item"><dt>Classe</dt><dd>Biguanide (antidiabétique)</dd></div>
+          <div class="identity-item"><dt>Origine</dt><dd>Synthèse (Garcia y Garcia 1922, Sterne 1957)</dd></div>
+          <div class="identity-item"><dt>CAS</dt><dd style="font-family:var(--font-mono);">657-24-9</dd></div>
+          <div class="identity-item"><dt>Approbation FDA</dt><dd>1995 (USA) — 1957 (France/Glucophage®)</dd></div>
+          <div class="identity-item"><dt>Noms commerciaux</dt><dd>Glucophage®, Metforal®, Stagid®</dd></div>
+          <div class="identity-item"><dt>Statut brevet</dt><dd style="color:var(--color-success);">Hors brevet (générique dominant)</dd></div>
+          <div class="identity-item"><dt>Voie d'admin.</dt><dd>Orale (cp 500/850/1000 mg)</dd></div>
+          <div class="identity-item"><dt>Demi-vie plasmatique</dt><dd style="font-family:var(--font-mono);">~5 h — accumulation rénale</dd></div>
+        </dl>
+      </div>
+
+      <!-- ── 02. HISTOIRE ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">02</span>
+          <h2>Histoire &amp; chronologie</h2>
+        </div>
+        <div class="history-timeline">
+          <div class="timeline-entry">
+            <div class="timeline-year">1922</div>
+            <div class="timeline-text">Garcia y Garcia observe l'activité hypoglycémiante de la galégine (plante <em>Galega officinalis</em>). Base structurale des biguanides — la metformine en sera le dérivé le plus stable et le mieux toléré.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">1957</div>
+            <div class="timeline-text">Jean Sterne (Paris) publie les premiers essais cliniques de la metformine, baptisée "Glucophage" (mangeur de glucose). Approbation française. Les biguanides phénformine et buformine sont aussi développés mais retirés plus tard pour acidose lactique.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">1995</div>
+            <div class="timeline-text">Approbation FDA aux États-Unis, après retard lié aux accidents d'acidose lactique attribués à la phénformine dans les années 1970. La metformine est reconnue comme le seul biguanide sûr.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2001–2005</div>
+            <div class="timeline-text">Premières études épidémiologiques signalant une réduction de l'incidence cancéreuse chez les diabétiques sous metformine. <strong>Evans 2005, Bowker 2006</strong> publient des données rétrospectives majeures sur cohortes écossaises.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2010</div>
+            <div class="timeline-text"><strong>Decensi et al.</strong> — méta-analyse fondatrice (<a href="https://pubmed.ncbi.nlm.nih.gov/20947488/" target="_blank" rel="noopener">PMID 20947488</a>) — réduction de 31% du risque de cancer chez les diabétiques T2 sous metformine. Déclenche l'intérêt oncologique massif.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2014</div>
+            <div class="timeline-text"><strong>Gandini et al.</strong> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4154969/" target="_blank" rel="noopener">PMC4154969</a>) — méta-analyse corrigée de l'immortal time bias — RR global 0.75 maintenu après correction méthodologique.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2022</div>
+            <div class="timeline-text"><strong>Essai MA.32</strong> (Goodwin 2022, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9131745/" target="_blank" rel="noopener">PMC9131745</a>) — RCT phase III multicentrique n=3 649 — <strong>NÉGATIF</strong> chez non-diabétiques avec cancer du sein précoce. Signal limité aux sous-groupes avec hyperinsulinémie/obésité.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-text"><strong>Wu et al.</strong> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11798064/" target="_blank" rel="noopener">PMC11798064</a>) — revue des essais cliniques en cours — hétérogénéité des résultats, bénéfice possible dans les sous-groupes avec hyperinsulinémie/diabète.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 03. STRUCTURE ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">03</span>
+          <h2>Structure chimique</h2>
+        </div>
+        <div class="structure-box">
+          <div class="structure-svg-wrap">
+            <!-- Représentation schématique SVG — biguanide (chaîne azotée symétrique) -->
+            <svg width="260" height="180" viewBox="0 0 260 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Structure schématique de la metformine — biguanide symétrique">
+              <!-- Chaîne biguanide centrale -->
+              <!-- C1 -->
+              <circle cx="50" cy="90" r="12" stroke="#2dd4bf" stroke-width="1.8" fill="rgba(45,212,191,0.06)"/>
+              <text x="50" y="94" text-anchor="middle" fill="#2dd4bf" font-family="monospace" font-size="9" font-weight="bold">N</text>
+              <!-- Liaison N-C(=N) -->
+              <line x1="62" y1="90" x2="88" y2="90" stroke="#2dd4bf" stroke-width="1.5"/>
+              <!-- Carbone central gauche -->
+              <circle cx="100" cy="90" r="12" stroke="#2dd4bf" stroke-width="1.8" fill="rgba(45,212,191,0.08)"/>
+              <text x="100" y="94" text-anchor="middle" fill="#2dd4bf" font-family="monospace" font-size="9" font-weight="bold">C</text>
+              <!-- double liaison vers N haut -->
+              <line x1="100" y1="78" x2="100" y2="58" stroke="#2dd4bf" stroke-width="1.5"/>
+              <line x1="104" y1="78" x2="104" y2="58" stroke="rgba(45,212,191,0.4)" stroke-width="1"/>
+              <circle cx="100" cy="50" r="10" stroke="#2dd4bf" stroke-width="1.5" fill="rgba(45,212,191,0.06)"/>
+              <text x="100" y="54" text-anchor="middle" fill="#2dd4bf" font-family="monospace" font-size="9">NH</text>
+              <!-- Liaison centrale C-N -->
+              <line x1="112" y1="90" x2="138" y2="90" stroke="#2dd4bf" stroke-width="1.5"/>
+              <!-- Carbone central droit (guanidine) -->
+              <circle cx="150" cy="90" r="12" stroke="#2dd4bf" stroke-width="1.8" fill="rgba(45,212,191,0.1)"/>
+              <text x="150" y="94" text-anchor="middle" fill="#2dd4bf" font-family="monospace" font-size="9" font-weight="bold">C</text>
+              <!-- double liaison vers N bas -->
+              <line x1="150" y1="102" x2="150" y2="130" stroke="#2dd4bf" stroke-width="1.5"/>
+              <line x1="154" y1="102" x2="154" y2="130" stroke="rgba(45,212,191,0.4)" stroke-width="1"/>
+              <circle cx="150" cy="140" r="10" stroke="#2dd4bf" stroke-width="1.5" fill="rgba(45,212,191,0.06)"/>
+              <text x="150" y="144" text-anchor="middle" fill="#2dd4bf" font-family="monospace" font-size="9">NH₂</text>
+              <!-- Liaison vers groupe diméthylamino -->
+              <line x1="162" y1="90" x2="188" y2="90" stroke="#2dd4bf" stroke-width="1.5"/>
+              <!-- Groupe N(CH3)2 -->
+              <circle cx="200" cy="90" r="14" stroke="#2dd4bf" stroke-width="1.8" fill="rgba(45,212,191,0.06)"/>
+              <text x="200" y="94" text-anchor="middle" fill="#2dd4bf" font-family="monospace" font-size="8">N(CH₃)₂</text>
+              <!-- Labels -->
+              <text x="130" y="170" fill="rgba(148,163,184,0.6)" font-family="monospace" font-size="9">C₄H₁₁N₅ — 129.16 g/mol</text>
+              <text x="80" y="18" fill="rgba(45,212,191,0.5)" font-family="monospace" font-size="9">Biguanide — chaîne azotée symétrique</text>
+              <text x="98" y="10" fill="rgba(148,163,184,0.4)" font-family="monospace" font-size="7">Représentation schématique</text>
+            </svg>
+          </div>
+          <div class="structure-props">
+            <div class="prop-row"><span class="prop-label">Formule moléculaire</span><span class="prop-value" style="font-family:var(--font-mono);">C₄H₁₁N₅</span></div>
+            <div class="prop-row"><span class="prop-label">Masse molaire</span><span class="prop-value" style="font-family:var(--font-mono);">129.16 g/mol</span></div>
+            <div class="prop-row"><span class="prop-label">Type structurel</span><span class="prop-value">Biguanide (chaîne azotée symétrique)</span></div>
+            <div class="prop-row"><span class="prop-label">Taille moléculaire</span><span class="prop-value">Très petite (contraste macrolides)</span></div>
+            <div class="prop-row"><span class="prop-label">Solubilité eau</span><span class="prop-value" style="font-family:var(--font-mono);">Très hydrosoluble</span></div>
+            <div class="prop-row"><span class="prop-label">Biodisponibilité orale</span><span class="prop-value" style="font-family:var(--font-mono);">50–60%</span></div>
+            <div class="prop-row"><span class="prop-label">Métabolisme hépatique</span><span class="prop-value">Absent — éliminée inchangée</span></div>
+            <div class="prop-row"><span class="prop-label">Élimination</span><span class="prop-value">Rénale (tubulaire)</span></div>
+            <div class="prop-row"><span class="prop-label">C<sub>max</sub> / T<sub>max</sub></span><span class="prop-value" style="font-family:var(--font-mono);">1–2 µM à 1–2 h</span></div>
+            <div class="prop-row"><span class="prop-label">Demi-vie plasmatique</span><span class="prop-value" style="font-family:var(--font-mono);">~5 h</span></div>
+          </div>
+        </div>
+        <div class="alert-box warning" style="margin-top:var(--space-5);">
+          <strong>Gap PK critique :</strong> L'IC50 antitumorale in vitro se situe entre 1 et 50 mM, soit <strong>~100 à 1 000× supérieure</strong> aux concentrations plasmatiques atteignables cliniquement (~µM). Le mécanisme oncologique passerait principalement par les effets systémiques sur l'insuline/IGF-1 plutôt que par une action directe sur la tumeur.
+        </div>
+      </div>
+
+      <!-- ── 04. POSOLOGIES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">04</span>
+          <h2>Posologies — 4 catégories contextualisées</h2>
+        </div>
+        <div class="alert-box info" style="margin-bottom:var(--space-5);">
+          <strong>Lecture :</strong> Les 4 catégories sont strictement séparées. Aucune extrapolation d'une espèce à l'autre ou d'un contexte à l'autre n'est valide sans données pharmacocinétiques propres.
+        </div>
+        <table class="dosage-table">
+          <thead>
+            <tr>
+              <th>Contexte</th>
+              <th>Espèce</th>
+              <th>Dose</th>
+              <th>Source / statut</th>
+              <th>Remarques</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Antidiabétique approuvé</td>
+              <td>Humain</td>
+              <td><span class="dose-val">500–2000 mg/j</span> oral, fractionné</td>
+              <td><span class="dose-ok">AMM FDA/EMA</span></td>
+              <td>Glucophage® — titration progressive pour tolérance digestive.</td>
+            </tr>
+            <tr>
+              <td>Antitumoral in vitro</td>
+              <td>Lignées cellulaires humaines</td>
+              <td><span class="dose-val">IC50 : 1–50 mM</span></td>
+              <td><span class="dose-warning">Préclinique uniquement — non validé humain</span></td>
+              <td>Très élevé — non atteignable in vivo aux doses thérapeutiques.</td>
+            </tr>
+            <tr>
+              <td>Antitumoral in vivo</td>
+              <td>Souris</td>
+              <td><span class="dose-val">200–500 mg/kg/j</span> oral</td>
+              <td><span class="dose-warning">Préclinique — non transposable humain</span></td>
+              <td>Modèles xénogreffe — résultats variables selon la présence d'hyperinsulinémie.</td>
+            </tr>
+            <tr>
+              <td>Usage oncologique humain</td>
+              <td>Humain</td>
+              <td><span class="dose-warning">AUCUNE DOSE SPÉCIFIQUE VALIDÉE</span></td>
+              <td><span class="dose-warning">Essais utilisent doses antidiabétiques (850–2000 mg/j)</span></td>
+              <td>Pas de dose oncologique établie — extrapolation des doses DT2.</td>
+            </tr>
+            <tr>
+              <td>Essai MA.32 (RCT)</td>
+              <td>Humain — cancer sein précoce</td>
+              <td><span class="dose-val">850 mg BID</span> (1700 mg/j total)</td>
+              <td><span class="dose-warning">Résultat NÉGATIF chez non-diabétiques (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9131745/" target="_blank" rel="noopener">PMC9131745</a>)</span></td>
+              <td>n=3 649 — pas de bénéfice sur survie sans récidive chez non-diabétiques.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="alert-box warning" style="margin-top:var(--space-5);">
+          <strong>Note importante :</strong> L'IC50 antitumorale in vitro (1–50 mM) est ~100–1 000× supérieure aux concentrations plasmatiques atteignables cliniquement (~µM). Le mécanisme oncologique pourrait passer par les effets systémiques sur l'insuline/IGF-1 plutôt que par action directe sur la tumeur.
+        </div>
+      </div>
+
+      <!-- ── 05. MÉCANISMES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">05</span>
+          <h2>Mécanismes d'action antitumoraux</h2>
+        </div>
+        <p style="font-size:var(--text-sm); color:var(--color-text-muted); margin-bottom:var(--space-6); max-width:80ch; line-height:1.7;">
+          La metformine agit via plusieurs voies impliquées dans la prolifération tumorale. La plupart des mécanismes directs sont documentés à des concentrations supracliniches. L'effet épidémiologique observé chez les diabétiques serait principalement indirect, via la normalisation de l'insulinémie et de l'IGF-1.
+        </p>
+        <div class="mechanism-grid">
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">AMPK</div>
+            <div class="mechanism-card-text">Activation de l'AMPK (AMP-activated protein kinase) → inhibition de mTORC1 → réduction de la synthèse protéique et de la prolifération cellulaire. Mécanisme principal documenté in vitro.</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">mTOR</div>
+            <div class="mechanism-card-text">Inhibition indirecte de mTOR via l'activation AMPK — convergence avec la voie insuline/IGF-1. Réduction de la traduction des ARNm d'oncogènes sensibles à mTOR.</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Axe insuline / IGF-1</div>
+            <div class="mechanism-card-text">Réduction de l'hyperinsulinémie et de l'IGF-1 circulant → réduction de la signalisation mitogène. Principal mécanisme suspecté pour expliquer l'effet épidémiologique chez les diabétiques.</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Complexe I mitochondrial</div>
+            <div class="mechanism-card-text">Inhibition directe du complexe I de la chaîne respiratoire mitochondriale → stress bioénergétique → activation AMPK. Mécanisme moléculaire primaire expliquant l'activation d'AMPK.</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Anti-inflammatoire</div>
+            <div class="mechanism-card-text">Réduction de NF-κB, IL-6 et TNF-α dans le microenvironnement tumoral — atténuation de l'inflammation chronique favorisant la progression tumorale.</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">OXPHOS</div>
+            <div class="mechanism-card-text">Inhibition de la phosphorylation oxydative (OXPHOS) → sensibilisation des tumeurs OXPHOS-dépendantes. Potentiel particulier dans les tumeurs à faible activité glycolytique.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 06. ÉTUDES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">06</span>
+          <h2>Historique des études — 4 publications indexées</h2>
+        </div>
+        <div class="studies-list">
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary);">N1</div>
+            <div class="study-body">
+              <div class="study-title-text">Metformin and cancer risk in diabetic patients: a systematic review and meta-analysis</div>
+              <div class="study-meta-line">Decensi A et al. · 2010 · Méta-analyse · Multiple cancers · <a href="https://pubmed.ncbi.nlm.nih.gov/20947488/" target="_blank" rel="noopener">PMID 20947488</a> · DOI: 10.1158/1940-6207.CAPR-10-0157</div>
+              <div class="study-finding">Méta-analyse fondatrice — réduction de 31% du risque de cancer chez les diabétiques T2 sous metformine vs autres antidiabétiques. Analyse de 5 études cas-témoins et 6 cohortes. Résultat global : OR 0.69 (IC 95% 0.61–0.79). Déclenche l'intérêt oncologique pour la metformine.</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary);">N1</div>
+            <div class="study-body">
+              <div class="study-title-text">Metformin use and mortality in patients with advanced hepatocellular carcinoma: systematic review and meta-analysis</div>
+              <div class="study-meta-line">Gandini S et al. · 2014 · Méta-analyse corrigée · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4154969/" target="_blank" rel="noopener">PMC4154969</a> · DOI: 10.1158/1940-6207.CAPR-13-0424</div>
+              <div class="study-finding">Méta-analyse avec correction de l'immortal time bias — RR global 0.75 (IC 95% 0.71–0.79) maintenu après ajustement. Confirme l'association épidémiologique tout en nuançant l'ampleur de l'effet vs premières estimations. Inclut 65 études.</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary);">N1</div>
+            <div class="study-body">
+              <div class="study-title-text">Clinical trials of metformin in cancer: current evidence and future perspectives</div>
+              <div class="study-meta-line">Wu T et al. · 2023 · Revue des essais cliniques · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11798064/" target="_blank" rel="noopener">PMC11798064</a> · DOI: 10.1007/s00432-023-05391-w</div>
+              <div class="study-finding">Revue des essais cliniques en cours et publiés — hétérogénéité importante des résultats. Bénéfice possible dans les sous-groupes avec hyperinsulinémie ou obésité. Signale que la sélection des patients (diabétiques vs non-diabétiques) est le facteur déterminant.</div>
+            </div>
+          </div>
+
+          <div class="study-row" style="border-color:rgba(249,115,22,0.4); background:rgba(249,115,22,0.04);">
+            <div class="study-level-badge" style="background:rgba(249,115,22,0.15); color:var(--color-warning);">N2</div>
+            <div class="study-body">
+              <div class="study-title-text">Effect of Metformin vs Placebo on Invasive Disease–Free Survival in Patients With Breast Cancer — Essai MA.32</div>
+              <div class="study-meta-line">Goodwin PJ et al. · 2022 · RCT Phase III · n=3 649 · Cancer du sein précoce · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9131745/" target="_blank" rel="noopener">PMC9131745</a> · DOI: 10.1001/jama.2022.6147</div>
+              <div class="study-finding">
+                RCT multicentrique nord-américain chez femmes non-diabétiques avec cancer du sein précoce. Metformine 850 mg BID vs placebo. <strong>Résultat : NÉGATIF</strong> — pas d'amélioration de la survie sans invasion (iDFS) ni de la survie globale dans la population générale. Signal possible dans le sous-groupe avec hyperinsulinémie.
+                <div style="margin-top:var(--space-2); padding:var(--space-2) var(--space-3); background:rgba(249,115,22,0.1); border-radius:4px; font-size:var(--text-xs); color:var(--color-warning); border:1px solid rgba(249,115,22,0.25);">
+                  ⚠ Résultat négatif chez non-diabétiques — signal possible limité aux diabétiques/hyperinsulinémiques
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Graphique études par type -->
+        <div class="chart-container" style="margin-top:var(--space-6);">
+          <div class="chart-title">Distribution des études par type — Metformine</div>
+          <div class="chart-wrapper" style="height:200px;">
+            <canvas id="chart-met-types" aria-label="Distribution des études metformine par type"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 07. SÉCURITÉ ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">07</span>
+          <h2>Profil de sécurité</h2>
+        </div>
+        <div class="safety-grid">
+          <div class="safety-card" style="border-left:3px solid var(--color-success);">
+            <div class="safety-card-label">Profil de sécurité</div>
+            <div class="safety-card-content">Médicament le plus prescrit au monde pour le DT2. Décennies de données de sécurité. Profil de tolérance excellent à doses thérapeutiques. Pas d'hypoglycémie en monothérapie.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-danger);">
+            <div class="safety-card-label">Acidose lactique</div>
+            <div class="safety-card-content">Rare mais grave (parfois fatale) — contre-indication formelle : insuffisance rénale sévère (clairance &lt;30 mL/min), insuffisance hépatique sévère, alcoolisme, insuffisance cardiaque décompensée.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-warning);">
+            <div class="safety-card-label">Carence en vitamine B12</div>
+            <div class="safety-card-content">Réduction de l'absorption de la B12 à long terme (mécanisme : compétition pour le facteur intrinsèque). Surveillance annuelle du taux de B12 recommandée chez les patients sous metformine &gt;1 an.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-warning);">
+            <div class="safety-card-label">Tolérance digestive</div>
+            <div class="safety-card-content">Nausées, diarrhées, douleurs abdominales fréquentes à l'initiation (20–30% des patients). Réduction avec prise pendant le repas et titration progressive. Disparaissent généralement après 2–4 semaines.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-primary);">
+            <div class="safety-card-label">Grossesse</div>
+            <div class="safety-card-content">Utilisée dans le diabète gestationnel avec données rassurantes (plusieurs méta-analyses). Traverse le placenta. Moins de recul que l'insuline qui reste la référence en France, mais utilisée en 1ère intention dans certains pays.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-primary);">
+            <div class="safety-card-label">Interactions médicamenteuses</div>
+            <div class="safety-card-content">Produits de contraste iodés (suspension 48h avant/après injection IV). Alcool (augmente risque acidose lactique). Diurétiques thiazidiques (réduction effet antidiabétique). Médicaments cationiques (compétition tubulaire rénale).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 08. GRAPHIQUES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">08</span>
+          <h2>Visualisations analytiques</h2>
+        </div>
+        <div class="charts-grid">
+          <div class="chart-container">
+            <div class="chart-title">Niveaux de preuve — Metformine (4 études)</div>
+            <div class="chart-wrapper" style="height:240px;">
+              <canvas id="chart-met-evidence" aria-label="Niveaux de preuve metformine"></canvas>
+            </div>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">Réduction risque cancer chez diabétiques (RR)</div>
+            <div class="chart-wrapper" style="height:240px;">
+              <canvas id="chart-met-rr" aria-label="Réduction risque cancer — metformine études"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 09. SOURCES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">09</span>
+          <h2>Sources détaillées</h2>
+        </div>
+        <p style="font-size:var(--text-sm); color:var(--color-text-muted); margin-bottom:var(--space-5);">
+          4 publications indexées — toutes vérifiées sur PubMed/PMC. Classement par niveau de preuve décroissant.
+        </p>
+        <div class="studies-list">
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary); font-size:10px;">N2<br>RCT</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9131745/" target="_blank" rel="noopener">Goodwin PJ et al. (2022) — Metformin vs Placebo in Breast Cancer (MA.32). <em>JAMA</em> 327(20):1963–1973</a></div>
+              <div class="study-meta-line">PMC9131745 · DOI: 10.1001/jama.2022.6147</div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary); font-size:10px;">N1<br>Méta</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pubmed.ncbi.nlm.nih.gov/20947488/" target="_blank" rel="noopener">Decensi A et al. (2010) — Metformin and cancer risk in diabetic patients: meta-analysis. <em>Cancer Prev. Res.</em> 3(11):1451–1461</a></div>
+              <div class="study-meta-line">PMID: 20947488 · DOI: 10.1158/1940-6207.CAPR-10-0157</div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary); font-size:10px;">N1<br>Méta</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4154969/" target="_blank" rel="noopener">Gandini S et al. (2014) — Metformin and cancer risk, corrected meta-analysis. <em>Cancer Prev. Res.</em> 7(9):867–885</a></div>
+              <div class="study-meta-line">PMC4154969 · DOI: 10.1158/1940-6207.CAPR-13-0424</div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary); font-size:10px;">N1<br>Revue</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11798064/" target="_blank" rel="noopener">Wu T et al. (2023) — Clinical trials of metformin in cancer: current evidence and future perspectives. <em>J. Cancer Res. Clin. Oncol.</em></a></div>
+              <div class="study-meta-line">PMC11798064 · DOI: 10.1007/s00432-023-05391-w</div>
+            </div>
+          </div>
+        </div>
+        <div class="alert-box info" style="margin-top:var(--space-6);">
+          <strong>Niveau de preuve global metformine :</strong> N1 (méta-analyses, revues) + N2 (RCT). Signal épidémiologique confirmé chez diabétiques. Essai RCT prospectif négatif chez non-diabétiques. Score de potentiel : <strong>55/100</strong> — conditionné à la présence d'hyperinsulinémie/diabète.
+        </div>
+        <div style="margin-top:var(--space-4); display:flex; gap:var(--space-3); flex-wrap:wrap;">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=metformin+cancer" target="_blank" rel="noopener" class="btn-primary" style="font-size:var(--text-sm);">Rechercher sur PubMed</a>
+          <a href="../dashboard.html#molecules-section" class="btn-ghost" style="font-size:var(--text-sm);">← Retour dashboard</a>
+        </div>
+      </div>
+
+    </div><!-- /.content-section -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>
+      RepoOnco — Base documentaire sur le repositionnement médicamenteux en oncologie &middot;
+      Usage personnel &amp; scientifique &middot;
+      <a href="../methode.html">Méthodologie</a> &middot;
+      <a href="../documentation.html">Documentation</a>
+    </p>
+    <p style="margin-top:var(--space-2);">
+      Données issues d'une veille bibliographique structurée. Cette base ne constitue pas un avis médical.
+    </p>
+  </footer>
+
+</div><!-- /.site-wrapper -->
+
+<script>
+'use strict';
+document.addEventListener('DOMContentLoaded', () => {
+  Chart.defaults.color = '#94a3b8';
+  Chart.defaults.borderColor = 'rgba(148, 163, 184, 0.1)';
+  Chart.defaults.font.family = "'Inter', 'Helvetica Neue', sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.plugins.tooltip.backgroundColor = '#111a2e';
+  Chart.defaults.plugins.tooltip.borderColor = 'rgba(45,212,191,0.25)';
+  Chart.defaults.plugins.tooltip.borderWidth = 1;
+  Chart.defaults.plugins.tooltip.cornerRadius = 8;
+
+  // Chart 1 — Types d'études (section 06)
+  const ctxTypes = document.getElementById('chart-met-types');
+  if (ctxTypes) {
+    new Chart(ctxTypes, {
+      type: 'bar',
+      data: {
+        labels: ['Méta-analyse / Revue (N1)', 'RCT Phase III (N2)'],
+        datasets: [{
+          label: "Nombre d'études",
+          data: [3, 1],
+          backgroundColor: ['rgba(45,212,191,0.5)', 'rgba(56,189,248,0.4)'],
+          borderColor: ['#2dd4bf', '#38bdf8'],
+          borderWidth: 1, borderRadius: 4,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { beginAtZero: true, ticks: { stepSize: 1, precision: 0 }, grid: { color: 'rgba(148,163,184,0.08)' } },
+          y: { grid: { display: false } },
+        },
+      },
+    });
+  }
+
+  // Chart 2 — Niveaux de preuve (section 08)
+  const ctxEvid = document.getElementById('chart-met-evidence');
+  if (ctxEvid) {
+    new Chart(ctxEvid, {
+      type: 'doughnut',
+      data: {
+        labels: ['N1 — Revues/Méta-analyses (3)', 'N2 — RCT (1)'],
+        datasets: [{
+          data: [3, 1],
+          backgroundColor: ['rgba(45,212,191,0.6)', 'rgba(56,189,248,0.5)'],
+          borderColor: ['#2dd4bf', '#38bdf8'],
+          borderWidth: 1, hoverOffset: 6,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, cutout: '60%',
+        plugins: {
+          legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 10 } },
+          tooltip: { callbacks: { label: ctx => ` ${ctx.label}` } },
+        },
+      },
+    });
+  }
+
+  // Chart 3 — Réduction risque cancer (RR) (section 08)
+  const ctxRR = document.getElementById('chart-met-rr');
+  if (ctxRR) {
+    new Chart(ctxRR, {
+      type: 'bar',
+      data: {
+        labels: ['Decensi 2010', 'Gandini 2014'],
+        datasets: [{
+          label: 'Risque relatif (RR)',
+          data: [0.69, 0.75],
+          backgroundColor: ['rgba(45,212,191,0.55)', 'rgba(45,212,191,0.35)'],
+          borderColor: ['#2dd4bf', '#2dd4bf'],
+          borderWidth: 1, borderRadius: 4,
+        }, {
+          label: 'Référence (RR=1.0 — pas de bénéfice)',
+          data: [1.0, 1.0],
+          type: 'line',
+          borderColor: 'rgba(239,68,68,0.5)',
+          borderDash: [6, 3],
+          borderWidth: 1.5,
+          pointRadius: 0,
+          fill: false,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 10 } },
+          tooltip: { callbacks: { label: ctx => ` RR = ${ctx.parsed.y}` } },
+        },
+        scales: {
+          y: {
+            min: 0.5, max: 1.1,
+            title: { display: true, text: 'Risque relatif (RR)', color: '#475569', font: { size: 10 } },
+            ticks: { color: '#94a3b8' }, grid: { color: 'rgba(148,163,184,0.08)' },
+          },
+          x: { grid: { display: false } },
+        },
+      },
+    });
+  }
+});
+</script>
+</body>
+</html>

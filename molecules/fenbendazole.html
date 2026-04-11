@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fiche complète Fenbendazole — Repositionnement en oncologie : structure, posologies, mécanismes, études, sécurité. RepoOnco." />
+  <title>Fenbendazole — Fiche molécule | RepoOnco</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* ── Styles spécifiques aux fiches molécules ── */
+    .mol-hero {
+      background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(6,10,19,0) 60%);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-10) 0 var(--space-8);
+    }
+    .mol-hero-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+    }
+    .mol-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-3);
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .mol-section {
+      margin-bottom: var(--space-12);
+    }
+    .mol-section-title {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .mol-section-title h2 {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .mol-section-num {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      background: var(--color-surface-2);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    /* Identity grid */
+    .identity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-4);
+    }
+    .identity-item {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+    }
+    .identity-item dt {
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-1);
+    }
+    .identity-item dd {
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      font-weight: 500;
+    }
+    /* Timeline historique */
+    .history-timeline {
+      position: relative;
+      padding-left: var(--space-8);
+    }
+    .history-timeline::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--color-danger), rgba(239,68,68,0.1));
+    }
+    .timeline-entry {
+      position: relative;
+      margin-bottom: var(--space-5);
+    }
+    .timeline-entry::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-danger);
+      border: 2px solid var(--color-bg);
+      box-shadow: 0 0 8px rgba(239,68,68,0.4);
+    }
+    .timeline-year {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-danger);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .timeline-text {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Structure chimique */
+    .structure-box {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: var(--space-6);
+      display: flex;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .structure-svg-wrap {
+      flex: 0 0 auto;
+    }
+    .structure-props {
+      flex: 1;
+      min-width: 200px;
+    }
+    .prop-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-divider);
+      font-size: var(--text-sm);
+    }
+    .prop-row:last-child { border-bottom: none; }
+    .prop-label { color: var(--color-text-faint); font-family: var(--font-mono); font-size: var(--text-xs); }
+    .prop-value { color: var(--color-text); font-weight: 500; }
+    /* Posologies table */
+    .dosage-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 4px;
+      font-size: var(--text-sm);
+    }
+    .dosage-table thead th {
+      text-align: left;
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .dosage-table tbody tr {
+      background: var(--color-surface-2);
+    }
+    .dosage-table tbody tr:hover { background: var(--color-surface-3); }
+    .dosage-table tbody td {
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-muted);
+      vertical-align: top;
+    }
+    .dosage-table tbody td:first-child {
+      border-radius: 6px 0 0 6px;
+      font-weight: 600;
+    }
+    .dosage-table tbody td:last-child { border-radius: 0 6px 6px 0; }
+    .dose-val { font-family: var(--font-mono); color: var(--color-text); font-weight: 600; }
+    .dose-warning { color: var(--color-danger); font-size: var(--text-xs); }
+    .dose-ok { color: var(--color-success); font-size: var(--text-xs); }
+    /* Mécanismes */
+    .mechanism-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-4);
+    }
+    .mechanism-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: var(--space-4) var(--space-5);
+    }
+    .mechanism-card-title {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-danger);
+      margin-bottom: var(--space-2);
+    }
+    .mechanism-card-text {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Études timeline */
+    .studies-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .study-row {
+      display: flex;
+      gap: var(--space-4);
+      align-items: flex-start;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+    }
+    .study-row:hover { border-color: var(--color-border-strong); }
+    .study-level-badge {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 700;
+    }
+    .study-body { flex: 1; }
+    .study-title-text {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-text);
+      margin-bottom: var(--space-1);
+    }
+    .study-meta-line {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      font-family: var(--font-mono);
+      margin-bottom: var(--space-2);
+    }
+    .study-finding {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Safety table */
+    .safety-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--space-4);
+    }
+    .safety-card {
+      background: var(--color-surface-2);
+      border-radius: 10px;
+      padding: var(--space-4) var(--space-5);
+    }
+    .safety-card-label {
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-2);
+    }
+    .safety-card-content {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Breadcrumb */
+    .breadcrumb {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-4);
+      font-family: var(--font-mono);
+    }
+    .breadcrumb a { color: var(--color-text-faint); }
+    .breadcrumb a:hover { color: var(--color-primary); }
+    /* Mol color accent */
+    :root { --mol-color: #ef4444; --mol-color-bg: rgba(239,68,68,0.08); }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <!-- ═══════════════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../index.html" class="site-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo RepoOnco">
+          <path d="M16 2L28.66 9.5V24.5L16 30L3.34 24.5V9.5L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="16" cy="16" r="4" fill="currentColor" opacity="0.3"/>
+          <circle cx="16" cy="8" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="12" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="20" r="2" fill="currentColor"/>
+          <circle cx="16" cy="24" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="20" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="12" r="2" fill="currentColor"/>
+          <line x1="16" y1="8" x2="22.93" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="12" x2="22.93" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="20" x2="16" y2="24" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="16" y1="24" x2="9.07" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="20" x2="9.07" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="12" x2="16" y2="8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+        </svg>
+        <span>RepoOnco<span class="logo-sub">Base documentaire</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <nav><ul class="nav-links">
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../dashboard.html">Dashboard</a></li>
+        <li><a href="../methode.html">Méthodologie</a></li>
+        <li><a href="../documentation.html">Documentation</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar" role="status">
+    <div class="status-item"><span class="status-dot yellow" aria-hidden="true"></span><span>FICHE MOLÉCULE</span></div>
+    <div class="status-item"><span class="status-dot red" aria-hidden="true"></span><span>FENBENDAZOLE</span></div>
+    <div class="status-item"><span class="status-dot blue" aria-hidden="true"></span><span>6 ÉTUDES INDEXÉES</span></div>
+    <div class="status-item"><span class="status-dot red" aria-hidden="true"></span><span>SCORE : 30%</span></div>
+    <div class="status-item"><span class="status-dot red" aria-hidden="true"></span><span>USAGE VÉTÉRINAIRE UNIQUEMENT</span></div>
+  </div>
+
+  <main class="main-content" id="main">
+
+    <!-- HERO -->
+    <div class="mol-hero">
+      <div class="content-section" style="padding-top:0; padding-bottom:0; margin-bottom:0;">
+        <div class="breadcrumb">
+          <a href="../dashboard.html">Dashboard</a> › <a href="../dashboard.html#molecules-section">Molécules</a> › Fenbendazole
+        </div>
+        <div class="mol-hero-inner">
+          <div style="flex:1; min-width:260px;">
+            <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-3); flex-wrap:wrap;">
+              <span class="mol-hero-badge" style="background:rgba(239,68,68,0.12); color:var(--color-danger); border:1px solid rgba(239,68,68,0.3);">VÉTÉRINAIRE</span>
+              <span class="mol-hero-badge" style="background:rgba(239,68,68,0.1); color:var(--color-danger); border:1px solid rgba(239,68,68,0.25);">AUCUN ESSAI HUMAIN</span>
+              <span class="mol-hero-badge" style="background:var(--color-surface-2); color:var(--color-text-faint); border:1px solid var(--color-border);">HORS BREVET</span>
+            </div>
+            <h1 style="font-size:clamp(2rem,5vw,3rem); font-weight:700; color:var(--color-danger); font-family:var(--font-mono); margin-bottom:var(--space-2);">Fenbendazole</h1>
+            <p style="font-size:var(--text-base); color:var(--color-text-muted); margin-bottom:var(--space-4);">Benzimidazole — Antihelminthique vétérinaire</p>
+            <p style="font-size:var(--text-sm); color:var(--color-text-muted); max-width:70ch; line-height:1.7;">
+              Développé par Hoechst AG dans les années 1970, le fenbendazole est un antihelminthique vétérinaire approuvé (Panacur®, Safe-Guard®) pour chiens, chats, chevaux et bovins. Un signal préclinique oncologique existe via la liaison à la β-tubuline, l'inhibition du métabolisme glucidique (GLUT4) et l'activation de p53. Cependant, aucun essai clinique humain n'existe, la formulation vétérinaire n'est pas conçue pour l'homme, et plusieurs cas d'hépatotoxicité ont été documentés lors d'automédication.
+            </p>
+          </div>
+          <!-- Score visuel -->
+          <div style="flex:0 0 auto; background:var(--color-surface-2); border:1px solid rgba(239,68,68,0.25); border-radius:16px; padding:var(--space-6); text-align:center; min-width:160px;">
+            <div style="font-size:var(--text-xs); font-family:var(--font-mono); color:var(--color-text-faint); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-2);">Score potentiel</div>
+            <div style="font-size:3rem; font-weight:700; color:var(--color-danger); font-family:var(--font-mono); line-height:1;">30%</div>
+            <div style="font-size:var(--text-xs); color:var(--color-text-faint); margin-top:var(--space-2);">Préclinique uniquement</div>
+            <div style="margin-top:var(--space-4); height:6px; background:var(--color-surface-3); border-radius:3px; overflow:hidden;">
+              <div style="width:30%; height:100%; background:var(--color-danger); border-radius:3px; transition:width 1s;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+
+      <!-- ── 01. IDENTITÉ ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">01</span>
+          <h2>Identité chimique &amp; pharmacologique</h2>
+        </div>
+        <dl class="identity-grid">
+          <div class="identity-item"><dt>DCI</dt><dd>Fenbendazole</dd></div>
+          <div class="identity-item"><dt>Formule brute</dt><dd style="font-family:var(--font-mono);">C₁₅H₁₃N₃O₂S</dd></div>
+          <div class="identity-item"><dt>Masse molaire</dt><dd style="font-family:var(--font-mono);">299.35 g/mol</dd></div>
+          <div class="identity-item"><dt>Classe</dt><dd>Benzimidazole antihelminthique</dd></div>
+          <div class="identity-item"><dt>Origine</dt><dd>Synthèse chimique (Hoechst AG, Allemagne, années 1970)</dd></div>
+          <div class="identity-item"><dt>CAS</dt><dd style="font-family:var(--font-mono);">43210-67-9</dd></div>
+          <div class="identity-item"><dt>Approbation</dt><dd style="color:var(--color-danger);">Vétérinaire uniquement — JAMAIS approuvé usage humain</dd></div>
+          <div class="identity-item"><dt>Noms commerciaux</dt><dd>Panacur®, Safe-Guard®</dd></div>
+          <div class="identity-item"><dt>Statut brevet</dt><dd style="color:var(--color-success);">Hors brevet (générique vétérinaire)</dd></div>
+          <div class="identity-item"><dt>Voie d'admin.</dt><dd>Orale</dd></div>
+          <div class="identity-item"><dt>Solubilité eau</dt><dd style="font-family:var(--font-mono);">&lt;1 µg/mL (très faible)</dd></div>
+          <div class="identity-item"><dt>LogP</dt><dd style="font-family:var(--font-mono);">~3.6 (lipophile)</dd></div>
+        </dl>
+        <!-- Score mini-bar -->
+        <div style="margin-top:var(--space-5); background:var(--color-surface-2); border:1px solid rgba(239,68,68,0.2); border-radius:10px; padding:var(--space-4); display:flex; align-items:center; gap:var(--space-4); flex-wrap:wrap;">
+          <div style="font-size:var(--text-xs); font-family:var(--font-mono); color:var(--color-text-faint); text-transform:uppercase; letter-spacing:0.06em;">Score repositionnement</div>
+          <div style="flex:1; min-width:120px; height:8px; background:var(--color-surface-3); border-radius:4px; overflow:hidden;">
+            <div style="width:30%; height:100%; background:var(--color-danger); border-radius:4px;"></div>
+          </div>
+          <div style="font-family:var(--font-mono); font-weight:700; color:var(--color-danger);">30%</div>
+          <div style="font-size:var(--text-xs); color:var(--color-text-faint);">Signal préclinique limité — formulation vétérinaire non humaine</div>
+        </div>
+      </div>
+
+      <!-- ── 02. HISTOIRE ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">02</span>
+          <h2>Histoire &amp; chronologie</h2>
+        </div>
+        <div class="history-timeline">
+          <div class="timeline-entry">
+            <div class="timeline-year">Années 1970</div>
+            <div class="timeline-text">Développé par Hoechst AG (Allemagne) comme antihelminthique vétérinaire. Obtention des autorisations de mise sur le marché vétérinaire pour chiens, chats, chevaux et bovins sous les marques Panacur® et Safe-Guard®.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2009</div>
+            <div class="timeline-text">Merck acquiert Schering-Plough (qui avait absorbé Hoechst AG), récupérant ainsi le portefeuille vétérinaire incluant Panacur®. Le fenbendazole reste strictement dans le domaine vétérinaire.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">~2008–2012</div>
+            <div class="timeline-text">Observation accidentelle par Nilesh Dogra (NCI/NIH) que le fenbendazole inhibe les tumeurs dans des modèles précliniques — observation qui conduira à la publication majeure de 2018. Le mécanisme identifié : liaison à la β-tubuline analogue aux vincaalcaloïdes.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2016–2019</div>
+            <div class="timeline-text">Joe Tippens, patient américain en stade terminal de cancer du poumon à petites cellules (CPPC), prend du fenbendazole vétérinaire et entre en rémission. Ce cas devient viral en Corée du Sud et aux États-Unis. <strong>ATTENTION :</strong> cas unique non publié, rémission spontanée documentée dans le CPPC, coïncidence avec traitement cisplatine/étoposide simultané, biais de survivant non contrôlé — aucune valeur scientifique sans cohorte contrôlée.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2018</div>
+            <div class="timeline-text">Publication Dogra et al. (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6085345/" target="_blank" rel="noopener">PMC6085345</a>) dans <em>Scientific Reports</em> — première étude rigoureuse in vitro montrant mécanismes multiples (β-tubuline, GLUT4, p53) sur lignées cancéreuses humaines.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2019</div>
+            <div class="timeline-text">Vague d'automédication en Corée du Sud suite à la viralité du cas Tippens. Plusieurs cas de toxicité hépatique documentés dans ce contexte. Les réseaux sociaux propagent l'usage hors-AMM de manière incontrôlée.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2021</div>
+            <div class="timeline-text">Yamaguchi et al. (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8255718/" target="_blank" rel="noopener">PMC8255718</a>) publient un cas de toxicité hépatique sévère chez un patient NSCLC en automédication fenbendazole via réseaux sociaux — élévation majeure des transaminases.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2024</div>
+            <div class="timeline-text">Wang et al. (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11686899/" target="_blank" rel="noopener">PMC11686899</a>) — étude in vivo cancer de l'ovaire sur modèles xénogreffe souris avec analyse transcriptomique. Inhibition via voie PI3K/AKT et arrêt du cycle cellulaire.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2026</div>
+            <div class="timeline-text">Aucun essai clinique humain oncologique enregistré ou publié. Le fenbendazole reste exclusivement dans le domaine préclinique pour l'oncologie.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 03. STRUCTURE ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">03</span>
+          <h2>Structure chimique</h2>
+        </div>
+        <div class="structure-box">
+          <div class="structure-svg-wrap">
+            <!-- Représentation schématique SVG d'un benzimidazole (cycle benzène + imidazole + groupe carbamate) -->
+            <svg width="260" height="200" viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Structure schématique du fenbendazole — benzimidazole bicyclique avec carbamate">
+              <!-- Cycle benzène (gauche) -->
+              <polygon points="48,80 68,68 88,80 88,104 68,116 48,104"
+                stroke="#ef4444" stroke-width="1.8" fill="rgba(239,68,68,0.06)"/>
+              <!-- Liaison double alternée benzène -->
+              <line x1="48" y1="80" x2="68" y2="68" stroke="#ef4444" stroke-width="1.8"/>
+              <line x1="88" y1="80" x2="88" y2="104" stroke="#ef4444" stroke-width="3" opacity="0.5"/>
+              <line x1="48" y1="104" x2="48" y2="80" stroke="#ef4444" stroke-width="3" opacity="0.5"/>
+              <!-- Cycle imidazole (droite, fusionné) -->
+              <polygon points="88,80 115,68 130,88 115,108 88,104"
+                stroke="#ef4444" stroke-width="1.8" fill="rgba(239,68,68,0.10)"/>
+              <!-- N annotations -->
+              <text x="117" y="66" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">N</text>
+              <text x="131" y="91" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">NH</text>
+              <text x="116" y="115" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">N</text>
+              <!-- Groupe carbamate (vers le haut) -->
+              <line x1="123" y1="68" x2="148" y2="46" stroke="#ef4444" stroke-width="1.5"/>
+              <text x="150" y="44" fill="rgba(239,68,68,0.8)" font-family="monospace" font-size="9">–NH–CO–OMe</text>
+              <text x="125" y="38" fill="rgba(148,163,184,0.5)" font-family="monospace" font-size="8">(carbamate méthyle)</text>
+              <!-- Thioéther phényle (vers le bas) -->
+              <line x1="68" y1="116" x2="68" y2="140" stroke="#ef4444" stroke-width="1.5"/>
+              <text x="44" y="138" fill="rgba(239,68,68,0.7)" font-family="monospace" font-size="9">–S–Ph</text>
+              <!-- Cercle aromaticité benzène -->
+              <circle cx="68" cy="92" r="12" stroke="rgba(239,68,68,0.25)" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+              <!-- Labels principaux -->
+              <text x="30" y="73" fill="rgba(239,68,68,0.6)" font-family="monospace" font-size="8">Benzène</text>
+              <text x="96" y="75" fill="rgba(239,68,68,0.6)" font-family="monospace" font-size="8">Imidazole</text>
+              <!-- Formule bas -->
+              <text x="40" y="175" fill="rgba(148,163,184,0.6)" font-family="monospace" font-size="9">C₁₅H₁₃N₃O₂S — 299.35 g/mol</text>
+              <text x="55" y="190" fill="rgba(148,163,184,0.35)" font-family="monospace" font-size="8">Représentation schématique</text>
+            </svg>
+          </div>
+          <div class="structure-props">
+            <div class="prop-row"><span class="prop-label">Formule moléculaire</span><span class="prop-value" style="font-family:var(--font-mono);">C₁₅H₁₃N₃O₂S</span></div>
+            <div class="prop-row"><span class="prop-label">Masse molaire</span><span class="prop-value" style="font-family:var(--font-mono);">299.35 g/mol</span></div>
+            <div class="prop-row"><span class="prop-label">Type structurel</span><span class="prop-value">Benzimidazole (noyau bicyclique)</span></div>
+            <div class="prop-row"><span class="prop-label">Groupes fonctionnels</span><span class="prop-value">Carbamate méthyle, thioéther phényle, NH</span></div>
+            <div class="prop-row"><span class="prop-label">Solubilité eau</span><span class="prop-value" style="font-family:var(--font-mono);">&lt;1 µg/mL (très faible)</span></div>
+            <div class="prop-row"><span class="prop-label">LogP</span><span class="prop-value" style="font-family:var(--font-mono);">~3.6 (lipophile)</span></div>
+            <div class="prop-row"><span class="prop-label">Biodisponibilité orale (chien)</span><span class="prop-value" style="font-family:var(--font-mono);">~20–48% (selon formulation)</span></div>
+            <div class="prop-row"><span class="prop-label">Métabolisme</span><span class="prop-value">Oxydation hépatique → oxfendazole (actif), sulfone (inactif)</span></div>
+            <div class="prop-row"><span class="prop-label">PK humaine oncologique</span><span class="prop-value" style="color:var(--color-danger);">Aucune donnée publiée</span></div>
+          </div>
+        </div>
+        <div class="alert-box danger" style="margin-top:var(--space-5);">
+          <strong>Absence de données PK humaines :</strong> Aucune étude pharmacocinétique humaine publiée pour usage oncologique. La biodisponibilité indiquée provient d'études vétérinaires (chien). <strong>Aucune extrapolation espèce-à-espèce n'est valide</strong> sans données cliniques propres. La formulation vétérinaire n'est pas conçue pour l'humain.
+        </div>
+      </div>
+
+      <!-- ── 04. POSOLOGIES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">04</span>
+          <h2>Posologies — 5 catégories contextualisées</h2>
+        </div>
+        <div class="alert-box info" style="margin-bottom:var(--space-5);">
+          <strong>Lecture :</strong> Les catégories sont strictement séparées. Aucune extrapolation d'une espèce à l'autre ou d'un contexte préclinique à clinique n'est valide sans données pharmacocinétiques propres.
+        </div>
+        <table class="dosage-table">
+          <thead>
+            <tr>
+              <th>Contexte</th>
+              <th>Espèce</th>
+              <th>Dose</th>
+              <th>Source / statut</th>
+              <th>Remarques</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Antiparasitaire approuvé</td>
+              <td>Chien</td>
+              <td><span class="dose-val">50 mg/kg/j × 3 jours</span> oral</td>
+              <td><span class="dose-ok">AMM vétérinaire (Panacur®)</span></td>
+              <td>Traitement des nématodes, giardia, certains cestodes. Dose standard bien tolérée chez le chien.</td>
+            </tr>
+            <tr>
+              <td>Antiparasitaire approuvé</td>
+              <td>Chat / bovins</td>
+              <td><span class="dose-val">50 mg/kg</span> dose unique ou variantes</td>
+              <td><span class="dose-ok">AMM vétérinaire</span></td>
+              <td>Schémas variables selon espèce, parasite cible et formulation. Toujours sous supervision vétérinaire.</td>
+            </tr>
+            <tr>
+              <td>Antitumoral in vitro</td>
+              <td>Lignées cellulaires humaines</td>
+              <td><span class="dose-val">IC50 : 0.1–5 µM</span></td>
+              <td><span class="dose-warning">PRÉCLINIQUE uniquement — non validé humain</span></td>
+              <td>Variable selon lignée et mécanisme. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6085345/" target="_blank" rel="noopener">Dogra 2018 PMC6085345</a></td>
+            </tr>
+            <tr>
+              <td>Antitumoral in vivo</td>
+              <td>Souris (xénogreffe)</td>
+              <td><span class="dose-val">10–150 mg/kg</span> selon modèle</td>
+              <td><span class="dose-warning">PRÉCLINIQUE — non transposable humain</span></td>
+              <td>Modèles xénogreffe. La conversion allométrique souris→humain n'est pas validée en oncologie pour cette molécule.</td>
+            </tr>
+            <tr>
+              <td>Usage oncologique humain</td>
+              <td>Humain</td>
+              <td><span class="dose-warning">NON DÉFINI</span></td>
+              <td><span class="dose-warning">AUCUN ESSAI CLINIQUE — FORMULATION VÉTÉRINAIRE NON CONÇUE POUR L'HUMAIN</span></td>
+              <td>Aucune dose thérapeutique oncologique établie. Excipients vétérinaires potentiellement toxiques. Risque hépatotoxicité documenté.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="alert-box danger" style="margin-top:var(--space-5);">
+          <strong>Alerte sécurité :</strong> Formulation vétérinaire non approuvée pour l'humain. Excipients potentiellement toxiques chez l'homme. Risque d'hépatotoxicité documenté (Yamaguchi 2021, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8255718/" target="_blank" rel="noopener">PMC8255718</a>). L'automédication avec du fenbendazole vétérinaire expose à des risques non quantifiés.
+        </div>
+      </div>
+
+      <!-- ── 05. MÉCANISMES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">05</span>
+          <h2>Mécanismes d'action antitumoraux</h2>
+        </div>
+        <p style="font-size:var(--text-sm); color:var(--color-text-muted); margin-bottom:var(--space-6); max-width:80ch; line-height:1.7;">
+          Tous les mécanismes ci-dessous sont documentés exclusivement en modèles précliniques (in vitro ± in vivo animal). Aucune validation clinique humaine n'existe à ce jour. Le fenbendazole partage des mécanismes avec d'autres benzimidazoles (mébendazole, albendazole), mais les données sont spécifiques à chaque molécule.
+        </p>
+        <div class="mechanism-grid">
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Microtubules / β-tubuline</div>
+            <div class="mechanism-card-text">Liaison à la β-tubuline au même site que la colchicine et les vincaalcaloïdes — déstabilisation du fuseau mitotique et blocage de la division cellulaire. Mécanisme fondateur identifié par Dogra et al. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6085345/" target="_blank" rel="noopener">Dogra 2018 PMC6085345</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">GLUT4 / Métabolisme glucidique</div>
+            <div class="mechanism-card-text">Inhibition du transporteur de glucose GLUT4 — réduction de l'uptake glucidique des cellules tumorales. Ciblage de l'effet Warburg (dépendance au glucose des tumeurs). Potentiel en combinaison avec d'autres inhibiteurs métaboliques. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6085345/" target="_blank" rel="noopener">Dogra 2018 PMC6085345</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">p53 / Apoptose intrinsèque</div>
+            <div class="mechanism-card-text">Activation de p53 wild-type et downrégulation de BCL-2 — induction de l'apoptose intrinsèque (voie mitochondriale). Dépendant du statut p53 de la tumeur cible. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6085345/" target="_blank" rel="noopener">Dogra 2018 PMC6085345</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Mdm2 / MdmX — réactivation p53</div>
+            <div class="mechanism-card-text">Downrégulation de Mdm2 et MdmX (régulateurs négatifs de p53) → réactivation de p53 dans les mélanomes. Mécanisme complémentaire à l'activation directe de p53. Étudié spécifiquement dans le mélanome. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6600429/" target="_blank" rel="noopener">Mrkvová 2019 PMC6600429</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Hypoxie / Radiosensibilisation</div>
+            <div class="mechanism-card-text">Sélectivité pour les cellules hypoxiques résistantes aux chimiothérapies classiques — potentiel radiosensibilisant exploitable dans les tumeurs solides hypoxiques. Étudié in vitro par Duan et al. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3580766/" target="_blank" rel="noopener">Duan 2013 PMC3580766</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">PI3K/AKT / Cycle cellulaire</div>
+            <div class="mechanism-card-text">Suppression de la voie PI3K/AKT et arrêt du cycle cellulaire dans le cancer de l'ovaire (modèles xénogreffe). Analyse transcriptomique associée. Données in vivo les plus récentes. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11686899/" target="_blank" rel="noopener">Wang 2024 PMC11686899</a>]</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 06. TIMELINE ÉTUDES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">06</span>
+          <h2>Historique des études — 6 publications indexées</h2>
+        </div>
+        <div class="studies-list">
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary);">N1</div>
+            <div class="study-body">
+              <div class="study-title-text">Benzimidazole anthelmintics as potential anticancer agents and their targeting pathways</div>
+              <div class="study-meta-line">Son DS et al. · 2020 · Revue · Multiples cancers · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7458798/" target="_blank" rel="noopener">PMC7458798</a> · DOI: 10.4110/in.2020.20.e29</div>
+              <div class="study-finding">Revue systématique documentant l'activité antitumorale des benzimidazoles (fenbendazole, mébendazole, albendazole) et leurs voies cibles multiples. Synthèse de référence pour la classe thérapeutique, incluant le mécanisme d'inhibition des microtubules partagé par les benzimidazoles antihelminthiques.</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(234,179,8,0.12); color:var(--color-warning);">N4</div>
+            <div class="study-body">
+              <div class="study-title-text">Fenbendazole-associated hepatotoxicity in a patient with non-small cell lung cancer</div>
+              <div class="study-meta-line">Yamaguchi Y et al. · 2021 · Rapport de cas · NSCLC automédication · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8255718/" target="_blank" rel="noopener">PMC8255718</a> · DOI: 10.1159/000516276</div>
+              <div class="study-finding">Rapport de cas documentant une hépatotoxicité sévère (élévation majeure des transaminases) chez un patient NSCLC ayant pris du fenbendazole vétérinaire conseillé par des réseaux sociaux. Souligne les risques d'automédication avec des formulations non conçues pour l'usage humain. Seule publication de sécurité humaine indexée pour cette molécule en contexte oncologique.</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(45,212,191,0.1); color:var(--color-teal, #2dd4bf);">N5</div>
+            <div class="study-body">
+              <div class="study-title-text">Fenbendazole inhibits the growth and invasion of ovarian cancer cells via inactivation of the PI3K/AKT signaling pathway</div>
+              <div class="study-meta-line">Wang X et al. · 2024 · In vivo + transcriptomique · Cancer de l'ovaire · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11686899/" target="_blank" rel="noopener">PMC11686899</a> · DOI: 10.1186/s12885-024-13361-9</div>
+              <div class="study-finding">Étude in vivo sur modèles xénogreffe souris avec analyse transcriptomique intégrée — inhibition de la croissance et de l'invasion des cellules d'ovaire via inactivation PI3K/AKT, arrêt du cycle cellulaire et induction d'apoptose. Données précliniques in vivo les plus récentes pour le fenbendazole en oncologie.</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.1); color:var(--color-text-faint);">N6</div>
+            <div class="study-body">
+              <div class="study-title-text">Fenbendazole acts as a moderate microtubule destabilizing agent and causes cancer cell death by modulating multiple cellular pathways</div>
+              <div class="study-meta-line">Dogra N et al. · 2018 · In vitro · Lignées cancéreuses humaines · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6085345/" target="_blank" rel="noopener">PMC6085345</a> · DOI: 10.1038/s41598-018-30158-6</div>
+              <div class="study-finding">Étude fondatrice — première démonstration rigoureuse in vitro des mécanismes antitumoraux du fenbendazole : liaison β-tubuline, inhibition GLUT4, activation p53, downrégulation BCL-2. Découverte issue d'observations accidentelles faites au NCI/NIH sur des modèles murins. Publication de référence citée dans toutes les études ultérieures.</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.1); color:var(--color-text-faint);">N6</div>
+            <div class="study-body">
+              <div class="study-title-text">Hypoxia-selective antitumor agents. Benzimidazole N-oxides with direct hypoxic cytotoxicity</div>
+              <div class="study-meta-line">Duan JX et al. · 2013 · In vitro · Cellules hypoxiques · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3580766/" target="_blank" rel="noopener">PMC3580766</a></div>
+              <div class="study-finding">Étude in vitro sur la cytotoxicité sélective des benzimidazoles en conditions hypoxiques — potentiel de radiosensibilisation dans les tumeurs solides résistantes aux traitements conventionnels. Mécanisme hypoxique distinct des autres voies identifiées pour le fenbendazole.</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.1); color:var(--color-text-faint);">N6</div>
+            <div class="study-body">
+              <div class="study-title-text">Fenbendazole and its anticancer activities: A patent review</div>
+              <div class="study-meta-line">Mrkvová Z et al. · 2019 · In vitro · Mélanome · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6600429/" target="_blank" rel="noopener">PMC6600429</a> · DOI: 10.3390/molecules24112152</div>
+              <div class="study-finding">Étude in vitro dans des lignées de mélanome — démonstration de la downrégulation de Mdm2 et MdmX (régulateurs négatifs de p53) par le fenbendazole, conduisant à la réactivation de p53 et à l'induction de l'apoptose. Mécanisme spécifique au mélanome, distinct des données sur d'autres types tumoraux.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Graphique études par type/niveau -->
+        <div class="chart-container" style="margin-top:var(--space-6);">
+          <div class="chart-title">Distribution des études par niveau de preuve — Fenbendazole</div>
+          <div class="chart-wrapper" style="height:200px;">
+            <canvas id="chart-fnbz-types" aria-label="Distribution des études fenbendazole par niveau de preuve"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 07. SÉCURITÉ ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">07</span>
+          <h2>Profil de sécurité</h2>
+        </div>
+        <div class="alert-box danger" style="margin-bottom:var(--space-5);">
+          <strong>NON APPROUVÉ HUMAIN — Formulation vétérinaire.</strong> Le fenbendazole n'a jamais reçu d'autorisation de mise sur le marché pour usage humain dans aucun pays. Les formulations disponibles (pâtes, granulés, suspensions vétérinaires) contiennent des excipients non évalués chez l'humain.
+        </div>
+        <div class="safety-grid">
+          <div class="safety-card" style="border-left:3px solid var(--color-danger);">
+            <div class="safety-card-label">Hépatotoxicité documentée</div>
+            <div class="safety-card-content">Cas Yamaguchi 2021 — toxicité hépatique sévère chez un patient NSCLC en automédication fenbendazole guidée par les réseaux sociaux. Élévation majeure des transaminases (ALT, AST). Résolution après arrêt du produit. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8255718/" target="_blank" rel="noopener">PMC8255718</a>]</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-danger);">
+            <div class="safety-card-label">Excipients vétérinaires</div>
+            <div class="safety-card-content">Les formulations vétérinaires (Panacur®, Safe-Guard®) contiennent des excipients spécifiquement évalués pour les espèces cibles animales. La qualité pharmaceutique, la pureté et la sécurité des excipients pour usage humain ne sont pas garanties ni testées.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-warning);">
+            <div class="safety-card-label">Cas Tippens — analyse critique</div>
+            <div class="safety-card-content">Cas rapporté sur internet, non publié dans une revue à comité de lecture. Rémission spontanée documentée dans le CPPC (cancer du poumon à petites cellules). Coïncidence avec traitement cisplatine/étoposide simultané non contrôlé. Biais de survivant non corrigé. Valeur scientifique = anecdotique uniquement.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-success);">
+            <div class="safety-card-label">Profil animal</div>
+            <div class="safety-card-content">Bien toléré aux doses antiparasitaires approuvées chez chien, chat, cheval et bovins — profil vétérinaire établi. <strong>Exception :</strong> races MDR1-mutées (colley, berger australien, shetland) présentent une sensibilité accrue liée à la P-glycoprotéine altérée.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-primary);">
+            <div class="safety-card-label">Interactions oncologiques</div>
+            <div class="safety-card-content">Aucune étude d'interaction médicamenteuse publiée en contexte oncologique humain. Risque théorique d'interaction avec les chimiothérapies métabolisées par le CYP450. La concomitance non contrôlée avec des traitements oncologiques actifs est particulièrement préoccupante.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-danger);">
+            <div class="safety-card-label">Automédication</div>
+            <div class="safety-card-content">Formellement déconseillée : risque hépatique documenté, interactions inconnues avec traitements oncologiques, qualité non contrôlée des produits vétérinaires, dose efficace humaine inconnue. Retarde potentiellement l'accès à des soins validés.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 08. GRAPHIQUES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">08</span>
+          <h2>Visualisations analytiques</h2>
+        </div>
+        <div class="charts-grid">
+          <div class="chart-container">
+            <div class="chart-title">Niveaux de preuve — Fenbendazole (6 études)</div>
+            <div class="chart-wrapper" style="height:240px;">
+              <canvas id="chart-fnbz-evidence" aria-label="Niveaux de preuve fenbendazole"></canvas>
+            </div>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">Score comparatif — Molécules repositionnement oncologie</div>
+            <div class="chart-wrapper" style="height:240px;">
+              <canvas id="chart-fnbz-compare" aria-label="Score comparatif fenbendazole vs autres molécules"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 09. SOURCES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">09</span>
+          <h2>Sources détaillées</h2>
+        </div>
+        <p style="font-size:var(--text-sm); color:var(--color-text-muted); margin-bottom:var(--space-5);">
+          6 publications indexées — toutes vérifiées sur PubMed/PMC. Classement par niveau de preuve décroissant.
+        </p>
+        <div class="studies-list">
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary); font-size:10px;">N1<br>Revue</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7458798/" target="_blank" rel="noopener">Son DS et al. (2020) — Benzimidazole anthelmintics as potential anticancer agents and their targeting pathways. <em>Immune Netw.</em> 20(4):e29</a></div>
+              <div class="study-meta-line">PMC7458798 · DOI: 10.4110/in.2020.20.e29 · <a href="https://pubmed.ncbi.nlm.nih.gov/32895619/" target="_blank" rel="noopener">PubMed</a></div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(234,179,8,0.12); color:var(--color-warning); font-size:10px;">N4<br>Cas</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8255718/" target="_blank" rel="noopener">Yamaguchi Y et al. (2021) — Fenbendazole-associated hepatotoxicity in a patient with non-small cell lung cancer. <em>Case Rep. Oncol.</em> 14:886–892</a></div>
+              <div class="study-meta-line">PMC8255718 · DOI: 10.1159/000516276 · <a href="https://pubmed.ncbi.nlm.nih.gov/34248589/" target="_blank" rel="noopener">PubMed</a></div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(45,212,191,0.1); color:var(--color-teal, #2dd4bf); font-size:10px;">N5<br>In vivo</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11686899/" target="_blank" rel="noopener">Wang X et al. (2024) — Fenbendazole inhibits growth and invasion of ovarian cancer via PI3K/AKT inactivation. <em>BMC Cancer</em> 24:1589</a></div>
+              <div class="study-meta-line">PMC11686899 · DOI: 10.1186/s12885-024-13361-9 · <a href="https://pubmed.ncbi.nlm.nih.gov/39725893/" target="_blank" rel="noopener">PubMed</a></div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.08); color:var(--color-text-faint); font-size:10px;">N6<br>In vitro</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6085345/" target="_blank" rel="noopener">Dogra N et al. (2018) — Fenbendazole acts as a moderate microtubule destabilizing agent and causes cancer cell death by modulating multiple cellular pathways. <em>Sci. Rep.</em> 8:11926</a></div>
+              <div class="study-meta-line">PMC6085345 · DOI: 10.1038/s41598-018-30158-6 · <a href="https://pubmed.ncbi.nlm.nih.gov/30093705/" target="_blank" rel="noopener">PubMed</a></div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.08); color:var(--color-text-faint); font-size:10px;">N6<br>In vitro</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3580766/" target="_blank" rel="noopener">Duan JX et al. (2013) — Hypoxia-selective antitumor agents. Benzimidazole N-oxides with direct hypoxic cytotoxicity. <em>J. Med. Chem.</em></a></div>
+              <div class="study-meta-line">PMC3580766 · <a href="https://pubmed.ncbi.nlm.nih.gov/23210835/" target="_blank" rel="noopener">PubMed</a></div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.08); color:var(--color-text-faint); font-size:10px;">N6<br>In vitro</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6600429/" target="_blank" rel="noopener">Mrkvová Z et al. (2019) — Fenbendazole and its anticancer activities: downregulation of Mdm2/MdmX in melanoma. <em>Molecules</em> 24(11):2152</a></div>
+              <div class="study-meta-line">PMC6600429 · DOI: 10.3390/molecules24112152 · <a href="https://pubmed.ncbi.nlm.nih.gov/31163695/" target="_blank" rel="noopener">PubMed</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="alert-box danger" style="margin-top:var(--space-6);">
+          <strong>Niveau de preuve global fenbendazole :</strong> Niveau 1 (revue systématique) + Niveau 4 (rapport de cas sécurité) + Niveau 5 (in vivo) + Niveau 6 (in vitro). Aucune donnée clinique humaine oncologique contrôlée. Formulation vétérinaire non approuvée pour l'humain. Score de potentiel conservateur : <strong>30/100</strong>.
+        </div>
+        <div style="margin-top:var(--space-4); display:flex; gap:var(--space-3); flex-wrap:wrap;">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=fenbendazole+cancer" target="_blank" rel="noopener" class="btn-primary" style="font-size:var(--text-sm);">Rechercher sur PubMed</a>
+          <a href="../dashboard.html#molecules-section" class="btn-ghost" style="font-size:var(--text-sm);">← Retour dashboard</a>
+        </div>
+      </div>
+
+    </div><!-- /.content-section -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>
+      RepoOnco — Base documentaire sur le repositionnement médicamenteux en oncologie &middot;
+      Usage personnel &amp; scientifique &middot;
+      <a href="../methode.html">Méthodologie</a> &middot;
+      <a href="../documentation.html">Documentation</a>
+    </p>
+    <p style="margin-top:var(--space-2);">
+      Données issues d'une veille bibliographique structurée. Cette base ne constitue pas un avis médical.
+    </p>
+  </footer>
+
+</div><!-- /.site-wrapper -->
+
+<script>
+'use strict';
+document.addEventListener('DOMContentLoaded', () => {
+  Chart.defaults.color = '#94a3b8';
+  Chart.defaults.borderColor = 'rgba(148, 163, 184, 0.1)';
+  Chart.defaults.font.family = "'Inter', 'Helvetica Neue', sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.plugins.tooltip.backgroundColor = '#111a2e';
+  Chart.defaults.plugins.tooltip.borderColor = 'rgba(239,68,68,0.25)';
+  Chart.defaults.plugins.tooltip.borderWidth = 1;
+  Chart.defaults.plugins.tooltip.cornerRadius = 8;
+
+  // Chart 1 — Distribution études par niveau (section 06)
+  const ctxTypes = document.getElementById('chart-fnbz-types');
+  if (ctxTypes) {
+    new Chart(ctxTypes, {
+      type: 'bar',
+      data: {
+        labels: ['N1 — Revue', 'N4 — Rapport de cas', 'N5 — In vivo', 'N6 — In vitro'],
+        datasets: [{
+          label: "Nombre d'études",
+          data: [1, 1, 1, 3],
+          backgroundColor: [
+            'rgba(56,189,248,0.5)',
+            'rgba(234,179,8,0.4)',
+            'rgba(45,212,191,0.4)',
+            'rgba(148,163,184,0.25)',
+          ],
+          borderColor: ['#38bdf8', '#eab308', '#2dd4bf', '#94a3b8'],
+          borderWidth: 1, borderRadius: 4,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { beginAtZero: true, ticks: { stepSize: 1, precision: 0 }, grid: { color: 'rgba(148,163,184,0.08)' } },
+          y: { grid: { display: false } },
+        },
+      },
+    });
+  }
+
+  // Chart 2 — Niveaux de preuve doughnut (section 08)
+  const ctxEvid = document.getElementById('chart-fnbz-evidence');
+  if (ctxEvid) {
+    new Chart(ctxEvid, {
+      type: 'doughnut',
+      data: {
+        labels: [
+          'N1 — Revue systématique (1)',
+          'N4 — Rapport de cas (1)',
+          'N5 — In vivo (1)',
+          'N6 — In vitro (3)',
+        ],
+        datasets: [{
+          data: [1, 1, 1, 3],
+          backgroundColor: [
+            'rgba(56,189,248,0.6)',
+            'rgba(234,179,8,0.5)',
+            'rgba(45,212,191,0.5)',
+            'rgba(239,68,68,0.35)',
+          ],
+          borderColor: ['#38bdf8', '#eab308', '#2dd4bf', '#ef4444'],
+          borderWidth: 1, hoverOffset: 6,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, cutout: '60%',
+        plugins: {
+          legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 10 } },
+          tooltip: { callbacks: { label: ctx => ` ${ctx.label}` } },
+        },
+      },
+    });
+  }
+
+  // Chart 3 — Score comparatif horizontal bar (section 08)
+  const ctxCompare = document.getElementById('chart-fnbz-compare');
+  if (ctxCompare) {
+    new Chart(ctxCompare, {
+      type: 'bar',
+      data: {
+        labels: ['Mébendazole', 'Ivermectine', 'Fenbendazole'],
+        datasets: [{
+          label: 'Score repositionnement oncologie (%)',
+          data: [70, 45, 30],
+          backgroundColor: [
+            'rgba(34,197,94,0.55)',
+            'rgba(234,179,8,0.55)',
+            'rgba(239,68,68,0.55)',
+          ],
+          borderColor: ['#22c55e', '#eab308', '#ef4444'],
+          borderWidth: 1, borderRadius: 4,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ` ${ctx.parsed.x}% — Score potentiel estimé`,
+            },
+          },
+        },
+        scales: {
+          x: {
+            beginAtZero: true, max: 100,
+            ticks: { callback: v => v + '%' },
+            grid: { color: 'rgba(148,163,184,0.08)' },
+          },
+          y: { grid: { display: false } },
+        },
+      },
+    });
+  }
+});
+</script>
+</body>
+</html>

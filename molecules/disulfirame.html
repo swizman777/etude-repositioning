@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fiche complète Disulfirame — Repositionnement en oncologie : structure, posologies, mécanismes, études, sécurité. RepoOnco." />
+  <title>Disulfirame — Fiche molécule | RepoOnco</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* ── Styles spécifiques aux fiches molécules ── */
+    .mol-hero {
+      background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(6,10,19,0) 60%);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-10) 0 var(--space-8);
+    }
+    .mol-hero-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+    }
+    .mol-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-3);
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .mol-section {
+      margin-bottom: var(--space-12);
+    }
+    .mol-section-title {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .mol-section-title h2 {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .mol-section-num {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      background: var(--color-surface-2);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    /* Identity grid */
+    .identity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-4);
+    }
+    .identity-item {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+    }
+    .identity-item dt {
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-1);
+    }
+    .identity-item dd {
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      font-weight: 500;
+    }
+    /* Timeline historique */
+    .history-timeline {
+      position: relative;
+      padding-left: var(--space-8);
+    }
+    .history-timeline::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #f97316, rgba(249,115,22,0.1));
+    }
+    .timeline-entry {
+      position: relative;
+      margin-bottom: var(--space-5);
+    }
+    .timeline-entry::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #f97316;
+      border: 2px solid var(--color-bg);
+      box-shadow: 0 0 8px rgba(249,115,22,0.4);
+    }
+    .timeline-year {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: #f97316;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .timeline-text {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Structure chimique */
+    .structure-box {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: var(--space-6);
+      display: flex;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .structure-svg-wrap {
+      flex: 0 0 auto;
+    }
+    .structure-props {
+      flex: 1;
+      min-width: 200px;
+    }
+    .prop-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-divider);
+      font-size: var(--text-sm);
+    }
+    .prop-row:last-child { border-bottom: none; }
+    .prop-label { color: var(--color-text-faint); font-family: var(--font-mono); font-size: var(--text-xs); }
+    .prop-value { color: var(--color-text); font-weight: 500; }
+    /* Posologies table */
+    .dosage-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 4px;
+      font-size: var(--text-sm);
+    }
+    .dosage-table thead th {
+      text-align: left;
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .dosage-table tbody tr {
+      background: var(--color-surface-2);
+    }
+    .dosage-table tbody tr:hover { background: var(--color-surface-3); }
+    .dosage-table tbody td {
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-muted);
+      vertical-align: top;
+    }
+    .dosage-table tbody td:first-child {
+      border-radius: 6px 0 0 6px;
+      font-weight: 600;
+    }
+    .dosage-table tbody td:last-child { border-radius: 0 6px 6px 0; }
+    .dose-val { font-family: var(--font-mono); color: var(--color-text); font-weight: 600; }
+    .dose-warning { color: var(--color-danger); font-size: var(--text-xs); }
+    .dose-ok { color: var(--color-success); font-size: var(--text-xs); }
+    /* Mécanismes */
+    .mechanism-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-4);
+    }
+    .mechanism-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: var(--space-4) var(--space-5);
+    }
+    .mechanism-card-title {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: #f97316;
+      margin-bottom: var(--space-2);
+    }
+    .mechanism-card-text {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Études timeline */
+    .studies-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .study-row {
+      display: flex;
+      gap: var(--space-4);
+      align-items: flex-start;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+    }
+    .study-row:hover { border-color: var(--color-border-strong); }
+    .study-level-badge {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 700;
+    }
+    .study-body { flex: 1; }
+    .study-title-text {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-text);
+      margin-bottom: var(--space-1);
+    }
+    .study-meta-line {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      font-family: var(--font-mono);
+      margin-bottom: var(--space-2);
+    }
+    .study-finding {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Safety table */
+    .safety-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--space-4);
+    }
+    .safety-card {
+      background: var(--color-surface-2);
+      border-radius: 10px;
+      padding: var(--space-4) var(--space-5);
+    }
+    .safety-card-label {
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-2);
+    }
+    .safety-card-content {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Breadcrumb */
+    .breadcrumb {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-4);
+      font-family: var(--font-mono);
+    }
+    .breadcrumb a { color: var(--color-text-faint); }
+    .breadcrumb a:hover { color: #f97316; }
+    /* Mol color accent */
+    :root { --mol-color: #f97316; --mol-color-bg: rgba(249,115,22,0.08); --color-orange: #f97316; }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <!-- ═══════════════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../index.html" class="site-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo RepoOnco">
+          <path d="M16 2L28.66 9.5V24.5L16 30L3.34 24.5V9.5L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="16" cy="16" r="4" fill="currentColor" opacity="0.3"/>
+          <circle cx="16" cy="8" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="12" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="20" r="2" fill="currentColor"/>
+          <circle cx="16" cy="24" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="20" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="12" r="2" fill="currentColor"/>
+          <line x1="16" y1="8" x2="22.93" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="12" x2="22.93" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="20" x2="16" y2="24" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="16" y1="24" x2="9.07" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="20" x2="9.07" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="12" x2="16" y2="8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+        </svg>
+        <span>RepoOnco<span class="logo-sub">Base documentaire</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <nav><ul class="nav-links">
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../dashboard.html">Dashboard</a></li>
+        <li><a href="../methode.html">Méthodologie</a></li>
+        <li><a href="../documentation.html">Documentation</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar" role="status">
+    <div class="status-item"><span class="status-dot yellow" aria-hidden="true"></span><span>FICHE MOLÉCULE</span></div>
+    <div class="status-item"><span class="status-dot" style="background:#f97316;" aria-hidden="true"></span><span>DISULFIRAME</span></div>
+    <div class="status-item"><span class="status-dot blue" aria-hidden="true"></span><span>4 ÉTUDES</span></div>
+    <div class="status-item"><span class="status-dot" style="background:#f97316;" aria-hidden="true"></span><span>SCORE 40%</span></div>
+    <div class="status-item"><span class="status-dot red" aria-hidden="true"></span><span>RCT NÉGATIF (DIRECT 2023)</span></div>
+  </div>
+
+  <main class="main-content" id="main">
+
+    <!-- HERO -->
+    <div class="mol-hero">
+      <div class="content-section" style="padding-top:0; padding-bottom:0; margin-bottom:0;">
+        <div class="breadcrumb">
+          <a href="../dashboard.html">Dashboard</a> › <a href="../dashboard.html#molecules-section">Molécules</a> › Disulfirame
+        </div>
+        <div class="mol-hero-inner">
+          <div style="flex:1; min-width:260px;">
+            <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-3); flex-wrap:wrap;">
+              <span class="mol-hero-badge" style="background:rgba(249,115,22,0.12); color:#f97316; border:1px solid rgba(249,115,22,0.3);">DITHIOCARBAMATE</span>
+              <span class="mol-hero-badge" style="background:rgba(239,68,68,0.1); color:var(--color-danger); border:1px solid rgba(239,68,68,0.25);">RCT NÉGATIF</span>
+              <span class="mol-hero-badge" style="background:var(--color-surface-2); color:var(--color-text-faint); border:1px solid var(--color-border);">HORS BREVET</span>
+            </div>
+            <h1 style="font-size:clamp(2rem,5vw,3rem); font-weight:700; color:#f97316; font-family:var(--font-mono); margin-bottom:var(--space-2);">Disulfirame</h1>
+            <p style="font-size:var(--text-base); color:var(--color-text-muted); margin-bottom:var(--space-4);">Dithiocarbamate — Inhibiteur ALDH (Antabuse®, Esperal®)</p>
+            <p style="font-size:var(--text-sm); color:var(--color-text-muted); max-width:70ch; line-height:1.7;">
+              Découvert accidentellement en 1948 par des travailleurs exposés au caoutchouc, le disulfirame est approuvé depuis 1951 pour le sevrage alcoolique. Son repositionnement oncologique repose sur des mécanismes puissants in vitro (NPL4/p97, ALDH, ROS/ferroptose), mais l'essai DIRECT (RCT glioblastome, 2023) a été négatif. L'obstacle identifié est pharmacocinétique : le disulfirame est métabolisé en MeDDC inactif en moins de 30 minutes, rendant difficile l'atteinte de concentrations actives in vivo.
+            </p>
+          </div>
+          <!-- Score visuel -->
+          <div style="flex:0 0 auto; background:var(--color-surface-2); border:1px solid rgba(249,115,22,0.25); border-radius:16px; padding:var(--space-6); text-align:center; min-width:160px;">
+            <div style="font-size:var(--text-xs); font-family:var(--font-mono); color:var(--color-text-faint); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-2);">Score potentiel</div>
+            <div style="font-size:3rem; font-weight:700; color:#f97316; font-family:var(--font-mono); line-height:1;">40%</div>
+            <div style="font-size:var(--text-xs); color:var(--color-text-faint); margin-top:var(--space-2);">Obstacle PK identifié</div>
+            <div style="margin-top:var(--space-4); height:6px; background:var(--color-surface-3); border-radius:3px; overflow:hidden;">
+              <div style="width:40%; height:100%; background:#f97316; border-radius:3px; transition:width 1s;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+
+      <!-- ── 01. IDENTITÉ ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">01</span>
+          <h2>Identité chimique &amp; pharmacologique</h2>
+        </div>
+        <dl class="identity-grid">
+          <div class="identity-item"><dt>DCI</dt><dd>Disulfirame (disulfiram)</dd></div>
+          <div class="identity-item"><dt>Formule brute</dt><dd style="font-family:var(--font-mono);">C₁₀H₂₀N₂S₄</dd></div>
+          <div class="identity-item"><dt>Masse molaire</dt><dd style="font-family:var(--font-mono);">296.54 g/mol</dd></div>
+          <div class="identity-item"><dt>Classe</dt><dd>Dithiocarbamate (inhibiteur ALDH)</dd></div>
+          <div class="identity-item"><dt>Origine</dt><dd>Découvert par accident (1948) — industrie caoutchouc</dd></div>
+          <div class="identity-item"><dt>CAS</dt><dd style="font-family:var(--font-mono);">97-77-8</dd></div>
+          <div class="identity-item"><dt>Approbation FDA</dt><dd>1951 (sevrage alcoolique)</dd></div>
+          <div class="identity-item"><dt>Noms commerciaux</dt><dd>Antabuse®, Esperal®</dd></div>
+          <div class="identity-item"><dt>Statut brevet</dt><dd style="color:var(--color-success);">Hors brevet</dd></div>
+          <div class="identity-item"><dt>Voie d'admin.</dt><dd>Orale (comprimés 250/500 mg)</dd></div>
+          <div class="identity-item"><dt>Mécanisme sevrage</dt><dd>Inhibition ALDH → accumulation acétaldéhyde → syndrome antabuse</dd></div>
+        </dl>
+      </div>
+
+      <!-- ── 02. HISTOIRE ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">02</span>
+          <h2>Histoire &amp; chronologie</h2>
+        </div>
+        <div class="history-timeline">
+          <div class="timeline-entry">
+            <div class="timeline-year">1929</div>
+            <div class="timeline-text">Synthèse chimique du disulfirame en tant que composé industriel — accélérateur de vulcanisation du caoutchouc (tétraéthylthiurame disulfure). Aucune application médicale envisagée.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">1948</div>
+            <div class="timeline-text"><strong>Erik Jacobsen et Jens Hald</strong> (Danemark) observent accidentellement que les travailleurs exposés au disulfirame ne tolèrent plus l'alcool — flush, tachycardie, hypotension. Identification du mécanisme : inhibition de l'aldéhyde déshydrogénase (ALDH) → accumulation d'acétaldéhyde.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">1951</div>
+            <div class="timeline-text">Approbation FDA pour le traitement du sevrage alcoolique sous le nom Antabuse®. Première utilisation clinique approuvée d'un médicament comportemental.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">1990s–2000s</div>
+            <div class="timeline-text">Études épidémiologiques rétrospectives suggèrent une réduction de l'incidence de certains cancers chez les patients sous disulfirame (cancer du sein, colorectal). Hypothèse de repositionnement lancée.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2012–2016</div>
+            <div class="timeline-text"><strong>Skandrani et al.</strong> puis <strong>Skrott et al.</strong> (<em>Nature</em> 2017) — identification et confirmation du mécanisme NPL4/p97 : le complexe DSF-Cu inhibe le co-chaperone NPL4, bloquant la dégradation protéasomale → mort cellulaire. Mécanisme antitumoral puissant in vitro et in vivo (modèles murins).</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2020</div>
+            <div class="timeline-text"><strong>Li et al.</strong> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7017005/" target="_blank" rel="noopener">PMC7017005</a>) — DSF/Cu actif contre cancer nasopharyngé et fibroblastes associés via génération de ROS et induction de ferroptose. Renforce l'intérêt du complexe cuivre.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-text"><strong>Essai DIRECT</strong> (Werlenius et al., <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10066460/" target="_blank" rel="noopener">PMC10066460</a>) — RCT multicentrique scandinave (n=75, glioblastome récidivant) — <strong>NÉGATIF</strong>. Cause identifiée : métabolisation rapide du disulfirame en MeDDC inactif avant d'atteindre la tumeur. Obstacle PK central.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2023–2024</div>
+            <div class="timeline-text"><strong>Zhang 2023</strong> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10275851/" target="_blank" rel="noopener">PMC10275851</a>) + <strong>Zeng 2024</strong> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11188872/" target="_blank" rel="noopener">PMC11188872</a>) — revues documentant les mécanismes et suggérant que des formulations améliorées (nanoparticules, pro-drogues) sont nécessaires pour surmonter l'obstacle PK.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 03. STRUCTURE ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">03</span>
+          <h2>Structure chimique</h2>
+        </div>
+        <div class="structure-box">
+          <div class="structure-svg-wrap">
+            <!-- Représentation schématique SVG — dithiocarbamate symétrique -->
+            <svg width="260" height="180" viewBox="0 0 260 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Structure schématique du disulfirame — dithiocarbamate symétrique avec liaison S-S centrale">
+              <!-- Côté gauche — diéthyldithiocarbamate -->
+              <!-- N gauche avec 2 éthyles -->
+              <circle cx="42" cy="90" r="14" stroke="#f97316" stroke-width="1.8" fill="rgba(249,115,22,0.06)"/>
+              <text x="42" y="94" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="8">N(Et)₂</text>
+              <!-- Liaison N-C -->
+              <line x1="56" y1="90" x2="76" y2="90" stroke="#f97316" stroke-width="1.5"/>
+              <!-- C=S gauche -->
+              <circle cx="88" cy="90" r="12" stroke="#f97316" stroke-width="1.8" fill="rgba(249,115,22,0.08)"/>
+              <text x="88" y="94" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="9" font-weight="bold">C</text>
+              <!-- double liaison C=S haut -->
+              <line x1="88" y1="78" x2="88" y2="60" stroke="#f97316" stroke-width="1.5"/>
+              <line x1="92" y1="78" x2="92" y2="60" stroke="rgba(249,115,22,0.4)" stroke-width="1"/>
+              <circle cx="90" cy="52" r="10" stroke="#f97316" stroke-width="1.5" fill="rgba(249,115,22,0.06)"/>
+              <text x="90" y="56" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="10">S</text>
+              <!-- Liaison C-S droite -->
+              <line x1="100" y1="90" x2="116" y2="90" stroke="#f97316" stroke-width="1.5"/>
+              <!-- S central gauche -->
+              <circle cx="128" cy="90" r="11" stroke="#f97316" stroke-width="2" fill="rgba(249,115,22,0.12)"/>
+              <text x="128" y="94" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="10" font-weight="bold">S</text>
+              <!-- Liaison S-S centrale (clé du mécanisme) -->
+              <line x1="139" y1="90" x2="151" y2="90" stroke="#f97316" stroke-width="2.5"/>
+              <text x="144" y="82" text-anchor="middle" fill="rgba(249,115,22,0.6)" font-family="monospace" font-size="7">S–S</text>
+              <!-- S central droit -->
+              <circle cx="162" cy="90" r="11" stroke="#f97316" stroke-width="2" fill="rgba(249,115,22,0.12)"/>
+              <text x="162" y="94" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="10" font-weight="bold">S</text>
+              <!-- Liaison S-C droite -->
+              <line x1="173" y1="90" x2="189" y2="90" stroke="#f97316" stroke-width="1.5"/>
+              <!-- C=S droit -->
+              <circle cx="201" cy="90" r="12" stroke="#f97316" stroke-width="1.8" fill="rgba(249,115,22,0.08)"/>
+              <text x="201" y="94" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="9" font-weight="bold">C</text>
+              <!-- double liaison C=S bas -->
+              <line x1="201" y1="102" x2="201" y2="128" stroke="#f97316" stroke-width="1.5"/>
+              <line x1="205" y1="102" x2="205" y2="128" stroke="rgba(249,115,22,0.4)" stroke-width="1"/>
+              <circle cx="203" cy="136" r="10" stroke="#f97316" stroke-width="1.5" fill="rgba(249,115,22,0.06)"/>
+              <text x="203" y="140" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="10">S</text>
+              <!-- Liaison C-N droit -->
+              <line x1="213" y1="90" x2="233" y2="90" stroke="#f97316" stroke-width="1.5"/>
+              <!-- N droit -->
+              <circle cx="245" cy="90" r="12" stroke="#f97316" stroke-width="1.8" fill="rgba(249,115,22,0.06)"/>
+              <text x="245" y="94" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="8">N(Et)₂</text>
+              <!-- Labels -->
+              <text x="75" y="165" fill="rgba(148,163,184,0.6)" font-family="monospace" font-size="9">C₁₀H₂₀N₂S₄ — 296.54 g/mol</text>
+              <text x="50" y="14" fill="rgba(249,115,22,0.5)" font-family="monospace" font-size="9">Dithiocarbamate symétrique — liaison S-S centrale</text>
+              <text x="95" y="5" fill="rgba(148,163,184,0.4)" font-family="monospace" font-size="7">Représentation schématique</text>
+            </svg>
+          </div>
+          <div class="structure-props">
+            <div class="prop-row"><span class="prop-label">Formule moléculaire</span><span class="prop-value" style="font-family:var(--font-mono);">C₁₀H₂₀N₂S₄</span></div>
+            <div class="prop-row"><span class="prop-label">Masse molaire</span><span class="prop-value" style="font-family:var(--font-mono);">296.54 g/mol</span></div>
+            <div class="prop-row"><span class="prop-label">Type structurel</span><span class="prop-value">Dithiocarbamate (symétrique)</span></div>
+            <div class="prop-row"><span class="prop-label">Caractère</span><span class="prop-value">Lipophile — liaisons S-S biologiquement actives</span></div>
+            <div class="prop-row"><span class="prop-label">Métabolisme</span><span class="prop-value">Rapide → MeDDC (inactif) &lt;30 min</span></div>
+            <div class="prop-row"><span class="prop-label">Activation</span><span class="prop-value">Complexation Cu²⁺ → DSF-Cu actif in vitro</span></div>
+            <div class="prop-row"><span class="prop-label">Problème PK central</span><span class="prop-value" style="color:var(--color-danger);">DSF-Cu difficile à atteindre in vivo</span></div>
+            <div class="prop-row"><span class="prop-label">Liaison protéines plasma</span><span class="prop-value" style="font-family:var(--font-mono);">Forte</span></div>
+          </div>
+        </div>
+        <div class="alert-box warning" style="margin-top:var(--space-5);">
+          <strong>Obstacle pharmacocinétique identifié :</strong> Le disulfirame est métabolisé en &lt;30 min en MeDDC inactif. Les concentrations actives (DSF-Cu) ne semblent pas atteintes in vivo aux doses testées dans l'essai DIRECT. Nouvelle formulation ou stratégie de délivrance (nanoparticules, pro-drogues) nécessaire pour tout développement oncologique futur.
+        </div>
+      </div>
+
+      <!-- ── 04. POSOLOGIES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">04</span>
+          <h2>Posologies — 4 catégories contextualisées</h2>
+        </div>
+        <div class="alert-box info" style="margin-bottom:var(--space-5);">
+          <strong>Lecture :</strong> Les 4 catégories sont strictement séparées. Aucune extrapolation d'une espèce à l'autre ou d'un contexte à l'autre n'est valide sans données pharmacocinétiques propres.
+        </div>
+        <table class="dosage-table">
+          <thead>
+            <tr>
+              <th>Contexte</th>
+              <th>Espèce</th>
+              <th>Dose</th>
+              <th>Source / statut</th>
+              <th>Remarques</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sevrage alcoolique approuvé</td>
+              <td>Humain</td>
+              <td><span class="dose-val">250–500 mg/j</span> oral</td>
+              <td><span class="dose-ok">AMM FDA/EMA (Antabuse®, Esperal®)</span></td>
+              <td>Contra-indication absolue alcool simultané — risque vital.</td>
+            </tr>
+            <tr>
+              <td>Antitumoral in vitro (DSF/Cu)</td>
+              <td>Lignées cellulaires humaines</td>
+              <td><span class="dose-val">IC50 : 0.1–1 µM</span></td>
+              <td><span class="dose-warning">Préclinique uniquement — non validé humain</span></td>
+              <td>Activité remarquable in vitro — complexe DSF-Cu nécessaire. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11188872/" target="_blank" rel="noopener">PMC11188872</a></td>
+            </tr>
+            <tr>
+              <td>Antitumoral in vivo</td>
+              <td>Souris</td>
+              <td><span class="dose-val">50–200 mg/kg</span> oral ou ip</td>
+              <td><span class="dose-warning">Préclinique — non transposable humain</span></td>
+              <td>Résultats positifs en xénogreffe — difficultés de transposition PK à l'humain.</td>
+            </tr>
+            <tr>
+              <td>Essai DIRECT (RCT)</td>
+              <td>Humain — glioblastome récidivant</td>
+              <td><span class="dose-val">400 mg/j</span> DSF + cuivre gluconate 1.5 mg/kg</td>
+              <td><span class="dose-warning">Résultat NÉGATIF (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10066460/" target="_blank" rel="noopener">PMC10066460</a>)</span></td>
+              <td>n=75 — SG ~8 mois dans les 2 bras. Obstacle PK : MeDDC inactif.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="alert-box danger" style="margin-top:var(--space-5);">
+          <strong>Problème pharmacocinétique identifié :</strong> Le disulfirame est métabolisé en &lt;30 min en MeDDC inactif. Les concentrations actives (DSF-Cu) ne semblent pas atteintes in vivo aux doses testées. Nouvelle formulation ou stratégie de délivrance nécessaire.
+        </div>
+      </div>
+
+      <!-- ── 05. MÉCANISMES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">05</span>
+          <h2>Mécanismes d'action antitumoraux (complexe DSF/Cu)</h2>
+        </div>
+        <p style="font-size:var(--text-sm); color:var(--color-text-muted); margin-bottom:var(--space-6); max-width:80ch; line-height:1.7;">
+          Le disulfirame agit principalement via son complexe avec le cuivre (DSF-Cu). L'ensemble des mécanismes ci-dessous est documenté en modèles précliniques. La difficulté à former ce complexe in vivo est l'obstacle central au développement oncologique.
+        </p>
+        <div class="mechanism-grid">
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">ALDH</div>
+            <div class="mechanism-card-text">Inhibition irréversible de l'aldéhyde déshydrogénase (ALDH) — éradication des cellules souches cancéreuses ALDH+ (CSC). Les CSC ALDH+ sont associées à la résistance aux thérapies et aux rechutes. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10275851/" target="_blank" rel="noopener">PMC10275851</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">NPL4 / p97</div>
+            <div class="mechanism-card-text">Liaison au co-chaperone NPL4 → blocage de la dégradation protéasomale (voie p97/VCP) → accumulation de protéines mal repliées → mort cellulaire par stress protéotoxique. Mécanisme majeur confirmé dans <em>Nature</em> (Skrott 2017).</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Protéasome</div>
+            <div class="mechanism-card-text">Inhibition indirecte du protéasome via NPL4/p97 → effet proche des inhibiteurs de protéasome (bortézomib-like) mais par une voie distincte. Potentiel en hémopathies malignes et tumeurs solides. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11188872/" target="_blank" rel="noopener">PMC11188872</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">ROS / Ferroptose</div>
+            <div class="mechanism-card-text">Génération de ROS cupro-dépendante → induction de ferroptose (mort cellulaire fer-dépendante) dans les cellules cancéreuses. Le cuivre amplifie le stress oxydatif sélectivement dans les cellules tumorales. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7017005/" target="_blank" rel="noopener">PMC7017005</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Immunomodulation</div>
+            <div class="mechanism-card-text">Effets sur les lymphocytes T et les MDSC (Myeloid-Derived Suppressor Cells) — réduction de l'immunosuppression tumorale. Potentiel de synergie avec les immunothérapies anti-PD1/PD-L1. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10275851/" target="_blank" rel="noopener">PMC10275851</a>]</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 06. ÉTUDES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">06</span>
+          <h2>Historique des études — 4 publications indexées</h2>
+        </div>
+        <div class="studies-list">
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary);">N1</div>
+            <div class="study-body">
+              <div class="study-title-text">Disulfiram as a candidate drug for cancer repositioning: updated review of mechanisms and clinical prospects</div>
+              <div class="study-meta-line">Zeng Q et al. · 2024 · Revue repositionnement · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11188872/" target="_blank" rel="noopener">PMC11188872</a> · DOI: 10.1097/CM9.0000000000002909</div>
+              <div class="study-finding">Revue complète du repositionnement oncologique du disulfirame — mécanismes NPL4/p97, ALDH, protéasome. Propose des stratégies pour surmonter l'obstacle PK (nanoformulations, complexes cuivre stabilisés). Analyse des essais cliniques en cours.</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary);">N1</div>
+            <div class="study-body">
+              <div class="study-title-text">Disulfiram as an anti-tumor agent: effects and mechanisms</div>
+              <div class="study-meta-line">Zhang Y et al. · 2023 · Revue immunomodulation · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10275851/" target="_blank" rel="noopener">PMC10275851</a> · DOI: 10.1007/s12672-023-00729-9</div>
+              <div class="study-finding">Revue des effets antitumoraux et immunomodulateurs du disulfirame — focus sur l'axe ALDH/CSC et l'immunomodulation (MDSC, lymphocytes T). Documente le potentiel de synergie avec l'immunothérapie.</div>
+            </div>
+          </div>
+
+          <div class="study-row" style="border-color:rgba(249,115,22,0.4); background:rgba(249,115,22,0.04);">
+            <div class="study-level-badge" style="background:rgba(249,115,22,0.15); color:#f97316;">N2</div>
+            <div class="study-body">
+              <div class="study-title-text">Disulfiram with or without copper as anticancer therapy — Essai DIRECT (RCT)</div>
+              <div class="study-meta-line">Werlenius O et al. · 2023 · RCT multicentrique scandinave · n=75 · Glioblastome récidivant · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10066460/" target="_blank" rel="noopener">PMC10066460</a> · DOI: 10.1001/jamanetworkopen.2023.4149</div>
+              <div class="study-finding">
+                RCT multicentrique (Suède, Danemark, Norvège) — disulfirame 400 mg/j + cuivre gluconate vs lomustine seule en glioblastome récidivant. <strong>Résultat : NÉGATIF</strong> — pas de différence significative de survie globale (~8 mois dans les 2 bras). Cause principale identifiée : métabolisation rapide du disulfirame en MeDDC inactif avant d'atteindre la tumeur.
+                <div style="margin-top:var(--space-2); padding:var(--space-2) var(--space-3); background:rgba(249,115,22,0.1); border-radius:4px; font-size:var(--text-xs); color:#f97316; border:1px solid rgba(249,115,22,0.25);">
+                  ⚠ Essai négatif — obstacle PK identifié (métabolisation rapide en MeDDC inactif)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.1); color:var(--color-text-faint);">N6</div>
+            <div class="study-body">
+              <div class="study-title-text">Disulfiram/Copper Induces Antitumor Activity Against Nasopharyngeal Carcinoma by Targeting Cancer-Associated Fibroblasts via ROS/Ferroptosis</div>
+              <div class="study-meta-line">Li XZ et al. · 2020 · In vitro · Cancer nasopharyngé · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7017005/" target="_blank" rel="noopener">PMC7017005</a> · DOI: 10.3390/cancers12010138</div>
+              <div class="study-finding">DSF/Cu actif contre les cellules de cancer nasopharyngé et les fibroblastes associés à la tumeur (CAF) via génération de ROS et induction de ferroptose. Démontre la double action sur cellules tumorales et microenvironnement.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Graphique études par type -->
+        <div class="chart-container" style="margin-top:var(--space-6);">
+          <div class="chart-title">Distribution des études par type — Disulfirame</div>
+          <div class="chart-wrapper" style="height:200px;">
+            <canvas id="chart-dsf-types" aria-label="Distribution des études disulfirame par type"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 07. SÉCURITÉ ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">07</span>
+          <h2>Profil de sécurité</h2>
+        </div>
+        <div class="safety-grid">
+          <div class="safety-card" style="border-left:3px solid var(--color-danger);">
+            <div class="safety-card-label">Réaction antabuse</div>
+            <div class="safety-card-content">Tachycardie, flush, hypotension, nausées, vomissements si consommation d'alcool simultanée (mécanisme voulu pour sevrage). <strong>Dangereuse si non contrôlée</strong> — peut être fatale en cas d'ingestion massive d'alcool.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-danger);">
+            <div class="safety-card-label">Contre-indication alcool</div>
+            <div class="safety-card-content">Contre-indication absolue — inclut médicaments contenant de l'alcool (certains sirops, préparations topiques, solutions buccales). Durée après arrêt : jusqu'à 14 jours. Éducation patient indispensable.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-warning);">
+            <div class="safety-card-label">Neurotoxicité</div>
+            <div class="safety-card-content">Neuropathies périphériques possibles à long terme (dose-dépendantes). Cas de neuropathie optique. Cas isolés de psychose, confusion mentale, épisodes maniaques. Surveillance neurologique recommandée en cas d'usage prolongé.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-warning);">
+            <div class="safety-card-label">Hépatotoxicité</div>
+            <div class="safety-card-content">Rares mais graves — hépatites cytolytiques signalées. Surveillance hépatique recommandée avant et pendant le traitement. Contre-indication en cas d'insuffisance hépatique sévère.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-primary);">
+            <div class="safety-card-label">Interactions médicamenteuses</div>
+            <div class="safety-card-content">Métabolisme CYP — interactions majeures : warfarine (potentiation ×2-5, risque hémorragique), phénytoïne (accumulation), benzodiazépines (sédation prolongée), isoniazide (effets neurologiques). Vérification systématique du bilan médicamenteux.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-warning);">
+            <div class="safety-card-label">Populations à risque</div>
+            <div class="safety-card-content">Contre-indiqué en cas de : psychose sévère, insuffisance cardiaque décompensée, insuffisance rénale/hépatique sévère, grossesse. Usage sous surveillance médicale stricte — contrat thérapeutique recommandé pour observance et sécurité.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 08. GRAPHIQUES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">08</span>
+          <h2>Visualisations analytiques</h2>
+        </div>
+        <div class="charts-grid">
+          <div class="chart-container">
+            <div class="chart-title">Niveaux de preuve — Disulfirame (4 études)</div>
+            <div class="chart-wrapper" style="height:240px;">
+              <canvas id="chart-dsf-evidence" aria-label="Niveaux de preuve disulfirame"></canvas>
+            </div>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">Essai DIRECT — Médiane survie globale (SG)</div>
+            <div class="chart-wrapper" style="height:240px;">
+              <canvas id="chart-dsf-direct" aria-label="Essai DIRECT — survie globale disulfirame vs contrôle"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 09. SOURCES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">09</span>
+          <h2>Sources détaillées</h2>
+        </div>
+        <p style="font-size:var(--text-sm); color:var(--color-text-muted); margin-bottom:var(--space-5);">
+          4 publications indexées — toutes vérifiées sur PubMed/PMC. Classement par niveau de preuve décroissant.
+        </p>
+        <div class="studies-list">
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(249,115,22,0.15); color:#f97316; font-size:10px;">N2<br>RCT</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10066460/" target="_blank" rel="noopener">Werlenius O et al. (2023) — Disulfiram with or without copper (DIRECT trial). <em>JAMA Netw. Open</em> 6(3):e234149</a></div>
+              <div class="study-meta-line">PMC10066460 · DOI: 10.1001/jamanetworkopen.2023.4149</div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary); font-size:10px;">N1<br>Revue</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11188872/" target="_blank" rel="noopener">Zeng Q et al. (2024) — Disulfiram as a candidate drug for cancer repositioning. <em>Chin. Med. J.</em></a></div>
+              <div class="study-meta-line">PMC11188872 · DOI: 10.1097/CM9.0000000000002909</div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary); font-size:10px;">N1<br>Revue</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10275851/" target="_blank" rel="noopener">Zhang Y et al. (2023) — Disulfiram as an anti-tumor agent: effects and mechanisms. <em>Discover Oncology</em></a></div>
+              <div class="study-meta-line">PMC10275851 · DOI: 10.1007/s12672-023-00729-9</div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.08); color:var(--color-text-faint); font-size:10px;">N6<br>In vitro</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7017005/" target="_blank" rel="noopener">Li XZ et al. (2020) — Disulfiram/Copper Induces Antitumor Activity via ROS/Ferroptosis. <em>Cancers</em> 12(1):138</a></div>
+              <div class="study-meta-line">PMC7017005 · DOI: 10.3390/cancers12010138</div>
+            </div>
+          </div>
+        </div>
+        <div class="alert-box info" style="margin-top:var(--space-6);">
+          <strong>Niveau de preuve global disulfirame :</strong> N1 (revues) + N2 (RCT) + N6 (in vitro). Signal préclinique fort mais essai clinique négatif (DIRECT 2023). Obstacle PK identifié. Score de potentiel : <strong>40/100</strong> — conditionné au développement de formulations surmontant la métabolisation rapide.
+        </div>
+        <div style="margin-top:var(--space-4); display:flex; gap:var(--space-3); flex-wrap:wrap;">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=disulfiram+cancer" target="_blank" rel="noopener" class="btn-primary" style="font-size:var(--text-sm);">Rechercher sur PubMed</a>
+          <a href="../dashboard.html#molecules-section" class="btn-ghost" style="font-size:var(--text-sm);">← Retour dashboard</a>
+        </div>
+      </div>
+
+    </div><!-- /.content-section -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>
+      RepoOnco — Base documentaire sur le repositionnement médicamenteux en oncologie &middot;
+      Usage personnel &amp; scientifique &middot;
+      <a href="../methode.html">Méthodologie</a> &middot;
+      <a href="../documentation.html">Documentation</a>
+    </p>
+    <p style="margin-top:var(--space-2);">
+      Données issues d'une veille bibliographique structurée. Cette base ne constitue pas un avis médical.
+    </p>
+  </footer>
+
+</div><!-- /.site-wrapper -->
+
+<script>
+'use strict';
+document.addEventListener('DOMContentLoaded', () => {
+  Chart.defaults.color = '#94a3b8';
+  Chart.defaults.borderColor = 'rgba(148, 163, 184, 0.1)';
+  Chart.defaults.font.family = "'Inter', 'Helvetica Neue', sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.plugins.tooltip.backgroundColor = '#111a2e';
+  Chart.defaults.plugins.tooltip.borderColor = 'rgba(249,115,22,0.25)';
+  Chart.defaults.plugins.tooltip.borderWidth = 1;
+  Chart.defaults.plugins.tooltip.cornerRadius = 8;
+
+  // Chart 1 — Types d'études (section 06)
+  const ctxTypes = document.getElementById('chart-dsf-types');
+  if (ctxTypes) {
+    new Chart(ctxTypes, {
+      type: 'bar',
+      data: {
+        labels: ['Revue (N1)', 'RCT Phase II/III (N2)', 'In vitro (N6)'],
+        datasets: [{
+          label: "Nombre d'études",
+          data: [2, 1, 1],
+          backgroundColor: ['rgba(56,189,248,0.4)', 'rgba(249,115,22,0.5)', 'rgba(148,163,184,0.25)'],
+          borderColor: ['#38bdf8', '#f97316', '#94a3b8'],
+          borderWidth: 1, borderRadius: 4,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { beginAtZero: true, ticks: { stepSize: 1, precision: 0 }, grid: { color: 'rgba(148,163,184,0.08)' } },
+          y: { grid: { display: false } },
+        },
+      },
+    });
+  }
+
+  // Chart 2 — Niveaux de preuve (section 08)
+  const ctxEvid = document.getElementById('chart-dsf-evidence');
+  if (ctxEvid) {
+    new Chart(ctxEvid, {
+      type: 'doughnut',
+      data: {
+        labels: ['N1 — Revues (2)', 'N2 — RCT (1)', 'N6 — In vitro (1)'],
+        datasets: [{
+          data: [2, 1, 1],
+          backgroundColor: ['rgba(56,189,248,0.6)', 'rgba(249,115,22,0.6)', 'rgba(148,163,184,0.25)'],
+          borderColor: ['#38bdf8', '#f97316', '#94a3b8'],
+          borderWidth: 1, hoverOffset: 6,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, cutout: '60%',
+        plugins: {
+          legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 10 } },
+          tooltip: { callbacks: { label: ctx => ` ${ctx.label}` } },
+        },
+      },
+    });
+  }
+
+  // Chart 3 — Essai DIRECT (section 08)
+  const ctxDirect = document.getElementById('chart-dsf-direct');
+  if (ctxDirect) {
+    new Chart(ctxDirect, {
+      type: 'bar',
+      data: {
+        labels: ['DSF + Cu + lomustine', 'Lomustine seule (contrôle)'],
+        datasets: [{
+          label: 'Médiane SG (mois)',
+          data: [8.0, 7.9],
+          backgroundColor: ['rgba(249,115,22,0.5)', 'rgba(148,163,184,0.35)'],
+          borderColor: ['#f97316', '#94a3b8'],
+          borderWidth: 1, borderRadius: 4,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => ` Médiane SG = ${ctx.parsed.y} mois` } },
+          annotation: {},
+        },
+        scales: {
+          y: {
+            min: 0, max: 12,
+            title: { display: true, text: 'Survie globale médiane (mois)', color: '#475569', font: { size: 10 } },
+            ticks: { color: '#94a3b8' }, grid: { color: 'rgba(148,163,184,0.08)' },
+          },
+          x: { grid: { display: false } },
+        },
+      },
+    });
+  }
+});
+</script>
+</body>
+</html>

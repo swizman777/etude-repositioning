@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fiche complète Mébendazole — Repositionnement en oncologie : structure, posologies, mécanismes, études, sécurité. RepoOnco." />
+  <title>Mébendazole — Fiche molécule | RepoOnco</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* ── Styles spécifiques aux fiches molécules ── */
+    .mol-hero {
+      background: linear-gradient(135deg, rgba(34,197,94,0.08) 0%, rgba(6,10,19,0) 60%);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-10) 0 var(--space-8);
+    }
+    .mol-hero-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+    }
+    .mol-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-3);
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .mol-section {
+      margin-bottom: var(--space-12);
+    }
+    .mol-section-title {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .mol-section-title h2 {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .mol-section-num {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      background: var(--color-surface-2);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    /* Identity grid */
+    .identity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-4);
+    }
+    .identity-item {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+    }
+    .identity-item dt {
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-1);
+    }
+    .identity-item dd {
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      font-weight: 500;
+    }
+    /* Timeline historique */
+    .history-timeline {
+      position: relative;
+      padding-left: var(--space-8);
+    }
+    .history-timeline::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--color-success), rgba(34,197,94,0.1));
+    }
+    .timeline-entry {
+      position: relative;
+      margin-bottom: var(--space-5);
+    }
+    .timeline-entry::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-success);
+      border: 2px solid var(--color-bg);
+      box-shadow: 0 0 8px rgba(34,197,94,0.4);
+    }
+    .timeline-year {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-success);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .timeline-text {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Structure chimique */
+    .structure-box {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: var(--space-6);
+      display: flex;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .structure-svg-wrap {
+      flex: 0 0 auto;
+    }
+    .structure-props {
+      flex: 1;
+      min-width: 200px;
+    }
+    .prop-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-divider);
+      font-size: var(--text-sm);
+    }
+    .prop-row:last-child { border-bottom: none; }
+    .prop-label { color: var(--color-text-faint); font-family: var(--font-mono); font-size: var(--text-xs); }
+    .prop-value { color: var(--color-text); font-weight: 500; }
+    /* Posologies table */
+    .dosage-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 4px;
+      font-size: var(--text-sm);
+    }
+    .dosage-table thead th {
+      text-align: left;
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .dosage-table tbody tr {
+      background: var(--color-surface-2);
+    }
+    .dosage-table tbody tr:hover { background: var(--color-surface-3); }
+    .dosage-table tbody td {
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-muted);
+      vertical-align: top;
+    }
+    .dosage-table tbody td:first-child {
+      border-radius: 6px 0 0 6px;
+      font-weight: 600;
+    }
+    .dosage-table tbody td:last-child { border-radius: 0 6px 6px 0; }
+    .dose-val { font-family: var(--font-mono); color: var(--color-text); font-weight: 600; }
+    .dose-warning { color: var(--color-danger); font-size: var(--text-xs); }
+    .dose-ok { color: var(--color-success); font-size: var(--text-xs); }
+    /* Mécanismes */
+    .mechanism-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-4);
+    }
+    .mechanism-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: var(--space-4) var(--space-5);
+    }
+    .mechanism-card-title {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-success);
+      margin-bottom: var(--space-2);
+    }
+    .mechanism-card-text {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Études timeline */
+    .studies-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .study-row {
+      display: flex;
+      gap: var(--space-4);
+      align-items: flex-start;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+    }
+    .study-row:hover { border-color: var(--color-border-strong); }
+    .study-level-badge {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 700;
+    }
+    .study-body { flex: 1; }
+    .study-title-text {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-text);
+      margin-bottom: var(--space-1);
+    }
+    .study-meta-line {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      font-family: var(--font-mono);
+      margin-bottom: var(--space-2);
+    }
+    .study-finding {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Pivot badge */
+    .study-pivot-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(34,197,94,0.12);
+      color: var(--color-success);
+      border: 1px solid rgba(34,197,94,0.35);
+      border-radius: 999px;
+      font-size: 10px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      padding: 2px 8px;
+      margin-left: var(--space-2);
+      letter-spacing: 0.04em;
+    }
+    /* Safety table */
+    .safety-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--space-4);
+    }
+    .safety-card {
+      background: var(--color-surface-2);
+      border-radius: 10px;
+      padding: var(--space-4) var(--space-5);
+    }
+    .safety-card-label {
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-2);
+    }
+    .safety-card-content {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Breadcrumb */
+    .breadcrumb {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-4);
+      font-family: var(--font-mono);
+    }
+    .breadcrumb a { color: var(--color-text-faint); }
+    .breadcrumb a:hover { color: var(--color-primary); }
+    /* Mol color accent */
+    :root { --mol-color: #22c55e; --mol-color-bg: rgba(34,197,94,0.08); }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <!-- ═══════════════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../index.html" class="site-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo RepoOnco">
+          <path d="M16 2L28.66 9.5V24.5L16 30L3.34 24.5V9.5L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="16" cy="16" r="4" fill="currentColor" opacity="0.3"/>
+          <circle cx="16" cy="8" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="12" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="20" r="2" fill="currentColor"/>
+          <circle cx="16" cy="24" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="20" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="12" r="2" fill="currentColor"/>
+          <line x1="16" y1="8" x2="22.93" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="12" x2="22.93" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="20" x2="16" y2="24" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="16" y1="24" x2="9.07" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="20" x2="9.07" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="12" x2="16" y2="8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+        </svg>
+        <span>RepoOnco<span class="logo-sub">Base documentaire</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <nav><ul class="nav-links">
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../dashboard.html">Dashboard</a></li>
+        <li><a href="../methode.html">Méthodologie</a></li>
+        <li><a href="../documentation.html">Documentation</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar" role="status">
+    <div class="status-item"><span class="status-dot yellow" aria-hidden="true"></span><span>FICHE MOLÉCULE</span></div>
+    <div class="status-item"><span class="status-dot green" aria-hidden="true"></span><span>MÉBENDAZOLE</span></div>
+    <div class="status-item"><span class="status-dot blue" aria-hidden="true"></span><span>9 ÉTUDES INDEXÉES</span></div>
+    <div class="status-item"><span class="status-dot green" aria-hidden="true"></span><span>SCORE : 70%</span></div>
+    <div class="status-item"><span class="status-dot green" aria-hidden="true"></span><span>RCT PHASE II — HEGAZY 2022</span></div>
+  </div>
+
+  <main class="main-content" id="main">
+
+    <!-- HERO -->
+    <div class="mol-hero">
+      <div class="content-section" style="padding-top:0; padding-bottom:0; margin-bottom:0;">
+        <div class="breadcrumb">
+          <a href="../dashboard.html">Dashboard</a> › <a href="../dashboard.html#molecules-section">Molécules</a> › Mébendazole
+        </div>
+        <div class="mol-hero-inner">
+          <div style="flex:1; min-width:260px;">
+            <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-3); flex-wrap:wrap;">
+              <span class="mol-hero-badge" style="background:rgba(34,197,94,0.12); color:var(--color-success); border:1px solid rgba(34,197,94,0.3);">ESSAIS CLINIQUES EN COURS</span>
+              <span class="mol-hero-badge" style="background:rgba(34,197,94,0.1); color:var(--color-success); border:1px solid rgba(34,197,94,0.25);">RCT PHASE II VALIDÉE</span>
+              <span class="mol-hero-badge" style="background:var(--color-surface-2); color:var(--color-text-faint); border:1px solid var(--color-border);">HORS BREVET</span>
+            </div>
+            <h1 style="font-size:clamp(2rem,5vw,3rem); font-weight:700; color:var(--color-success); font-family:var(--font-mono); margin-bottom:var(--space-2);">Mébendazole</h1>
+            <p style="font-size:var(--text-base); color:var(--color-text-muted); margin-bottom:var(--space-4);">Benzimidazole — Antihelminthique humain approuvé</p>
+            <p style="font-size:var(--text-sm); color:var(--color-text-muted); max-width:70ch; line-height:1.7;">
+              Développé par Paul Janssen (Janssen Pharmaceutica) vers 1971, le mébendazole est un benzimidazole antiparasitaire approuvé chez l'humain (FDA/EMA). Il représente la molécule de repositionnement oncologique la plus avancée parmi les antihelminthiques, avec un essai contrôlé randomisé (RCT) Phase II publié en 2022 (Hegazy et al.) démontrant des résultats remarquables dans le cancer colorectal métastatique — ORR 65% vs 10%, PFS médiane 9,25 mois vs 3 mois.
+            </p>
+          </div>
+          <!-- Score visuel -->
+          <div style="flex:0 0 auto; background:var(--color-surface-2); border:1px solid rgba(34,197,94,0.25); border-radius:16px; padding:var(--space-6); text-align:center; min-width:160px;">
+            <div style="font-size:var(--text-xs); font-family:var(--font-mono); color:var(--color-text-faint); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-2);">Score potentiel</div>
+            <div style="font-size:3rem; font-weight:700; color:var(--color-success); font-family:var(--font-mono); line-height:1;">70%</div>
+            <div style="font-size:var(--text-xs); color:var(--color-text-faint); margin-top:var(--space-2);">Essais cliniques en cours</div>
+            <div style="margin-top:var(--space-4); height:6px; background:var(--color-surface-3); border-radius:3px; overflow:hidden;">
+              <div style="width:70%; height:100%; background:var(--color-success); border-radius:3px; transition:width 1s;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+
+      <!-- ── 01. IDENTITÉ ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">01</span>
+          <h2>Identité chimique &amp; pharmacologique</h2>
+        </div>
+        <dl class="identity-grid">
+          <div class="identity-item"><dt>DCI</dt><dd>Mébendazole</dd></div>
+          <div class="identity-item"><dt>Formule brute</dt><dd style="font-family:var(--font-mono);">C₁₆H₁₃N₃O₃</dd></div>
+          <div class="identity-item"><dt>Masse molaire</dt><dd style="font-family:var(--font-mono);">295.29 g/mol</dd></div>
+          <div class="identity-item"><dt>Classe</dt><dd>Benzimidazole antihelminthique humain</dd></div>
+          <div class="identity-item"><dt>Origine</dt><dd>Janssen Pharmaceutica (Belgique) — Paul Janssen ~1971</dd></div>
+          <div class="identity-item"><dt>CAS</dt><dd style="font-family:var(--font-mono);">31431-39-7</dd></div>
+          <div class="identity-item"><dt>Approbation FDA</dt><dd>1971–1972 (Vermox® — oxyurose)</dd></div>
+          <div class="identity-item"><dt>Noms commerciaux</dt><dd>Vermox®, Ovex®, Emverm®</dd></div>
+          <div class="identity-item"><dt>Statut brevet</dt><dd style="color:var(--color-success);">Hors brevet (générique largement disponible)</dd></div>
+          <div class="identity-item"><dt>Voie d'admin.</dt><dd>Orale (comprimés 100 mg ou 500 mg)</dd></div>
+          <div class="identity-item"><dt>Liste OMS</dt><dd>Médicaments essentiels (antiparasitaire)</dd></div>
+          <div class="identity-item"><dt>Statut oncologique</dt><dd style="color:var(--color-success); font-weight:600;">Essais cliniques en cours — Molécule la plus avancée</dd></div>
+        </dl>
+      </div>
+
+      <!-- ── 02. HISTOIRE ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">02</span>
+          <h2>Histoire &amp; chronologie</h2>
+        </div>
+        <div class="history-timeline">
+          <div class="timeline-entry">
+            <div class="timeline-year">~1971</div>
+            <div class="timeline-text">Synthèse par Paul Janssen (Janssen Pharmaceutica, Belgique). Conception rationnelle d'un benzimidazole carbamate antiparasitaire large spectre à partir de travaux sur les antihelminthiques benzimidazolés.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">1971–1972</div>
+            <div class="timeline-text">Approbation FDA sous Vermox® pour l'oxyurose (<em>Enterobius vermicularis</em>) et l'ascaridiose. Excellent profil de sécurité établi dès cette période, utilisé chez l'enfant et l'adulte.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">1978 et suiv.</div>
+            <div class="timeline-text">Ajout à la liste OMS des médicaments essentiels. Utilisation mondiale dans les programmes de déparasitage en santé publique, particulièrement dans les pays à ressources limitées.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2001</div>
+            <div class="timeline-text">Étude Daly (GBM) — premier signal préclinique en oncologie : inhibition de la tubuline dans des cellules de gliome, suggérant un mécanisme antimitotique transposable aux tumeurs.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2011</div>
+            <div class="timeline-text">Bai RY et al. (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3158014/" target="_blank" rel="noopener">PMC3158014</a>) — étude pivotale dans 2 modèles GBM souris : survie prolongée significative sous mébendazole oral. Initiation des premiers essais cliniques oncologiques.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2015</div>
+            <div class="timeline-text">Larsen AR et al. (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4297232/" target="_blank" rel="noopener">PMC4297232</a>) — démonstration de l'inhibition de la voie Hedgehog/SMO dans le médulloblastome à concentrations cliniquement atteignables.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2019</div>
+            <div class="timeline-text">Guerini AE et al. (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6769799/" target="_blank" rel="noopener">PMC6769799</a>) — revue extensive de la littérature sur le repositionnement oncologique du mébendazole. Référence systématique du domaine.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2021</div>
+            <div class="timeline-text">Elayapillai S et al. (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8820236/" target="_blank" rel="noopener">PMC8820236</a>) — activité démontrée dans le cancer de l'ovaire cisplatine-résistant sur modèles PDX (patient-derived xenograft), suggérant un contournement de la résistance.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2022</div>
+            <div class="timeline-text">Ren LW et al. (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8724275/" target="_blank" rel="noopener">PMC8724275</a>) — apoptose + pyroptose simultanées induites dans les cellules GBM via blocage G2/M. Mécanisme double original.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2022 ⭐</div>
+            <div class="timeline-text"><strong style="color:var(--color-success);">Hegazy SK et al.</strong> (<a href="https://pubmed.ncbi.nlm.nih.gov/35385794/" target="_blank" rel="noopener">PMID 35385794</a>) — <strong>ESSAI RCT Phase II (n=40)</strong> dans le cancer colorectal métastatique. Résultats remarquables : ORR 65% vs 10%, PFS médiane 9,25 vs 3 mois. <strong>Étude de référence absolue du repositionnement mébendazole.</strong></div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-text">Meco D et al. (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9862092/" target="_blank" rel="noopener">PMC9862092</a>) — revue sur les tumeurs cérébrales pédiatriques et adultes, récapitulatif des essais cliniques en cours en 2023.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2024</div>
+            <div class="timeline-text">Rodrigues AJ et al. (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11093727/" target="_blank" rel="noopener">PMC11093727</a>) — activité contre les métastases SNC du cancer du sein triple négatif, avec pénétration SNC démontrée dans des modèles souris.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2026</div>
+            <div class="timeline-text">Plusieurs essais cliniques actifs enregistrés sur ClinicalTrials.gov, notamment en combinaison avec le témozolomide (GBM) et diverses chimiothérapies. Molécule la plus avancée parmi les antihelminthiques repositionnés.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 03. STRUCTURE ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">03</span>
+          <h2>Structure chimique</h2>
+        </div>
+        <div class="structure-box">
+          <div class="structure-svg-wrap">
+            <!-- Représentation schématique SVG benzimidazole mébendazole -->
+            <svg width="260" height="200" viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Structure schématique du mébendazole — noyau benzimidazole avec carbamate méthyle et groupe 4-benzoyl">
+              <!-- Noyau benzimidazole : benzène fusionné + imidazole -->
+              <!-- Cycle benzène (gauche) -->
+              <polygon points="60,60 85,45 110,60 110,90 85,105 60,90" stroke="#22c55e" stroke-width="1.8" fill="rgba(34,197,94,0.06)"/>
+              <!-- Cycle imidazole (droite, fusionné) -->
+              <polygon points="110,60 135,50 150,70 135,90 110,90" stroke="#22c55e" stroke-width="1.8" fill="rgba(34,197,94,0.10)"/>
+              <!-- Liaison fusion -->
+              <line x1="110" y1="60" x2="110" y2="90" stroke="#22c55e" stroke-width="2.2"/>
+              <!-- Labels noyau -->
+              <text x="74" y="78" fill="rgba(34,197,94,0.8)" font-family="monospace" font-size="8">Benzène</text>
+              <text x="112" y="72" fill="rgba(34,197,94,0.9)" font-family="monospace" font-size="8">Imidazole</text>
+              <!-- N (azotes imidazole) -->
+              <text x="124" y="58" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold">N</text>
+              <text x="124" y="92" fill="#22c55e" font-family="monospace" font-size="9" font-weight="bold">N</text>
+              <!-- Groupe carbamate méthyle (–NHCOOCH₃) sur N -->
+              <line x1="150" y1="70" x2="195" y2="70" stroke="rgba(34,197,94,0.6)" stroke-width="1.4"/>
+              <text x="155" y="65" fill="rgba(148,163,184,0.9)" font-family="monospace" font-size="8">–NHCOOCH₃</text>
+              <text x="158" y="82" fill="rgba(148,163,184,0.6)" font-family="monospace" font-size="7">Carbamate</text>
+              <!-- Groupe 4-benzoyl (en bas du benzène) -->
+              <line x1="85" y1="105" x2="85" y2="130" stroke="rgba(34,197,94,0.6)" stroke-width="1.4"/>
+              <!-- Noyau benzoyl (phenyl) -->
+              <polygon points="65,135 85,122 105,135 105,155 85,168 65,155" stroke="rgba(45,212,191,0.6)" stroke-width="1.2" fill="rgba(45,212,191,0.05)"/>
+              <!-- C=O du benzoyl -->
+              <line x1="85" y1="118" x2="85" y2="123" stroke="rgba(45,212,191,0.7)" stroke-width="1.5"/>
+              <text x="88" y="120" fill="rgba(45,212,191,0.8)" font-family="monospace" font-size="7">C=O</text>
+              <text x="66" y="150" fill="rgba(45,212,191,0.8)" font-family="monospace" font-size="7">4-Benzoyl</text>
+              <!-- Légende -->
+              <text x="40" y="190" fill="rgba(148,163,184,0.6)" font-family="monospace" font-size="9">C₁₆H₁₃N₃O₃ — 295.29 g/mol</text>
+              <text x="55" y="200" fill="rgba(148,163,184,0.4)" font-family="monospace" font-size="8">Représentation schématique</text>
+            </svg>
+          </div>
+          <div class="structure-props">
+            <div class="prop-row"><span class="prop-label">Formule moléculaire</span><span class="prop-value" style="font-family:var(--font-mono);">C₁₆H₁₃N₃O₃</span></div>
+            <div class="prop-row"><span class="prop-label">Masse molaire</span><span class="prop-value" style="font-family:var(--font-mono);">295.29 g/mol</span></div>
+            <div class="prop-row"><span class="prop-label">Type structurel</span><span class="prop-value">Benzimidazole (noyau bicyclique benzène + imidazole)</span></div>
+            <div class="prop-row"><span class="prop-label">Groupes fonctionnels</span><span class="prop-value">Carbamate méthyle, groupe 4-benzoyl</span></div>
+            <div class="prop-row"><span class="prop-label">Solubilité eau</span><span class="prop-value" style="font-family:var(--font-mono);">&lt;0.1 µg/mL (très faible)</span></div>
+            <div class="prop-row"><span class="prop-label">LogP</span><span class="prop-value" style="font-family:var(--font-mono);">~3.1 (lipophile)</span></div>
+            <div class="prop-row"><span class="prop-label">Biodisponibilité orale</span><span class="prop-value" style="font-family:var(--font-mono);">~20% (↑3–5× avec repas gras)</span></div>
+            <div class="prop-row"><span class="prop-label">Métabolisme</span><span class="prop-value">Hépatique (hydrolase) → amino-mébendazole (actif), hydroxy-mébendazole</span></div>
+            <div class="prop-row"><span class="prop-label">Liaison protéines plasma</span><span class="prop-value" style="font-family:var(--font-mono);">~95%</span></div>
+          </div>
+        </div>
+        <div class="alert-box info" style="margin-top:var(--space-5);">
+          <strong>Formulation critique :</strong> La très faible solubilité aqueuse du mébendazole (&lt;0,1 µg/mL) rend la formulation pharmaceutique déterminante pour la biodisponibilité. Les comprimés Emverm® (forme C polymorphe micronisée) offrent une meilleure absorption que les formulations génériques. Pour l'usage oncologique, un repas riche en graisses augmente l'exposition systémique de 3 à 5 fois.
+        </div>
+      </div>
+
+      <!-- ── 04. POSOLOGIES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">04</span>
+          <h2>Posologies — 5 catégories contextualisées</h2>
+        </div>
+        <div class="alert-box info" style="margin-bottom:var(--space-5);">
+          <strong>Lecture :</strong> Les catégories sont strictement séparées. L'unique dose oncologique humaine validée par essai contrôlé est de 500 mg BID (Hegazy 2022, cancer colorectal métastatique). Aucune extrapolation hors contexte validé.
+        </div>
+        <table class="dosage-table">
+          <thead>
+            <tr>
+              <th>Contexte</th>
+              <th>Espèce</th>
+              <th>Dose</th>
+              <th>Source / statut</th>
+              <th>Remarques</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Antiparasitaire approuvé humain (oxyurose)</td>
+              <td>Humain</td>
+              <td><span class="dose-val">100 mg</span> oral, dose unique</td>
+              <td><span class="dose-ok">AMM FDA (Vermox®)</span></td>
+              <td>Traitement de l'oxyurose (<em>Enterobius vermicularis</em>). Dose minimale sécurisée, très faible absorption systémique.</td>
+            </tr>
+            <tr>
+              <td>Antiparasitaire approuvé humain (ankylostomiase/ascaridiose)</td>
+              <td>Humain</td>
+              <td><span class="dose-val">100 mg BID × 3 jours</span></td>
+              <td><span class="dose-ok">AMM FDA (Vermox®)</span></td>
+              <td>Traitement des nématodes intestinaux. Schéma standard bien toléré.</td>
+            </tr>
+            <tr>
+              <td>Antitumoral in vitro</td>
+              <td>Lignées cellulaires humaines</td>
+              <td><span class="dose-val">IC50 : 0.1–1.5 µM</span></td>
+              <td><span class="dose-warning">Préclinique uniquement — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6769799/" target="_blank" rel="noopener">PMC6769799</a></span></td>
+              <td>Valeurs IC50 sur multiples lignées (GBM, colorectal, ovaire, sein). Non transposable directement à l'humain.</td>
+            </tr>
+            <tr>
+              <td>Antitumoral in vivo (GBM souris)</td>
+              <td>Souris (xénogreffe GBM)</td>
+              <td><span class="dose-val">50 mg/kg/j</span> oral</td>
+              <td><span class="dose-warning">Préclinique — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3158014/" target="_blank" rel="noopener">Bai 2011 PMC3158014</a></span></td>
+              <td>Survie prolongée significative dans 2 modèles GBM. Première validation in vivo. Non transposable humain sans essai.</td>
+            </tr>
+            <tr>
+              <td>Essai clinique humain oncologique (Hegazy 2022)</td>
+              <td>Humain — cancer colorectal métastatique</td>
+              <td><span class="dose-val">500 mg BID</span> oral (en add-on à FOLFOX4 + bévacizumab)</td>
+              <td><span class="dose-ok">VALIDÉ EN ESSAI CONTRÔLÉ — <a href="https://pubmed.ncbi.nlm.nih.gov/35385794/" target="_blank" rel="noopener">PMID 35385794</a></span></td>
+              <td>n=40 patients. Aucune toxicité majeure. ORR 65% vs 10%, PFS 9,25 vs 3 mois. <strong>Seule dose oncologique humaine validée par RCT.</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="alert-box" style="margin-top:var(--space-5); border-left:3px solid var(--color-success); background:rgba(34,197,94,0.06);">
+          <strong style="color:var(--color-success);">Dose oncologique humaine validée :</strong> 500 mg BID — sans toxicité majeure dans l'essai contrôlé Hegazy 2022 (n=40). C'est la seule dose avec validation par essai randomisé en oncologie humaine.
+        </div>
+      </div>
+
+      <!-- ── 05. MÉCANISMES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">05</span>
+          <h2>Mécanismes d'action antitumoraux</h2>
+        </div>
+        <p style="font-size:var(--text-sm); color:var(--color-text-muted); margin-bottom:var(--space-6); max-width:80ch; line-height:1.7;">
+          Le mébendazole présente un profil multimécanique remarquable, couvrant à la fois les cibles du fuseau mitotique, l'angiogenèse, la signalisation oncogénique et la mort cellulaire immunogène. La convergence de ces mécanismes sur des cibles validées en oncologie justifie son avancement clinique.
+        </p>
+        <div class="mechanism-grid">
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Microtubules / β-tubuline</div>
+            <div class="mechanism-card-text">Liaison haute affinité à la β-tubuline — dépolymérisation du fuseau mitotique — blocage en phase G2/M — mort cellulaire. Mécanisme primaire, commun aux benzimidazoles. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6769799/" target="_blank" rel="noopener">Guerini 2019 PMC6769799</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">VEGFR2 / Angiogenèse</div>
+            <div class="mechanism-card-text">Inhibition du VEGFR2 (récepteur du VEGF) → inhibition de la néoangiogenèse tumorale. Mécanisme complémentaire à l'effet antimicrotubule. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3158014/" target="_blank" rel="noopener">Bai 2011 PMC3158014</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Hedgehog / SMO</div>
+            <div class="mechanism-card-text">Blocage du récepteur Smoothened (SMO) → inhibition de la voie Hedgehog dans le médulloblastome Hh-driven à des concentrations cliniquement atteignables. Cible thérapeutique validée (vismodegib). [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4297232/" target="_blank" rel="noopener">Larsen 2015 PMC4297232</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Apoptose + Pyroptose simultanées</div>
+            <div class="mechanism-card-text">Induction concomitante d'apoptose ET de pyroptose (mort cellulaire inflammatoire) dans les cellules GBM via le blocage G2/M. Mécanisme double original — potentiel immunogène. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8724275/" target="_blank" rel="noopener">Ren 2022 PMC8724275</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">MAPK / p53</div>
+            <div class="mechanism-card-text">Perturbation des signalisations MAPK et p53 dans le cancer de l'ovaire cisplatine-résistant — contournement des mécanismes de résistance à base de p53 mutant. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8820236/" target="_blank" rel="noopener">Elayapillai 2021 PMC8820236</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Pénétration SNC</div>
+            <div class="mechanism-card-text">Activité démontrée contre les métastases leptoméningées du cancer du sein triple négatif — pénétration SNC avérée dans des modèles souris. Franchissement de la barrière hémato-encéphalique. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11093727/" target="_blank" rel="noopener">Rodrigues 2024 PMC11093727</a>]</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 06. TIMELINE ÉTUDES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">06</span>
+          <h2>Historique des études — 9 publications indexées</h2>
+        </div>
+        <div class="studies-list">
+
+          <!-- Guerini 2019 -->
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary);">N1</div>
+            <div class="study-body">
+              <div class="study-title-text">Mebendazole as a candidate for drug repurposing in oncology: an extensive review of current evidence (Guerini 2019)</div>
+              <div class="study-meta-line">Guerini AE et al. · 2019 · Revue extensive · Multiple cancers · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6769799/" target="_blank" rel="noopener">PMC6769799</a> · DOI: 10.3390/cancers11091284</div>
+              <div class="study-finding">Revue systématique exhaustive du repositionnement oncologique du mébendazole. Synthèse des mécanismes (microtubules, VEGFR2, Hedgehog, apoptose), des modèles précliniques et des perspectives cliniques. Référence centrale du domaine.</div>
+            </div>
+          </div>
+
+          <!-- Meco 2023 -->
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary);">N1</div>
+            <div class="study-body">
+              <div class="study-title-text">Mebendazole and Temozolomide in Brain Tumors: A Review and Hypothesis (Meco 2023)</div>
+              <div class="study-meta-line">Meco D et al. · 2023 · Revue · Tumeurs cérébrales pédiatriques et adultes · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9862092/" target="_blank" rel="noopener">PMC9862092</a> · DOI: 10.3390/ijms24021334</div>
+              <div class="study-finding">Revue des données précliniques et cliniques dans les tumeurs cérébrales (GBM, médulloblastome). Récapitulatif des essais cliniques en cours en 2023, notamment en association avec le témozolomide. Optimisme clinique fondé sur les résultats précliniques robustes.</div>
+            </div>
+          </div>
+
+          <!-- Hegazy 2022 — PIVOT, highlighted -->
+          <div class="study-row" style="border: 1px solid var(--color-success); background: rgba(34,197,94,0.05);">
+            <div class="study-level-badge" style="background:rgba(34,197,94,0.15); color:var(--color-success);">N2</div>
+            <div class="study-body">
+              <div class="study-title-text">
+                Mebendazole plus FOLFOX4 as a first-line treatment in metastatic colorectal cancer (Hegazy 2022)
+                <span class="study-pivot-badge">⭐ Étude pivot RCT</span>
+              </div>
+              <div class="study-meta-line">Hegazy SK et al. · 2022 · RCT Phase II · Cancer colorectal métastatique · <a href="https://pubmed.ncbi.nlm.nih.gov/35385794/" target="_blank" rel="noopener">PMID 35385794</a> · DOI: 10.1016/j.lfs.2022.120536</div>
+              <div class="study-finding"><strong style="color:var(--color-success);">Résultats remarquables :</strong> Essai randomisé contrôlé n=40 patients (20 mébendazole + FOLFOX4 + bévacizumab vs 20 contrôle). ORR : 65% vs 10% (p&lt;0,001). PFS médiane : 9,25 mois vs 3,0 mois. Aucune toxicité majeure liée au mébendazole (500 mg BID). Seule RCT oncologique publiée avec mébendazole — étude de référence absolue.</div>
+            </div>
+          </div>
+
+          <!-- Bai 2011 -->
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(45,212,191,0.1); color:var(--color-teal, #2dd4bf);">N5</div>
+            <div class="study-body">
+              <div class="study-title-text">Mebendazole shows survival benefit in 2 preclinical models of glioblastoma multiforme (Bai 2011)</div>
+              <div class="study-meta-line">Bai RY et al. · 2011 · In vivo animal · GBM — 2 modèles souris · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3158014/" target="_blank" rel="noopener">PMC3158014</a> · DOI: 10.1093/neuonc/nor077</div>
+              <div class="study-finding">Étude pivotale préclinique : survie prolongée significative dans 2 modèles de GBM souris sous mébendazole oral 50 mg/kg/j. Mécanisme : inhibition tubuline + VEGFR2. A initié les premiers essais cliniques dans le GBM.</div>
+            </div>
+          </div>
+
+          <!-- Elayapillai 2021 -->
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(45,212,191,0.1); color:var(--color-teal, #2dd4bf);">N5</div>
+            <div class="study-body">
+              <div class="study-title-text">Mebendazole overcomes platinum resistance in ovarian cancer (Elayapillai 2021)</div>
+              <div class="study-meta-line">Elayapillai S et al. · 2021 · In vivo PDX · Cancer de l'ovaire cisplatine-résistant · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8820236/" target="_blank" rel="noopener">PMC8820236</a> · DOI: 10.1016/j.ygyno.2020.10.010</div>
+              <div class="study-finding">Démonstration de l'activité antitumorale dans des modèles PDX (patient-derived xenograft) de cancer de l'ovaire résistant au cisplatine. Perturbation des voies MAPK et p53. Suggère un potentiel pour les tumeurs chimiorésistantes.</div>
+            </div>
+          </div>
+
+          <!-- Larsen 2015 -->
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(45,212,191,0.1); color:var(--color-teal, #2dd4bf);">N5</div>
+            <div class="study-body">
+              <div class="study-title-text">Mebendazole activates the hedgehog signaling inhibitor smoothened receptor and inhibits medulloblastoma growth (Larsen 2015)</div>
+              <div class="study-meta-line">Larsen AR et al. · 2015 · In vitro + In vivo · Médulloblastome Hedgehog · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4297232/" target="_blank" rel="noopener">PMC4297232</a> · DOI: 10.1158/1535-7163.MCT-14-0755-T</div>
+              <div class="study-finding">Blocage du récepteur SMO (Smoothened) → inhibition de la voie Hedgehog à concentrations cliniquement atteignables dans le médulloblastome Hh-driven. Cible déjà validée pharmacologiquement (vismodegib), renforçant la pertinence clinique.</div>
+            </div>
+          </div>
+
+          <!-- Rodrigues 2024 -->
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(45,212,191,0.1); color:var(--color-teal, #2dd4bf);">N5</div>
+            <div class="study-body">
+              <div class="study-title-text">Mebendazole suppresses triple-negative breast cancer leptomeningeal metastasis (Rodrigues 2024)</div>
+              <div class="study-meta-line">Rodrigues AJ et al. · 2024 · In vivo souris · Cancer du sein TNB / métastases SNC · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11093727/" target="_blank" rel="noopener">PMC11093727</a> · DOI: 10.1007/s11060-024-04654-x</div>
+              <div class="study-finding">Activité démontrée contre les métastases leptoméningées du cancer du sein triple négatif dans des modèles souris. Pénétration SNC avérée. Ouvre la voie à l'utilisation dans les métastases cérébrales de cancers du sein agressifs.</div>
+            </div>
+          </div>
+
+          <!-- Ren 2022 -->
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.1); color:var(--color-text-faint);">N6</div>
+            <div class="study-body">
+              <div class="study-title-text">Mebendazole simultaneously induces apoptosis and pyroptosis in glioblastoma (Ren 2022)</div>
+              <div class="study-meta-line">Ren LW et al. · 2022 · In vitro · GBM · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8724275/" target="_blank" rel="noopener">PMC8724275</a> · DOI: 10.1038/s41401-021-00752-y</div>
+              <div class="study-finding">Premier rapport d'induction simultanée d'apoptose ET de pyroptose par le mébendazole dans les cellules GBM via blocage G2/M. Mécanisme double original potentiellement immunogène — pertinence pour l'immunothérapie combinée.</div>
+            </div>
+          </div>
+
+          <!-- Florio 2021 -->
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.1); color:var(--color-text-faint);">N6</div>
+            <div class="study-body">
+              <div class="study-title-text">Drug repurposing of benzimidazole anthelmintic drugs: screen of anticancer activity (Florio 2021)</div>
+              <div class="study-meta-line">Florio R et al. · 2021 · Criblage in vitro · Multiple lignées · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8072969/" target="_blank" rel="noopener">PMC8072969</a> · DOI: 10.3390/ph14040372</div>
+              <div class="study-finding">Criblage comparatif de benzimidazoles antihelminthiques (mébendazole, fenbendazole, albendazole) sur multiples lignées cancéreuses. Évaluation du profil structure-activité et identification du mébendazole comme le plus actif de la classe sur plusieurs types tumoraux.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── 07. SÉCURITÉ ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">07</span>
+          <h2>Profil de sécurité</h2>
+        </div>
+        <div class="alert-box info" style="margin-bottom:var(--space-5);">
+          <strong>Avantage clé :</strong> Le mébendazole est un médicament humain approuvé (FDA/EMA) avec plus de 50 ans d'usage clinique — contrairement au fenbendazole (vétérinaire). Son profil de sécurité est documenté à grande échelle avec des millions de patients traités.
+        </div>
+        <div class="safety-grid">
+          <div class="safety-card" style="border-left:3px solid var(--color-success);">
+            <div class="safety-card-label">Profil humain bien établi</div>
+            <div class="safety-card-content">Utilisé depuis &gt;50 ans à doses antiparasitaires. Excellente tolérance démontrée dans des millions de patients (programmes OMS). Dosing antiparasitaire très faible (100 mg) → fenêtre thérapeutique large pour un usage oncologique à doses supérieures.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-success);">
+            <div class="safety-card-label">500 mg BID — Dose oncologique Hegazy 2022</div>
+            <div class="safety-card-content">Aucune toxicité majeure liée au mébendazole rapportée dans l'essai RCT (n=40, Hegazy 2022). Légères nausées et inconfort gastro-intestinal résolutifs. Profil de sécurité favorable en combinaison avec FOLFOX4 + bévacizumab. [<a href="https://pubmed.ncbi.nlm.nih.gov/35385794/" target="_blank" rel="noopener">PMID 35385794</a>]</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-primary);">
+            <div class="safety-card-label">Faible absorption systémique</div>
+            <div class="safety-card-content">Biodisponibilité ~20% limite le risque de toxicité systémique à doses standard. Augmente avec les repas gras (implication importante pour le dosing oncologique). Le métabolite amino-mébendazole est actif et contribue à l'efficacité.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-danger);">
+            <div class="safety-card-label">Grossesse — Contre-indication</div>
+            <div class="safety-card-content">Tératogène chez l'animal (rats) à doses élevées. Formellement contre-indiqué au 1er trimestre de grossesse. Usage avec précaution chez la femme en âge de procréer à des doses &gt;100 mg/j. Évaluation bénéfice/risque obligatoire.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-warning);">
+            <div class="safety-card-label">Hépato-toxicité — Surveillance</div>
+            <div class="safety-card-content">Rares cas d'hépatotoxicité rapportés à hautes doses prolongées (usage hors-AMM). Surveillance des enzymes hépatiques (ASAT, ALAT) recommandée pour les traitements oncologiques prolongés à 500 mg BID. Généralement réversible à l'arrêt.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-success);">
+            <div class="safety-card-label">Point fort vs Fenbendazole</div>
+            <div class="safety-card-content">Mébendazole = médicament APPROUVÉ HUMAIN (FDA/EMA) avec formulation pharmaceutique contrôlée (Vermox®, Emverm®), contrairement au fenbendazole vétérinaire. Traçabilité, qualité pharmaceutique et données PK humaines disponibles — avantage décisif pour les essais cliniques.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 08. GRAPHIQUES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">08</span>
+          <h2>Visualisations analytiques</h2>
+        </div>
+        <div class="charts-grid">
+          <div class="chart-container">
+            <div class="chart-title">Niveaux de preuve — Mébendazole (9 études)</div>
+            <div class="chart-wrapper" style="height:240px;">
+              <canvas id="chart-meb-evidence" aria-label="Niveaux de preuve mébendazole — doughnut"></canvas>
+            </div>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">Résultats Hegazy 2022 — Mébendazole vs Contrôle (RCT Phase II)</div>
+            <div class="chart-wrapper" style="height:240px;">
+              <canvas id="chart-meb-hegazy" aria-label="Résultats comparatifs essai Hegazy 2022 — ORR et PFS médiane"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 09. SOURCES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">09</span>
+          <h2>Sources détaillées</h2>
+        </div>
+        <p style="font-size:var(--text-sm); color:var(--color-text-muted); margin-bottom:var(--space-5);">
+          9 publications indexées — toutes vérifiées sur PubMed/PMC. Classement par niveau de preuve décroissant.
+        </p>
+        <div class="studies-list">
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary); font-size:10px;">N1<br>Revue</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6769799/" target="_blank" rel="noopener">Guerini AE et al. (2019) — Mebendazole as a candidate for drug repurposing in oncology. <em>Cancers</em> 11(9):1284</a></div>
+              <div class="study-meta-line">PMC6769799 · DOI: 10.3390/cancers11091284</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary); font-size:10px;">N1<br>Revue</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9862092/" target="_blank" rel="noopener">Meco D et al. (2023) — Mebendazole and Temozolomide in Brain Tumors. <em>Int. J. Mol. Sci.</em> 24(2):1334</a></div>
+              <div class="study-meta-line">PMC9862092 · DOI: 10.3390/ijms24021334</div>
+            </div>
+          </div>
+
+          <div class="study-row" style="border: 1px solid var(--color-success); background: rgba(34,197,94,0.05);">
+            <div class="study-level-badge" style="background:rgba(34,197,94,0.15); color:var(--color-success); font-size:10px;">N2<br>RCT</div>
+            <div class="study-body">
+              <div class="study-title-text">
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35385794/" target="_blank" rel="noopener">Hegazy SK et al. (2022) — Mebendazole plus FOLFOX4 as a first-line treatment in metastatic colorectal cancer. <em>Life Sci.</em> 298:120536</a>
+                <span class="study-pivot-badge">⭐ Étude pivot RCT</span>
+              </div>
+              <div class="study-meta-line">PMID: 35385794 · DOI: 10.1016/j.lfs.2022.120536 · <a href="https://pubmed.ncbi.nlm.nih.gov/35385794/" target="_blank" rel="noopener">PubMed</a></div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(45,212,191,0.08); color:var(--color-teal, #2dd4bf); font-size:10px;">N5<br>In vivo</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3158014/" target="_blank" rel="noopener">Bai RY et al. (2011) — Mebendazole shows survival benefit in 2 preclinical models of glioblastoma. <em>Neuro-Oncology</em> 13(9):974–982</a></div>
+              <div class="study-meta-line">PMC3158014 · DOI: 10.1093/neuonc/nor077</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(45,212,191,0.08); color:var(--color-teal, #2dd4bf); font-size:10px;">N5<br>In vivo</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8820236/" target="_blank" rel="noopener">Elayapillai S et al. (2021) — Mebendazole overcomes platinum resistance in ovarian cancer. <em>Gynecol. Oncol.</em> 160(2):581–592</a></div>
+              <div class="study-meta-line">PMC8820236 · DOI: 10.1016/j.ygyno.2020.10.010</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(45,212,191,0.08); color:var(--color-teal, #2dd4bf); font-size:10px;">N5<br>In vivo</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4297232/" target="_blank" rel="noopener">Larsen AR et al. (2015) — Mebendazole activates Hedgehog inhibitor SMO and inhibits medulloblastoma growth. <em>Mol. Cancer Ther.</em> 14(3):655–664</a></div>
+              <div class="study-meta-line">PMC4297232 · DOI: 10.1158/1535-7163.MCT-14-0755-T</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(45,212,191,0.08); color:var(--color-teal, #2dd4bf); font-size:10px;">N5<br>In vivo</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11093727/" target="_blank" rel="noopener">Rodrigues AJ et al. (2024) — Mebendazole suppresses TNBC leptomeningeal metastasis. <em>J. Neurooncol.</em> 168(2):323–334</a></div>
+              <div class="study-meta-line">PMC11093727 · DOI: 10.1007/s11060-024-04654-x</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.08); color:var(--color-text-faint); font-size:10px;">N6<br>In vitro</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8724275/" target="_blank" rel="noopener">Ren LW et al. (2022) — Mebendazole simultaneously induces apoptosis and pyroptosis in glioblastoma. <em>Acta Pharmacol. Sin.</em> 43(12):3078–3091</a></div>
+              <div class="study-meta-line">PMC8724275 · DOI: 10.1038/s41401-021-00752-y</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.08); color:var(--color-text-faint); font-size:10px;">N6<br>Criblage</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8072969/" target="_blank" rel="noopener">Florio R et al. (2021) — Drug repurposing of benzimidazole anthelmintic drugs for anticancer activity. <em>Pharmaceuticals</em> 14(4):372</a></div>
+              <div class="study-meta-line">PMC8072969 · DOI: 10.3390/ph14040372</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="alert-box" style="margin-top:var(--space-6); border-left:3px solid var(--color-success); background:rgba(34,197,94,0.06);">
+          <strong style="color:var(--color-success);">Niveau de preuve global mébendazole :</strong> Niveau 1 (revues systématiques, 2 études) + Niveau 2 (RCT Phase II, 1 étude) + Niveau 5 (in vivo animal, 4 études) + Niveau 6 (in vitro, 2 études). Score de potentiel : <strong>70/100</strong> — Molécule la plus avancée parmi les antihelminthiques repositionnés.
+        </div>
+
+        <div style="margin-top:var(--space-4); display:flex; gap:var(--space-3); flex-wrap:wrap;">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=mebendazole+cancer" target="_blank" rel="noopener" class="btn-primary" style="font-size:var(--text-sm);">Rechercher sur PubMed</a>
+          <a href="https://clinicaltrials.gov/search?term=mebendazole+cancer" target="_blank" rel="noopener" class="btn-primary" style="font-size:var(--text-sm); background:rgba(34,197,94,0.15); border-color:rgba(34,197,94,0.35); color:var(--color-success);">Essais cliniques actifs (ClinicalTrials.gov)</a>
+          <a href="../dashboard.html#molecules-section" class="btn-ghost" style="font-size:var(--text-sm);">← Retour dashboard</a>
+        </div>
+      </div>
+
+    </div><!-- /.content-section -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>
+      RepoOnco — Base documentaire sur le repositionnement médicamenteux en oncologie &middot;
+      Usage personnel &amp; scientifique &middot;
+      <a href="../methode.html">Méthodologie</a> &middot;
+      <a href="../documentation.html">Documentation</a>
+    </p>
+    <p style="margin-top:var(--space-2);">
+      Données issues d'une veille bibliographique structurée. Cette base ne constitue pas un avis médical.
+    </p>
+  </footer>
+
+</div><!-- /.site-wrapper -->
+
+<script>
+'use strict';
+document.addEventListener('DOMContentLoaded', () => {
+  Chart.defaults.color = '#94a3b8';
+  Chart.defaults.borderColor = 'rgba(148, 163, 184, 0.1)';
+  Chart.defaults.font.family = "'Inter', 'Helvetica Neue', sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.plugins.tooltip.backgroundColor = '#111a2e';
+  Chart.defaults.plugins.tooltip.borderColor = 'rgba(34,197,94,0.25)';
+  Chart.defaults.plugins.tooltip.borderWidth = 1;
+  Chart.defaults.plugins.tooltip.cornerRadius = 8;
+
+  // Chart 1 — Niveaux de preuve (doughnut) — section 08
+  const ctxEvid = document.getElementById('chart-meb-evidence');
+  if (ctxEvid) {
+    new Chart(ctxEvid, {
+      type: 'doughnut',
+      data: {
+        labels: ['N1 — Revues systématiques (2)', 'N2 — RCT Phase II (1)', 'N5 — In vivo animal (4)', 'N6 — In vitro (2)'],
+        datasets: [{
+          data: [2, 1, 4, 2],
+          backgroundColor: [
+            'rgba(56,189,248,0.65)',
+            'rgba(45,212,191,0.65)',
+            'rgba(34,197,94,0.65)',
+            'rgba(234,179,8,0.50)',
+          ],
+          borderColor: ['#38bdf8', '#2dd4bf', '#22c55e', '#eab308'],
+          borderWidth: 1,
+          hoverOffset: 6,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '60%',
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { font: { size: 10 }, padding: 10 },
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ` ${ctx.label}`,
+            },
+          },
+        },
+      },
+    });
+  }
+
+  // Chart 2 — Résultats Hegazy 2022 (barre horizontale comparative) — section 08
+  const ctxHegazy = document.getElementById('chart-meb-hegazy');
+  if (ctxHegazy) {
+    new Chart(ctxHegazy, {
+      type: 'bar',
+      data: {
+        labels: ['ORR — Taux de réponse objectif (%)', 'PFS médiane (mois)'],
+        datasets: [
+          {
+            label: 'Mébendazole + FOLFOX4 + bévacizumab',
+            data: [65, 9.25],
+            backgroundColor: 'rgba(34,197,94,0.55)',
+            borderColor: '#22c55e',
+            borderWidth: 1,
+            borderRadius: 4,
+          },
+          {
+            label: 'Contrôle (FOLFOX4 + bévacizumab)',
+            data: [10, 3],
+            backgroundColor: 'rgba(148,163,184,0.25)',
+            borderColor: '#94a3b8',
+            borderWidth: 1,
+            borderRadius: 4,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y',
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { font: { size: 10 }, padding: 10 },
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => {
+                const unit = ctx.dataIndex === 0 ? '%' : ' mois';
+                return ` ${ctx.dataset.label}: ${ctx.parsed.x}${unit}`;
+              },
+            },
+          },
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            grid: { color: 'rgba(148,163,184,0.08)' },
+            ticks: { color: '#94a3b8' },
+          },
+          y: {
+            grid: { display: false },
+            ticks: { font: { size: 10 } },
+          },
+        },
+      },
+    });
+  }
+});
+</script>
+</body>
+</html>

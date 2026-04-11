@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fiche complète Propranolol — Repositionnement en oncologie : structure, posologies, mécanismes, études, sécurité. RepoOnco." />
+  <title>Propranolol — Fiche molécule | RepoOnco</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* ── Styles spécifiques aux fiches molécules ── */
+    .mol-hero {
+      background: linear-gradient(135deg, rgba(56,189,248,0.08) 0%, rgba(6,10,19,0) 60%);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-10) 0 var(--space-8);
+    }
+    .mol-hero-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+    }
+    .mol-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-3);
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .mol-section {
+      margin-bottom: var(--space-12);
+    }
+    .mol-section-title {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .mol-section-title h2 {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .mol-section-num {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      background: var(--color-surface-2);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    /* Identity grid */
+    .identity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-4);
+    }
+    .identity-item {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+    }
+    .identity-item dt {
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-1);
+    }
+    .identity-item dd {
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      font-weight: 500;
+    }
+    /* Timeline historique */
+    .history-timeline {
+      position: relative;
+      padding-left: var(--space-8);
+    }
+    .history-timeline::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--color-primary), rgba(56,189,248,0.1));
+    }
+    .timeline-entry {
+      position: relative;
+      margin-bottom: var(--space-5);
+    }
+    .timeline-entry::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      border: 2px solid var(--color-bg);
+      box-shadow: 0 0 8px rgba(56,189,248,0.4);
+    }
+    .timeline-year {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-primary);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .timeline-text {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Structure chimique */
+    .structure-box {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: var(--space-6);
+      display: flex;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .structure-svg-wrap {
+      flex: 0 0 auto;
+    }
+    .structure-props {
+      flex: 1;
+      min-width: 200px;
+    }
+    .prop-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-divider);
+      font-size: var(--text-sm);
+    }
+    .prop-row:last-child { border-bottom: none; }
+    .prop-label { color: var(--color-text-faint); font-family: var(--font-mono); font-size: var(--text-xs); }
+    .prop-value { color: var(--color-text); font-weight: 500; }
+    /* Posologies table */
+    .dosage-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 4px;
+      font-size: var(--text-sm);
+    }
+    .dosage-table thead th {
+      text-align: left;
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .dosage-table tbody tr {
+      background: var(--color-surface-2);
+    }
+    .dosage-table tbody tr:hover { background: var(--color-surface-3); }
+    .dosage-table tbody td {
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-muted);
+      vertical-align: top;
+    }
+    .dosage-table tbody td:first-child {
+      border-radius: 6px 0 0 6px;
+      font-weight: 600;
+    }
+    .dosage-table tbody td:last-child { border-radius: 0 6px 6px 0; }
+    .dose-val { font-family: var(--font-mono); color: var(--color-text); font-weight: 600; }
+    .dose-warning { color: var(--color-danger); font-size: var(--text-xs); }
+    .dose-ok { color: var(--color-success); font-size: var(--text-xs); }
+    /* Mécanismes */
+    .mechanism-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-4);
+    }
+    .mechanism-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: var(--space-4) var(--space-5);
+    }
+    .mechanism-card-title {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: var(--space-2);
+    }
+    .mechanism-card-text {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Études timeline */
+    .studies-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .study-row {
+      display: flex;
+      gap: var(--space-4);
+      align-items: flex-start;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+    }
+    .study-row:hover { border-color: var(--color-border-strong); }
+    .study-level-badge {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 700;
+    }
+    .study-body { flex: 1; }
+    .study-title-text {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-text);
+      margin-bottom: var(--space-1);
+    }
+    .study-meta-line {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      font-family: var(--font-mono);
+      margin-bottom: var(--space-2);
+    }
+    .study-finding {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Safety table */
+    .safety-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--space-4);
+    }
+    .safety-card {
+      background: var(--color-surface-2);
+      border-radius: 10px;
+      padding: var(--space-4) var(--space-5);
+    }
+    .safety-card-label {
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-2);
+    }
+    .safety-card-content {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    /* Breadcrumb */
+    .breadcrumb {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-4);
+      font-family: var(--font-mono);
+    }
+    .breadcrumb a { color: var(--color-text-faint); }
+    .breadcrumb a:hover { color: var(--color-primary); }
+    /* Mol color accent */
+    :root { --mol-color: #38bdf8; --mol-color-bg: rgba(56,189,248,0.08); }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <!-- ═══════════════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../index.html" class="site-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo RepoOnco">
+          <path d="M16 2L28.66 9.5V24.5L16 30L3.34 24.5V9.5L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="16" cy="16" r="4" fill="currentColor" opacity="0.3"/>
+          <circle cx="16" cy="8" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="12" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="20" r="2" fill="currentColor"/>
+          <circle cx="16" cy="24" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="20" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="12" r="2" fill="currentColor"/>
+          <line x1="16" y1="8" x2="22.93" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="12" x2="22.93" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="20" x2="16" y2="24" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="16" y1="24" x2="9.07" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="20" x2="9.07" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="12" x2="16" y2="8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+        </svg>
+        <span>RepoOnco<span class="logo-sub">Base documentaire</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <nav><ul class="nav-links">
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../dashboard.html">Dashboard</a></li>
+        <li><a href="../methode.html">Méthodologie</a></li>
+        <li><a href="../documentation.html">Documentation</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar" role="status">
+    <div class="status-item"><span class="status-dot yellow" aria-hidden="true"></span><span>FICHE MOLÉCULE</span></div>
+    <div class="status-item"><span class="status-dot blue" aria-hidden="true"></span><span>PROPRANOLOL</span></div>
+    <div class="status-item"><span class="status-dot blue" aria-hidden="true"></span><span>4 ÉTUDES</span></div>
+    <div class="status-item"><span class="status-dot yellow" aria-hidden="true"></span><span>SCORE 50%</span></div>
+    <div class="status-item"><span class="status-dot green" aria-hidden="true"></span><span>PHASE II POSITIF (PÉRIOPÉRATOIRE)</span></div>
+  </div>
+
+  <main class="main-content" id="main">
+
+    <!-- HERO -->
+    <div class="mol-hero">
+      <div class="content-section" style="padding-top:0; padding-bottom:0; margin-bottom:0;">
+        <div class="breadcrumb">
+          <a href="../dashboard.html">Dashboard</a> › <a href="../dashboard.html#molecules-section">Molécules</a> › Propranolol
+        </div>
+        <div class="mol-hero-inner">
+          <div style="flex:1; min-width:260px;">
+            <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-3); flex-wrap:wrap;">
+              <span class="mol-hero-badge" style="background:rgba(56,189,248,0.12); color:var(--color-primary); border:1px solid rgba(56,189,248,0.3);">BÊTA-BLOQUANT</span>
+              <span class="mol-hero-badge" style="background:rgba(34,197,94,0.1); color:var(--color-success); border:1px solid rgba(34,197,94,0.25);">PHASE II POSITIF</span>
+              <span class="mol-hero-badge" style="background:var(--color-surface-2); color:var(--color-text-faint); border:1px solid var(--color-border);">HORS BREVET</span>
+            </div>
+            <h1 style="font-size:clamp(2rem,5vw,3rem); font-weight:700; color:var(--color-primary); font-family:var(--font-mono); margin-bottom:var(--space-2);">Propranolol</h1>
+            <p style="font-size:var(--text-base); color:var(--color-text-muted); margin-bottom:var(--space-4);">Bêta-bloquant non sélectif (β1 + β2) — Nobel 1988</p>
+            <p style="font-size:var(--text-sm); color:var(--color-text-muted); max-width:70ch; line-height:1.7;">
+              Développé par Sir James Black (ICI Pharmaceuticals), le propranolol est le premier bêta-bloquant cliniquement utilisable, approuvé en 1967. Son repositionnement oncologique repose sur le blocage de la signalisation adrénergique tumorale, avec un signal de Phase II positif en contexte périopératoire pour le cancer du sein (Shaashua 2017). Des études de cohorte plus larges restent nécessaires pour confirmer ce bénéfice.
+            </p>
+          </div>
+          <!-- Score visuel -->
+          <div style="flex:0 0 auto; background:var(--color-surface-2); border:1px solid rgba(56,189,248,0.25); border-radius:16px; padding:var(--space-6); text-align:center; min-width:160px;">
+            <div style="font-size:var(--text-xs); font-family:var(--font-mono); color:var(--color-text-faint); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:var(--space-2);">Score potentiel</div>
+            <div style="font-size:3rem; font-weight:700; color:var(--color-primary); font-family:var(--font-mono); line-height:1;">50%</div>
+            <div style="font-size:var(--text-xs); color:var(--color-text-faint); margin-top:var(--space-2);">Phase II positif</div>
+            <div style="margin-top:var(--space-4); height:6px; background:var(--color-surface-3); border-radius:3px; overflow:hidden;">
+              <div style="width:50%; height:100%; background:var(--color-primary); border-radius:3px; transition:width 1s;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+
+      <!-- ── 01. IDENTITÉ ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">01</span>
+          <h2>Identité chimique &amp; pharmacologique</h2>
+        </div>
+        <dl class="identity-grid">
+          <div class="identity-item"><dt>DCI</dt><dd>Propranolol</dd></div>
+          <div class="identity-item"><dt>Formule brute</dt><dd style="font-family:var(--font-mono);">C₁₆H₂₁NO₂</dd></div>
+          <div class="identity-item"><dt>Masse molaire</dt><dd style="font-family:var(--font-mono);">259.34 g/mol</dd></div>
+          <div class="identity-item"><dt>Classe</dt><dd>Bêta-bloquant non sélectif (β1 + β2)</dd></div>
+          <div class="identity-item"><dt>Origine</dt><dd>Sir James Black (ICI Pharmaceuticals, UK) — Nobel 1988</dd></div>
+          <div class="identity-item"><dt>CAS</dt><dd style="font-family:var(--font-mono);">525-66-6</dd></div>
+          <div class="identity-item"><dt>Approbation FDA</dt><dd>1967 (arythmie)</dd></div>
+          <div class="identity-item"><dt>Noms commerciaux</dt><dd>Avlocardyl®, Inderal®</dd></div>
+          <div class="identity-item"><dt>Statut brevet</dt><dd style="color:var(--color-success);">Hors brevet</dd></div>
+          <div class="identity-item"><dt>Voie d'admin.</dt><dd>Orale (10/40/80 mg), IV</dd></div>
+          <div class="identity-item"><dt>Indications actuelles</dt><dd>HTA, arythmies, angor, anxiété, hémangiome infantile, prévention migraines</dd></div>
+          <div class="identity-item"><dt>Score potentiel</dt><dd style="font-family:var(--font-mono); color:var(--color-primary);">50%</dd></div>
+        </dl>
+      </div>
+
+      <!-- ── 02. HISTOIRE ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">02</span>
+          <h2>Histoire &amp; chronologie</h2>
+        </div>
+        <div class="history-timeline">
+          <div class="timeline-entry">
+            <div class="timeline-year">1962</div>
+            <div class="timeline-text">Sir James Black (ICI Pharmaceuticals) synthétise le propranolol — premier bêta-bloquant cliniquement utilisable. Révolution cardiovasculaire dans la prise en charge de l'angor et des arythmies.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">1967</div>
+            <div class="timeline-text">Approbation FDA pour l'arythmie, puis étendue à l'hypertension artérielle et à l'angor. Le propranolol devient rapidement un médicament de référence en cardiologie mondiale.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">1988</div>
+            <div class="timeline-text">Sir James Black reçoit le Prix Nobel de Médecine pour le développement des bêta-bloquants (propranolol) et des antagonistes H2 (cimétidine) — deux classes médicamenteuses majeures issues d'une même démarche de pharmacologie rationnelle.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">1990s</div>
+            <div class="timeline-text">Observation que les hémangiomes infantiles régressent sous propranolol — indication approuvée en 2014 sous le nom Hemangeol®, confirmant les propriétés anti-angiogéniques de la molécule.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2002–2008</div>
+            <div class="timeline-text">Études épidémiologiques rétrospectives signalant une possible réduction du risque de cancer et des métastases chez les patients sous bêta-bloquants (notamment sein, mélanome, côlon). Signal épidémiologique émergent.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2012</div>
+            <div class="timeline-text">Hypothèse "stress chirurgical" développée par Shamgar Ben-Eliyahu (Université Tel Aviv) — la chirurgie elle-même promeut les métastases via la libération de catécholamines → blocage β-adrénergique périopératoire proposé comme stratégie anti-métastatique.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2016</div>
+            <div class="timeline-text">Cardwell 2016 (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5133766/" target="_blank" rel="noopener">PMC5133766</a>) — cohorte européenne poolée (&gt;55 000 femmes) — NÉGATIF pour propranolol sur la survie au cancer du sein. Signal épidémiologique non confirmé à grande échelle.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2017</div>
+            <div class="timeline-text">Shaashua 2017 (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5559335/" target="_blank" rel="noopener">PMC5559335</a>) — Phase II périopératoire sein (n=38) — POSITIF sur biomarqueurs métastatiques dans la tumeur réséquée. Résultat significatif sur cible moléculaire.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2018</div>
+            <div class="timeline-text">Brohée 2018 (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5935740/" target="_blank" rel="noopener">PMC5935740</a>) — étude in vitro cancer de la prostate — sensibilisation des cellules cancéreuses aux inhibiteurs du métabolisme glucidique (2-DG) — effet combinatoire prometteur.</div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-year">2025</div>
+            <div class="timeline-text">O'Logbon 2025 (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12255574/" target="_blank" rel="noopener">PMC12255574</a>) — revue systématique — signal prometteur confirmé en contexte périopératoire, essais de grande envergure avec critères de jugement cliniques nécessaires.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 03. STRUCTURE ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">03</span>
+          <h2>Structure chimique</h2>
+        </div>
+        <div class="structure-box">
+          <div class="structure-svg-wrap">
+            <!-- Représentation schématique SVG — naphtalène-propanol (propranolol) -->
+            <svg width="240" height="200" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Structure schématique du propranolol — naphtalène-propanolamine">
+              <!-- Noyau naphtalène (bicyclique aromatique) -->
+              <!-- Cycle gauche (benzène 1) -->
+              <polygon points="60,60 80,45 100,60 100,85 80,100 60,85" stroke="#38bdf8" stroke-width="1.8" fill="rgba(56,189,248,0.08)"/>
+              <!-- Double liaisons aromatiques cycle 1 -->
+              <polygon points="63,62 80,49 97,62 97,83 80,97 63,83" stroke="rgba(56,189,248,0.3)" stroke-width="0.8" fill="none" stroke-dasharray="2 2"/>
+              <!-- Cycle droit (benzène 2 fusionné) -->
+              <polygon points="100,60 120,45 140,60 140,85 120,100 100,85" stroke="#38bdf8" stroke-width="1.8" fill="rgba(56,189,248,0.06)"/>
+              <!-- Double liaisons aromatiques cycle 2 -->
+              <polygon points="103,62 120,49 137,62 137,83 120,97 103,83" stroke="rgba(56,189,248,0.3)" stroke-width="0.8" fill="none" stroke-dasharray="2 2"/>
+              <!-- Liaison O-CH2 depuis C2 du naphtalène -->
+              <line x1="140" y1="72" x2="165" y2="72" stroke="#38bdf8" stroke-width="1.5"/>
+              <!-- Oxygène -->
+              <circle cx="170" cy="72" r="6" fill="rgba(239,68,68,0.2)" stroke="rgba(239,68,68,0.7)" stroke-width="1.2"/>
+              <text x="167" y="76" fill="rgba(239,68,68,0.9)" font-family="monospace" font-size="8" font-weight="bold">O</text>
+              <!-- Chaîne propanolamine -->
+              <line x1="176" y1="72" x2="195" y2="85" stroke="#38bdf8" stroke-width="1.5"/>
+              <!-- OH -->
+              <circle cx="200" cy="88" r="6" fill="rgba(239,68,68,0.15)" stroke="rgba(239,68,68,0.5)" stroke-width="1.2"/>
+              <text x="196" y="92" fill="rgba(239,68,68,0.8)" font-family="monospace" font-size="7">OH</text>
+              <!-- NH -->
+              <line x1="195" y1="85" x2="205" y2="105" stroke="#38bdf8" stroke-width="1.5"/>
+              <circle cx="208" cy="110" r="6" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.5)" stroke-width="1.2"/>
+              <text x="204" y="114" fill="rgba(34,197,94,0.8)" font-family="monospace" font-size="7">NH</text>
+              <!-- isopropyle -->
+              <line x1="205" y1="107" x2="220" y2="120" stroke="rgba(56,189,248,0.6)" stroke-width="1.2"/>
+              <text x="218" y="128" fill="rgba(56,189,248,0.7)" font-family="monospace" font-size="7">iPr</text>
+              <!-- Labels -->
+              <text x="62" y="38" fill="#38bdf8" font-family="monospace" font-size="9" font-weight="bold">Naphtalène</text>
+              <text x="55" y="170" fill="rgba(148,163,184,0.6)" font-family="monospace" font-size="9">C₁₆H₂₁NO₂ — 259.34 g/mol</text>
+              <text x="65" y="185" fill="rgba(148,163,184,0.4)" font-family="monospace" font-size="8">Représentation schématique</text>
+            </svg>
+          </div>
+          <div class="structure-props">
+            <div class="prop-row"><span class="prop-label">Formule moléculaire</span><span class="prop-value" style="font-family:var(--font-mono);">C₁₆H₂₁NO₂</span></div>
+            <div class="prop-row"><span class="prop-label">Masse molaire</span><span class="prop-value" style="font-family:var(--font-mono);">259.34 g/mol</span></div>
+            <div class="prop-row"><span class="prop-label">Stéréochimie</span><span class="prop-value">Racémique (R/S) — activité S(-)-propranolol</span></div>
+            <div class="prop-row"><span class="prop-label">LogP</span><span class="prop-value" style="font-family:var(--font-mono);">~3.4 (très lipophile)</span></div>
+            <div class="prop-row"><span class="prop-label">Pénétration SNC</span><span class="prop-value">Excellente (lipophilie élevée)</span></div>
+            <div class="prop-row"><span class="prop-label">Biodisponibilité orale</span><span class="prop-value" style="font-family:var(--font-mono);">26% (fort 1er passage hépatique)</span></div>
+            <div class="prop-row"><span class="prop-label">Demi-vie</span><span class="prop-value" style="font-family:var(--font-mono);">3–6 h (LP disponible)</span></div>
+            <div class="prop-row"><span class="prop-label">Métabolisme</span><span class="prop-value">CYP2D6, CYP1A2</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 04. POSOLOGIES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">04</span>
+          <h2>Posologies — contextes cliniques et oncologiques</h2>
+        </div>
+        <table class="dosage-table">
+          <thead>
+            <tr>
+              <th>Contexte</th>
+              <th>Population</th>
+              <th>Dose</th>
+              <th>Source / statut</th>
+              <th>Remarques</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Antihypertenseur / angor approuvé</td>
+              <td>Adulte</td>
+              <td><span class="dose-val">40–320 mg/j</span> oral (fractionné)</td>
+              <td><span class="dose-ok">AMM FDA/EMA</span></td>
+              <td>Titration progressive. Surveillance FC et TA.</td>
+            </tr>
+            <tr>
+              <td>Hémangiome infantile (Hemangeol®)</td>
+              <td>Nourrisson</td>
+              <td><span class="dose-val">3 mg/kg/j</span> oral</td>
+              <td><span class="dose-ok">AMM pédiatrique (2014)</span></td>
+              <td>Indication approuvée exploitant les propriétés anti-angiogéniques.</td>
+            </tr>
+            <tr>
+              <td>In vitro antitumoral</td>
+              <td>Lignées cellulaires</td>
+              <td><span class="dose-val">IC50 : 10–100 µM</span></td>
+              <td><span class="dose-warning">PRÉCLINIQUE uniquement</span></td>
+              <td>Variable selon lignée tumorale. Non validé en clinique humaine.</td>
+            </tr>
+            <tr>
+              <td>Phase II périopératoire sein</td>
+              <td>Cancer sein (n=38)</td>
+              <td><span class="dose-val">40 mg × 5 jours</span> (4 préop + 1 postop)</td>
+              <td><span class="dose-ok">VALIDÉ EN ESSAI DE PHASE II POSITIF</span></td>
+              <td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5559335/" target="_blank" rel="noopener">Shaashua 2017 PMC5559335</a> — biomarqueurs métastatiques favorables.</td>
+            </tr>
+            <tr>
+              <td>Dose oncologique définitive</td>
+              <td>Humain</td>
+              <td><span class="dose-warning">NON ÉTABLIE</span></td>
+              <td><span class="dose-warning">Aucune dose standard validée</span></td>
+              <td>Les essais utilisent des doses cardiovasculaires standard. Essais de grande envergure en cours.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ── 05. MÉCANISMES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">05</span>
+          <h2>Mécanismes d'action antitumoraux</h2>
+        </div>
+        <p style="font-size:var(--text-sm); color:var(--color-text-muted); margin-bottom:var(--space-6); max-width:80ch; line-height:1.7;">
+          Le propranolol agit principalement via le blocage des récepteurs adrénergiques β1 et β2, réduisant l'impact des catécholamines (adrénaline, noradrénaline) sur la progression tumorale. Plusieurs mécanismes complémentaires ont été identifiés en préclinique et confirmés partiellement en clinique.
+        </p>
+        <div class="mechanism-grid">
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Blocage β-adrénergique</div>
+            <div class="mechanism-card-text">Blocage des récepteurs β1 et β2 → réduction de la signalisation catécholamines (adrénaline, noradrénaline) → réduction de la prolifération, migration et invasion cellulaires. Mécanisme central et principal du repositionnement oncologique.</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Anti-angiogénique</div>
+            <div class="mechanism-card-text">Réduction de la production de VEGF (facteur de croissance vasculaire) et du bFGF → inhibition de la néoangiogenèse tumorale. Mécanisme confirmé dans le contexte de l'hémangiome infantile (indication AMM).</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Stress chirurgical</div>
+            <div class="mechanism-card-text">La chirurgie déclenche une réponse adrénergique aiguë pouvant promouvoir la dissémination métastatique. Le propranolol périopératoire bloque cet effet. Essai de Phase II positif sur biomarqueurs. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5559335/" target="_blank" rel="noopener">Shaashua 2017 PMC5559335</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Sensibilisation métabolique</div>
+            <div class="mechanism-card-text">Sensibilisation des cellules de cancer de la prostate aux inhibiteurs du métabolisme glucidique (2-désoxyglucose, 2-DG) — effet combinatoire. Synergie in vitro documentée. [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5935740/" target="_blank" rel="noopener">Brohée 2018 PMC5935740</a>]</div>
+          </div>
+          <div class="mechanism-card">
+            <div class="mechanism-card-title">Anti-invasion</div>
+            <div class="mechanism-card-text">Réduction de la migration cellulaire (lamellipodia) et de la capacité invasive via le blocage β-adrénergique → pertinence directe pour la prévention des métastases en contexte périopératoire et postopératoire.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 06. ÉTUDES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">06</span>
+          <h2>Historique des études — 4 publications indexées</h2>
+        </div>
+        <div class="studies-list">
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary);">N1</div>
+            <div class="study-body">
+              <div class="study-title-text">Beta-blockers and cancer outcomes: a systematic review of the evidence</div>
+              <div class="study-meta-line">O'Logbon O et al. · 2025 · Revue systématique · Multiple cancers · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12255574/" target="_blank" rel="noopener">PMC12255574</a> · DOI: 10.1007/s00432-025-06262-2</div>
+              <div class="study-finding">Revue systématique confirmant le signal prometteur du propranolol en contexte périopératoire pour le cancer du sein. Les auteurs concluent à la nécessité d'essais randomisés de grande envergure avec critères de jugement cliniques (survie globale, survie sans récidive).</div>
+            </div>
+          </div>
+
+          <div class="study-row" style="border-left:3px solid var(--color-success);">
+            <div class="study-level-badge" style="background:rgba(34,197,94,0.12); color:var(--color-success);">N2</div>
+            <div class="study-body">
+              <div class="study-title-text">Adrenergic and prostaglandin-mediated perioperative immune modulation in breast cancer — Phase II randomized trial</div>
+              <div class="study-meta-line">Shaashua L et al. · 2017 · Phase II (POSITIF) · Cancer du sein · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5559335/" target="_blank" rel="noopener">PMC5559335</a> · DOI: 10.1158/1078-0432.CCR-17-0152</div>
+              <div class="study-finding"><strong style="color:var(--color-success);">RÉSULTAT POSITIF.</strong> Phase II périopératoire, n=38 patientes cancer du sein. Réduction significative des biomarqueurs métastatiques dans la tumeur réséquée (CXCR4, VEGF, Ki67) sous propranolol + étodolac. Preuve de concept clinique directe.</div>
+            </div>
+          </div>
+
+          <div class="study-row" style="border-left:3px solid var(--color-warning);">
+            <div class="study-level-badge" style="background:rgba(234,179,8,0.12); color:var(--color-warning);">N2</div>
+            <div class="study-body">
+              <div class="study-title-text">Beta-blocker use and breast cancer survival: a pooled analysis of 11 European studies</div>
+              <div class="study-meta-line">Cardwell C et al. · 2016 · Cohorte (NÉGATIF) · Cancer du sein · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5133766/" target="_blank" rel="noopener">PMC5133766</a> · DOI: 10.1186/s13058-016-0782-5</div>
+              <div class="study-finding"><strong style="color:var(--color-warning);">RÉSULTAT NÉGATIF (cohorte).</strong> Méga-cohorte européenne poolée (&gt;55 000 femmes). Aucune différence de survie associée au propranolol spécifiquement (HR~1.0). Distingue nécessité d'essais interventionnels vs études d'observation.</div>
+            </div>
+          </div>
+
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.1); color:var(--color-text-faint);">N6</div>
+            <div class="study-body">
+              <div class="study-title-text">Propranolol sensitizes prostate cancer cells to glucose metabolism inhibition</div>
+              <div class="study-meta-line">Brohée L et al. · 2018 · In vitro · Cancer de la prostate · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5935740/" target="_blank" rel="noopener">PMC5935740</a> · DOI: 10.1038/s41598-018-25340-9</div>
+              <div class="study-finding">Étude in vitro démontrant la sensibilisation des cellules de cancer de la prostate aux inhibiteurs du métabolisme glucidique sous propranolol. Effet combinatoire synergique avec le 2-désoxyglucose. Rationale pour combinaisons thérapeutiques.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Graphique répartition études -->
+        <div class="chart-container" style="margin-top:var(--space-6);">
+          <div class="chart-title">Distribution des études par type — Propranolol</div>
+          <div class="chart-wrapper" style="height:200px;">
+            <canvas id="chart-prop-types" aria-label="Distribution des études propranolol par type"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 07. SÉCURITÉ ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">07</span>
+          <h2>Profil de sécurité</h2>
+        </div>
+        <div class="alert-box info" style="margin-bottom:var(--space-5);">
+          <strong>Contexte :</strong> Le propranolol est un médicament cardiovasculaire utilisé depuis plus de 60 ans. Son profil de sécurité est très bien établi. Les données ci-dessous concernent les doses cardiovasculaires standard, utilisées également dans les essais oncologiques.
+        </div>
+        <div class="safety-grid">
+          <div class="safety-card" style="border-left:3px solid var(--color-success);">
+            <div class="safety-card-label">Profil humain établi</div>
+            <div class="safety-card-content">Médicament cardiovasculaire utilisé depuis 60 ans. Très grande expérience clinique mondiale. Profil de tolérance bien documenté à doses cardiovasculaires standard (40–320 mg/j).</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-warning);">
+            <div class="safety-card-label">Bradycardie / Hypotension</div>
+            <div class="safety-card-content">Effets principaux des bêta-bloquants — surveillance obligatoire de la fréquence cardiaque et de la tension artérielle. Ajustement posologique selon tolérance hémodynamique.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-danger);">
+            <div class="safety-card-label">Bronchospasme</div>
+            <div class="safety-card-content">Contre-indiqué en cas d'asthme ou BPCO significative — blocage des récepteurs β2 bronchiques pouvant induire un bronchospasme sévère. Contre-indication absolue.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-warning);">
+            <div class="safety-card-label">Masquage hypoglycémie</div>
+            <div class="safety-card-content">Masque les symptômes adrénergiques de l'hypoglycémie (tachycardie, tremblements). Précaution particulière chez les patients diabétiques sous insuline ou sulfonylurées.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-danger);">
+            <div class="safety-card-label">Sevrage</div>
+            <div class="safety-card-content">Ne pas arrêter brutalement — risque de rebond tachycardique, d'angor de rebond, voire d'infarctus du myocarde. Décroissance progressive obligatoire sur 1–2 semaines.</div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-warning);">
+            <div class="safety-card-label">Grossesse</div>
+            <div class="safety-card-content">Retard de croissance intra-utérin possible lors d'usage au long cours. Surveillance fœtale recommandée. Usage possible si bénéfice maternel justifié (décision médicale encadrée).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 08. GRAPHIQUES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">08</span>
+          <h2>Visualisations analytiques</h2>
+        </div>
+        <div class="charts-grid">
+          <div class="chart-container">
+            <div class="chart-title">Niveaux de preuve — Propranolol (4 études)</div>
+            <div class="chart-wrapper" style="height:240px;">
+              <canvas id="chart-prop-evidence" aria-label="Niveaux de preuve propranolol"></canvas>
+            </div>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">Résultats Shaashua 2017 vs Cardwell 2016</div>
+            <div class="chart-wrapper" style="height:240px;">
+              <canvas id="chart-prop-results" aria-label="Comparaison résultats Shaashua 2017 vs Cardwell 2016"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 09. SOURCES ── -->
+      <div class="mol-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num">09</span>
+          <h2>Sources détaillées</h2>
+        </div>
+        <p style="font-size:var(--text-sm); color:var(--color-text-muted); margin-bottom:var(--space-5);">
+          4 publications indexées — toutes vérifiées sur PubMed/PMC. Classement par niveau de preuve décroissant.
+        </p>
+        <div class="studies-list">
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(56,189,248,0.1); color:var(--color-primary); font-size:10px;">N1<br>Revue</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12255574/" target="_blank" rel="noopener">O'Logbon O et al. (2025) — Beta-blockers and cancer outcomes: a systematic review. <em>J Cancer Res Clin Oncol.</em></a></div>
+              <div class="study-meta-line">PMC12255574 · DOI: 10.1007/s00432-025-06262-2</div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(34,197,94,0.12); color:var(--color-success); font-size:10px;">N2<br>Ph.II+</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5559335/" target="_blank" rel="noopener">Shaashua L et al. (2017) — Perioperative COX-2 and β-adrenergic blockade improves metastatic biomarkers in breast cancer. <em>Clin Cancer Res.</em></a></div>
+              <div class="study-meta-line">PMC5559335 · DOI: 10.1158/1078-0432.CCR-17-0152</div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(234,179,8,0.12); color:var(--color-warning); font-size:10px;">N2<br>Coh.–</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5133766/" target="_blank" rel="noopener">Cardwell C et al. (2016) — Beta-blocker use and breast cancer survival: pooled analysis. <em>Breast Cancer Res.</em></a></div>
+              <div class="study-meta-line">PMC5133766 · DOI: 10.1186/s13058-016-0782-5</div>
+            </div>
+          </div>
+          <div class="study-row">
+            <div class="study-level-badge" style="background:rgba(148,163,184,0.08); color:var(--color-text-faint); font-size:10px;">N6<br>In vitro</div>
+            <div class="study-body">
+              <div class="study-title-text"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5935740/" target="_blank" rel="noopener">Brohée L et al. (2018) — Propranolol sensitizes prostate cancer cells to glucose metabolism inhibition. <em>Sci Rep.</em></a></div>
+              <div class="study-meta-line">PMC5935740 · DOI: 10.1038/s41598-018-25340-9</div>
+            </div>
+          </div>
+        </div>
+        <div class="alert-box info" style="margin-top:var(--space-6);">
+          <strong>Niveau de preuve global propranolol :</strong> Niveau 1 (revue systématique) + Niveau 2 (Phase II positif + cohorte négative) + Niveau 6 (in vitro). Signal clinique en contexte périopératoire sein. Résultats contradictoires entre essai interventionnel et études d'observation. Score de potentiel : <strong>50/100</strong>.
+        </div>
+        <div style="margin-top:var(--space-4); display:flex; gap:var(--space-3); flex-wrap:wrap;">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=propranolol+cancer" target="_blank" rel="noopener" class="btn-primary" style="font-size:var(--text-sm);">Rechercher sur PubMed</a>
+          <a href="../dashboard.html#molecules-section" class="btn-ghost" style="font-size:var(--text-sm);">← Retour dashboard</a>
+        </div>
+      </div>
+
+    </div><!-- /.content-section -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>
+      RepoOnco — Base documentaire sur le repositionnement médicamenteux en oncologie &middot;
+      Usage personnel &amp; scientifique &middot;
+      <a href="../methode.html">Méthodologie</a> &middot;
+      <a href="../documentation.html">Documentation</a>
+    </p>
+    <p style="margin-top:var(--space-2);">
+      Données issues d'une veille bibliographique structurée. Cette base ne constitue pas un avis médical.
+    </p>
+  </footer>
+
+</div><!-- /.site-wrapper -->
+
+<script>
+'use strict';
+document.addEventListener('DOMContentLoaded', () => {
+  Chart.defaults.color = '#94a3b8';
+  Chart.defaults.borderColor = 'rgba(148, 163, 184, 0.1)';
+  Chart.defaults.font.family = "'Inter', 'Helvetica Neue', sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.plugins.tooltip.backgroundColor = '#111a2e';
+  Chart.defaults.plugins.tooltip.borderColor = 'rgba(56,189,248,0.25)';
+  Chart.defaults.plugins.tooltip.borderWidth = 1;
+  Chart.defaults.plugins.tooltip.cornerRadius = 8;
+
+  // Chart 1 — Types d'études (section 06)
+  const ctxTypes = document.getElementById('chart-prop-types');
+  if (ctxTypes) {
+    new Chart(ctxTypes, {
+      type: 'bar',
+      data: {
+        labels: ['Revue systématique (N1)', 'Essai Phase II (N2)', 'Cohorte (N2)', 'In vitro (N6)'],
+        datasets: [{
+          label: "Nombre d'études",
+          data: [1, 1, 1, 1],
+          backgroundColor: ['rgba(56,189,248,0.5)', 'rgba(34,197,94,0.45)', 'rgba(234,179,8,0.45)', 'rgba(148,163,184,0.25)'],
+          borderColor: ['#38bdf8', '#22c55e', '#eab308', '#94a3b8'],
+          borderWidth: 1, borderRadius: 4,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { beginAtZero: true, ticks: { stepSize: 1, precision: 0 }, grid: { color: 'rgba(148,163,184,0.08)' } },
+          y: { grid: { display: false } },
+        },
+      },
+    });
+  }
+
+  // Chart 2 — Niveaux de preuve doughnut (section 08)
+  const ctxEvid = document.getElementById('chart-prop-evidence');
+  if (ctxEvid) {
+    new Chart(ctxEvid, {
+      type: 'doughnut',
+      data: {
+        labels: ['N1 — Revue systématique (1)', 'N2 — Phase II (1)', 'N2 — Cohorte (1)', 'N6 — In vitro (1)'],
+        datasets: [{
+          data: [1, 1, 1, 1],
+          backgroundColor: ['rgba(56,189,248,0.6)', 'rgba(34,197,94,0.5)', 'rgba(234,179,8,0.45)', 'rgba(148,163,184,0.25)'],
+          borderColor: ['#38bdf8', '#22c55e', '#eab308', '#94a3b8'],
+          borderWidth: 1, hoverOffset: 6,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, cutout: '60%',
+        plugins: {
+          legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 10 } },
+          tooltip: { callbacks: { label: ctx => ` ${ctx.label}` } },
+        },
+      },
+    });
+  }
+
+  // Chart 3 — Shaashua 2017 vs Cardwell 2016 (section 08)
+  const ctxResults = document.getElementById('chart-prop-results');
+  if (ctxResults) {
+    new Chart(ctxResults, {
+      type: 'bar',
+      data: {
+        labels: ['Biomarqueurs métastatiques\n(Phase II Shaashua 2017)', 'Survie globale\n(Cohorte Cardwell 2016)'],
+        datasets: [
+          {
+            label: 'Propranolol',
+            data: [35, 0],
+            backgroundColor: ['rgba(34,197,94,0.5)', 'rgba(234,179,8,0.3)'],
+            borderColor: ['#22c55e', '#eab308'],
+            borderWidth: 1, borderRadius: 4,
+          },
+          {
+            label: 'Contrôle',
+            data: [0, 0],
+            backgroundColor: ['rgba(148,163,184,0.3)', 'rgba(148,163,184,0.3)'],
+            borderColor: ['#94a3b8', '#94a3b8'],
+            borderWidth: 1, borderRadius: 4,
+          }
+        ],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 10 } },
+          tooltip: {
+            callbacks: {
+              label: ctx => {
+                if (ctx.datasetIndex === 0 && ctx.dataIndex === 0) return ' Réduction significative biomarqueurs métastatiques (CXCR4, VEGF, Ki67)';
+                if (ctx.datasetIndex === 0 && ctx.dataIndex === 1) return ' Aucune différence (HR~1.0)';
+                return '';
+              }
+            }
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 60,
+            title: { display: true, text: 'Réduction relative (%) — schématique', color: '#475569', font: { size: 10 } },
+            ticks: { color: '#94a3b8' },
+            grid: { color: 'rgba(148,163,184,0.08)' },
+          },
+          x: { grid: { display: false } },
+        },
+      },
+    });
+  }
+});
+</script>
+</body>
+</html>
