@@ -72,7 +72,7 @@
     </div>
     <div class="status-item">
       <span class="status-dot green" aria-hidden="true"></span>
-      <span>DASHBOARD v1.0</span>
+      <span>DASHBOARD v1.1</span>
     </div>
   </div>
 
@@ -237,6 +237,45 @@
       </div><!-- /.charts-grid -->
     </div>
 
+    <!-- ───────────────────────────────────────────────
+         B2) HEATMAP + TIMELINE
+    ──────────────────────────────────────────────── -->
+    <div class="content-section">
+      <div class="section-header">
+        <h2>Cartographie des preuves</h2>
+        <span class="section-tag">ANALYSE</span>
+      </div>
+      <div class="charts-grid">
+
+        <!-- Heatmap -->
+        <div class="chart-container" style="grid-column: 1 / -1;">
+          <div class="chart-title">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="1" y="1" width="5" height="5" rx="0.5"/><rect x="8" y="1" width="5" height="5" rx="0.5"/>
+              <rect x="1" y="8" width="5" height="5" rx="0.5"/><rect x="8" y="8" width="5" height="5" rx="0.5"/>
+            </svg>
+            Heatmap &mdash; Niveau de preuve × Molécule
+          </div>
+          <div id="heatmap-container" style="overflow-x:auto; padding: var(--space-2) 0;"></div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="chart-container" style="grid-column: 1 / -1;">
+          <div class="chart-title">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <line x1="1" y1="7" x2="13" y2="7"/>
+              <circle cx="3" cy="5" r="1.5"/><circle cx="6" cy="4" r="1.5"/><circle cx="9" cy="6" r="1.5"/><circle cx="11" cy="3" r="1.5"/>
+            </svg>
+            Timeline des publications par molécule
+          </div>
+          <div class="chart-wrapper" style="height: 320px;">
+            <canvas id="chart-timeline" aria-label="Timeline des publications par année et molécule"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- ─────────────────────────────────────────────
          C) MOLECULE CARDS SECTION
     ──────────────────────────────────────────────── -->
@@ -262,7 +301,9 @@
           data-molecule="ivermectine"
           data-category="noyau"
           data-essai-humain="false"
-          aria-label="Fiche Ivermectine">
+          aria-label="Fiche Ivermectine"
+          onclick="window.location.href='./molecules/ivermectine.html'"
+          style="cursor: pointer;">
           <div class="mol-header">
             <div>
               <div class="mol-name" style="color: var(--color-warning);">Ivermectine</div>
@@ -303,7 +344,9 @@
           data-molecule="fenbendazole"
           data-category="noyau"
           data-essai-humain="false"
-          aria-label="Fiche Fenbendazole">
+          aria-label="Fiche Fenbendazole"
+          onclick="window.location.href='./molecules/fenbendazole.html'"
+          style="cursor: pointer;">
           <div class="mol-header">
             <div>
               <div class="mol-name" style="color: var(--color-danger);">Fenbendazole</div>
@@ -344,7 +387,9 @@
           data-molecule="mebendazole"
           data-category="noyau"
           data-essai-humain="true"
-          aria-label="Fiche Mébendazole">
+          aria-label="Fiche Mébendazole"
+          onclick="window.location.href='./molecules/mebendazole.html'"
+          style="cursor: pointer;">
           <div class="mol-header">
             <div>
               <div class="mol-name" style="color: var(--color-success);">Mébendazole</div>
@@ -385,7 +430,9 @@
           data-molecule="metformine"
           data-category="complementaires"
           data-essai-humain="true"
-          aria-label="Fiche Metformine">
+          aria-label="Fiche Metformine"
+          onclick="window.location.href='./molecules/metformine.html'"
+          style="cursor: pointer;">
           <div class="mol-header">
             <div>
               <div class="mol-name" style="color: var(--color-teal);">Metformine</div>
@@ -422,7 +469,9 @@
           data-molecule="disulfirame"
           data-category="complementaires"
           data-essai-humain="true"
-          aria-label="Fiche Disulfirame">
+          aria-label="Fiche Disulfirame"
+          onclick="window.location.href='./molecules/disulfirame.html'"
+          style="cursor: pointer;">
           <div class="mol-header">
             <div>
               <div class="mol-name" style="color: var(--color-warning);">Disulfirame</div>
@@ -463,7 +512,9 @@
           data-molecule="propranolol"
           data-category="complementaires"
           data-essai-humain="true"
-          aria-label="Fiche Propranolol">
+          aria-label="Fiche Propranolol"
+          onclick="window.location.href='./molecules/propranolol.html'"
+          style="cursor: pointer;">
           <div class="mol-header">
             <div>
               <div class="mol-name" style="color: var(--color-primary);">Propranolol</div>
@@ -500,7 +551,9 @@
           data-molecule="chloroquine"
           data-category="complementaires"
           data-essai-humain="true"
-          aria-label="Fiche Chloroquine / HCQ">
+          aria-label="Fiche Chloroquine / HCQ"
+          onclick="window.location.href='./molecules/chloroquine-hcq.html'"
+          style="cursor: pointer;">
           <div class="mol-header">
             <div>
               <div class="mol-name" style="color: var(--color-purple);">Chloroquine / HCQ</div>

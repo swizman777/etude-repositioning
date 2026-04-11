@@ -663,3 +663,292 @@ if (document.readyState === 'loading') {
 } else {
   init();
 }
+
+
+/* ============================================================
+   12. HEATMAP — Niveau de preuve × Molécule
+   Rendu en tableau HTML pur dans #heatmap-container
+   ============================================================ */
+
+/** Données heatmap : molécules × niveaux de preuve
+ *  Format : counts[molIndex][levelIndex]
+ *  Levels 1→6 : Revue, RCT, Cohorte, Cas, In vivo, In vitro
+ */
+const HEATMAP_DATA = {
+  molecules: ['Mébendazole', 'Metformine', 'Propranolol', 'Chloroquine/HCQ', 'Ivermectine', 'Disulfirame', 'Fenbendazole'],
+  levels: ['Niveau 1\nRevue/Méta', 'Niveau 2\nRCT/Phase II', 'Niveau 3\nCohorte', 'Niveau 4\nCas clinique', 'Niveau 5\nIn vivo', 'Niveau 6\nIn vitro'],
+  levelsShort: ['N1 Revue', 'N2 RCT', 'N3 Cohorte', 'N4 Cas', 'N5 In vivo', 'N6 In vitro'],
+  // [mol][level] counts (0-based : mol 0 = Mébendazole, level 0 = N1)
+  counts: [
+    [3, 1, 0, 0, 4, 1],  // Mébendazole
+    [3, 1, 0, 0, 0, 0],  // Metformine
+    [1, 1, 1, 0, 0, 1],  // Propranolol
+    [2, 2, 0, 0, 0, 0],  // Chloroquine/HCQ
+    [2, 0, 0, 0, 0, 3],  // Ivermectine
+    [2, 1, 0, 0, 0, 1],  // Disulfirame
+    [1, 0, 0, 1, 1, 3],  // Fenbendazole
+  ],
+  // Couleur accent par molécule
+  molColors: ['#22c55e', '#2dd4bf', '#38bdf8', '#a78bfa', '#eab308', '#f97316', '#ef4444'],
+};
+
+/**
+ * Retourne une couleur RGBA de chaleur en fonction du compte (0–max).
+ * 0 → neutre foncé ; max → bleu électrique (#38bdf8 à forte opacité)
+ */
+function heatColor(count, max) {
+  if (count === 0) return 'rgba(255,255,255,0.03)';
+  const ratio = count / max;
+  // Interpolation : faible = teal, fort = primary bleu
+  const r = Math.round(34  + ratio * (56  - 34));
+  const g = Math.round(197 + ratio * (189 - 197));
+  const b = Math.round(94  + ratio * (248 - 94));
+  const a = 0.15 + ratio * 0.65;
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+function initHeatmap() {
+  const container = document.getElementById('heatmap-container');
+  if (!container) return;
+
+  const D = HEATMAP_DATA;
+  const allCounts = D.counts.flat();
+  const maxCount = Math.max(...allCounts);
+
+  // Légende niveaux de preuve
+  const legendHtml = `
+    <div style="display:flex; gap:var(--space-4); flex-wrap:wrap; margin-bottom:var(--space-4); font-size:var(--text-xs); color:var(--color-text-muted);">
+      ${D.levelsShort.map((l, i) => `
+        <span style="display:flex; align-items:center; gap:4px;">
+          <span style="width:10px; height:10px; border-radius:2px; background:${heatColor(maxCount - i * 0.5, maxCount)}; display:inline-block; flex-shrink:0;"></span>
+          ${l}
+        </span>`).join('')}
+    </div>`;
+
+  // Construction du tableau
+  let tableHtml = `
+    <table style="width:100%; border-collapse:separate; border-spacing:3px; font-size:var(--text-xs);">
+      <thead>
+        <tr>
+          <th style="text-align:left; color:var(--color-text-faint); font-weight:400; padding:4px 8px; min-width:130px; white-space:nowrap;">Molécule</th>
+          ${D.levelsShort.map(l => `<th style="text-align:center; color:var(--color-text-faint); font-weight:400; padding:4px 6px; white-space:nowrap;">${l}</th>`).join('')}
+          <th style="text-align:center; color:var(--color-text-faint); font-weight:400; padding:4px 6px;">Total</th>
+        </tr>
+      </thead>
+      <tbody>`;
+
+  D.molecules.forEach((mol, mi) => {
+    const rowTotal = D.counts[mi].reduce((a, b) => a + b, 0);
+    tableHtml += `<tr>
+      <td style="color:${D.molColors[mi]}; padding:5px 8px; font-weight:500; white-space:nowrap;">${mol}</td>`;
+    D.counts[mi].forEach(count => {
+      const bg = heatColor(count, maxCount);
+      const textColor = count > 0 ? '#e2e8f0' : 'var(--color-text-faint)';
+      tableHtml += `<td style="text-align:center; background:${bg}; border-radius:4px; padding:6px; color:${textColor}; font-weight:${count > 0 ? '600' : '400'}; font-family:var(--font-mono);">${count > 0 ? count : '—'}</td>`;
+    });
+    tableHtml += `<td style="text-align:center; color:var(--color-text-muted); font-weight:600; padding:5px 6px; font-family:var(--font-mono);">${rowTotal}</td></tr>`;
+  });
+
+  tableHtml += `</tbody></table>`;
+
+  // Ligne totaux
+  const colTotals = D.levels.map((_, li) => D.counts.reduce((s, row) => s + row[li], 0));
+  const grandTotal = colTotals.reduce((a, b) => a + b, 0);
+  tableHtml = tableHtml.replace('</tbody></table>', `
+    <tr style="border-top:1px solid var(--color-divider);">
+      <td style="color:var(--color-text-faint); padding:5px 8px; font-weight:500;">Total</td>
+      ${colTotals.map(t => `<td style="text-align:center; color:var(--color-text-muted); font-weight:600; padding:5px 6px; font-family:var(--font-mono);">${t}</td>`).join('')}
+      <td style="text-align:center; color:var(--color-primary); font-weight:700; padding:5px 6px; font-family:var(--font-mono);">${grandTotal}</td>
+    </tr>
+  </tbody></table>`);
+
+  container.innerHTML = legendHtml + tableHtml;
+}
+
+
+/* ============================================================
+   13. TIMELINE — publications par molécule (Chart.js bubble)
+   Rendu dans #chart-timeline canvas
+   ============================================================ */
+
+/**
+ * Chaque point = 1 étude publiée.
+ * x = année, y = index molécule (0-6), r = rayon encodant le niveau de preuve.
+ * On "étale" légèrement les points sur l'axe Y pour éviter les chevauchements.
+ */
+const TIMELINE_STUDIES = [
+  // [molIndex, year, evidenceLevel, label]
+  // Mébendazole (0)
+  [0, 2011, 5, 'Bai 2011 – GBM in vivo'], [0, 2015, 5, 'Larsen 2015 – Médulloblastome'],
+  [0, 2019, 1, 'Guerini 2019 – Revue'], [0, 2021, 5, 'Elayapillai 2021 – Ovaire'],
+  [0, 2021, 6, 'Florio 2021 – Criblage'], [0, 2022, 6, 'Ren 2022 – GBM pyroptose'],
+  [0, 2022, 2, 'Hegazy 2022 – RCT colorectal'], [0, 2023, 1, 'Meco 2023 – Revue cerv.'],
+  [0, 2024, 5, 'Rodrigues 2024 – TNB métast.'],
+  // Metformine (1)
+  [1, 2010, 1, 'Decensi 2010 – Méta-analyse'], [1, 2014, 1, 'Gandini 2014 – Méta-analyse'],
+  [1, 2022, 2, 'Goodwin 2022 – MA.32 RCT'], [1, 2023, 1, 'Wu 2023 – Revue essais'],
+  // Propranolol (2)
+  [2, 2016, 3, 'Cardwell 2016 – Cohorte'], [2, 2017, 2, 'Shaashua 2017 – Phase II'],
+  [2, 2018, 6, 'Brohée 2018 – In vitro'], [2, 2025, 1, "O'Logbon 2025 – Revue"],
+  // Chloroquine/HCQ (3)
+  [3, 2014, 1, 'Manic 2014 – Revue'], [3, 2017, 1, 'Verbaanderd 2017 – ReDO'],
+  [3, 2019, 2, 'Karasic 2019 – Phase II pancr.'], [3, 2020, 2, 'Zeh 2020 – Phase II néoadj.'],
+  // Ivermectine (4)
+  [4, 2016, 6, 'Wang 2016 – PAK1 in vitro'], [4, 2018, 1, 'Juarez 2018 – Revue'],
+  [4, 2019, 6, 'Jiang 2019 – EGFR résist.'], [4, 2021, 1, 'Tang 2021 – Revue compl.'],
+  [4, 2022, 6, 'Lv 2022 – Prostate'],
+  // Disulfirame (5)
+  [5, 2020, 6, 'Li 2020 – DSF/Cu in vitro'], [5, 2023, 2, 'Werlenius 2023 – DIRECT RCT'],
+  [5, 2023, 1, 'Zhang 2023 – Revue imm.'], [5, 2024, 1, 'Zeng 2024 – Revue'],
+  // Fenbendazole (6)
+  [6, 2013, 6, 'Duan 2013 – In vitro'], [6, 2018, 6, 'Dogra 2018 – Multi-voies'],
+  [6, 2019, 6, 'Mrkvová 2019 – Mélanome'], [6, 2020, 1, 'Son 2020 – Revue benzimid.'],
+  [6, 2021, 4, 'Yamaguchi 2021 – Hépatotox.'], [6, 2024, 5, 'Wang 2024 – Ovaire in vivo'],
+];
+
+function initTimelineChart() {
+  const canvas = document.getElementById('chart-timeline');
+  if (!canvas) return;
+
+  const molLabels = ['Mébendazole', 'Metformine', 'Propranolol', 'CQ/HCQ', 'Ivermectine', 'Disulfirame', 'Fenbendazole'];
+  const molColors = [
+    PALETTE.success.solid, PALETTE.teal.solid, PALETTE.primary.solid,
+    PALETTE.purple.solid, PALETTE.warning.solid, PALETTE.orange.solid, PALETTE.danger.solid,
+  ];
+
+  // Radius selon niveau de preuve (level 1=plus haut = plus grand)
+  function levelToRadius(level) {
+    return [10, 9, 7, 6, 5, 4][level - 1] || 4;
+  }
+
+  // Construire un dataset par molécule
+  const datasets = molLabels.map((name, mi) => {
+    // Jitter vertical pour éviter les chevauchements
+    const studies = TIMELINE_STUDIES.filter(s => s[0] === mi);
+    const jitterMap = {};
+    studies.forEach(s => {
+      const key = s[1]; // year
+      jitterMap[key] = (jitterMap[key] || 0);
+      jitterMap[key]++;
+    });
+    const jitterCount = {};
+
+    const data = studies.map(([, year, lvl, lbl]) => {
+      jitterCount[year] = (jitterCount[year] || 0);
+      const offset = (jitterCount[year] - (jitterMap[year] - 1) / 2) * 0.12;
+      jitterCount[year]++;
+      return {
+        x: year,
+        y: mi + offset,
+        r: levelToRadius(lvl),
+        evidenceLevel: lvl,
+        studyLabel: lbl,
+      };
+    });
+
+    return {
+      label: name,
+      data,
+      backgroundColor: molColors[mi].replace(')', ', 0.75)').replace('rgb', 'rgba').replace('#', 'rgba(').replace(/^rgba\(([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2}),/, (_, r, g, b) => `rgba(${parseInt(r,16)},${parseInt(g,16)},${parseInt(b,16)},`),
+      borderColor: molColors[mi],
+      borderWidth: 1.5,
+    };
+  });
+
+  // Correction : backgroundColor via hex → rgba converti proprement
+  datasets.forEach((ds, mi) => {
+    const hex = molColors[mi];
+    const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+    ds.backgroundColor = `rgba(${r},${g},${b},0.75)`;
+    ds.borderColor = hex;
+  });
+
+  new Chart(canvas, {
+    type: 'bubble',
+    data: { datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 900, easing: 'easeOutQuart' },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { font: { size: 10 }, padding: 10 },
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const d = ctx.raw;
+              return ` ${d.studyLabel} (N${d.evidenceLevel}) — ${d.x}`;
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          min: 2009,
+          max: 2026,
+          ticks: {
+            stepSize: 2,
+            color: '#94a3b8',
+            font: { size: 11 },
+            callback: val => String(val),
+          },
+          grid: { color: 'rgba(148,163,184,0.08)' },
+          title: {
+            display: true,
+            text: 'Année de publication',
+            color: '#475569',
+            font: { size: 11 },
+          },
+        },
+        y: {
+          min: -0.6,
+          max: 6.6,
+          ticks: {
+            stepSize: 1,
+            color: '#94a3b8',
+            font: { size: 10 },
+            callback: val => {
+              const idx = Math.round(val);
+              return molLabels[idx] || '';
+            },
+          },
+          grid: { color: 'rgba(148,163,184,0.06)' },
+        },
+      },
+    },
+  });
+}
+
+
+/* ============================================================
+   14. MISE À JOUR INIT — intégration heatmap + timeline
+   Remplacement de l'init() original pour ajouter les 2 nouvelles
+   fonctions sans double-initialisation des graphiques existants.
+   ============================================================ */
+
+// On écrase le listener DOMContentLoaded original (chargé avec defer,
+// donc exécuté après DOMContentLoaded — init() a déjà été appelé)
+// en réouvrant l'init pour ajouter les 2 nouvelles fonctions.
+
+// Puisque le script est chargé avec defer, init() a déjà été appelé
+// via le bloc conditionnel en bas du fichier original.
+// On se contente de patcher : après le prochain tick micro-task,
+// les 2 nouvelles fonctions sont appelées si pas encore fait.
+
+(function patchInitWithNewCharts() {
+  // initHeatmap et initTimelineChart n'ont pas encore été appelés
+  // (elles sont définies plus haut dans ce même fichier).
+  // On les appelle une seule fois maintenant.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initHeatmap();
+      initTimelineChart();
+    }, { once: true });
+  } else {
+    // DOM déjà prêt (script defer = après DOMContentLoaded)
+    initHeatmap();
+    initTimelineChart();
+  }
+}());

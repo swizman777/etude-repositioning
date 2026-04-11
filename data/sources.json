@@ -13,7 +13,10 @@
       "key_finding": "Comprehensive review demonstrating ivermectin's anticancer mechanisms including inhibition of Wnt/β-catenin, PAK1, MDM2 and induction of autophagy and apoptosis across multiple tumor types.",
       "evidence_level": 1,
       "doi": "10.1016/j.phrs.2020.105207",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7505114/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7505114/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue)",
+      "dose_context": "Non applicable (revue de synthèse)"
     },
     {
       "id": 2,
@@ -28,7 +31,10 @@
       "key_finding": "Review by the leading Mexican repositioning group summarizing ivermectin's pleiotropic anticancer activity including WNT-TCF signaling inhibition, P-glycoprotein inhibition, and clinical development rationale.",
       "evidence_level": 1,
       "doi": null,
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5835698/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5835698/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue)",
+      "dose_context": "Non applicable (revue de synthèse)"
     },
     {
       "id": 3,
@@ -38,12 +44,15 @@
       "authors": "Wang K et al.",
       "year": 2016,
       "molecule": "Ivermectine",
-      "study_type": "in vitro",
+      "study_type": "in_vitro",
       "cancer_type": "Breast cancer",
       "key_finding": "Ivermectin induces PAK1-mediated cytostatic autophagy in breast cancer cells, inhibiting proliferation without causing apoptosis, identifying PAK1 as a key therapeutic target.",
       "evidence_level": 6,
       "doi": "10.1080/15548627.2016.1231494",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5173258/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5173258/",
+      "evidence_level_label": "Étude cellulaire in vitro",
+      "species": "Cellules in vitro (MDA-MB-231, MCF-7)",
+      "dose_context": "5-20 µM in vitro"
     },
     {
       "id": 4,
@@ -53,12 +62,15 @@
       "authors": "Jiang L et al.",
       "year": 2019,
       "molecule": "Ivermectine",
-      "study_type": "in vitro",
+      "study_type": "in_vitro",
       "cancer_type": "Multiple (drug-resistant cancer cell lines)",
       "key_finding": "Ivermectin reverses multidrug resistance in cancer cells by suppressing the EGFR/ERK/Akt/NF-κB signaling pathway, suggesting its utility in combination with conventional chemotherapy.",
       "evidence_level": 6,
       "doi": "10.1186/s13046-019-1251-7",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6580523/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6580523/",
+      "evidence_level_label": "Étude cellulaire in vitro",
+      "species": "Cellules in vitro (lignées résistantes)",
+      "dose_context": "2-8 µM in vitro"
     },
     {
       "id": 5,
@@ -68,12 +80,15 @@
       "authors": "Lv S et al.",
       "year": 2022,
       "molecule": "Ivermectine",
-      "study_type": "in vitro",
+      "study_type": "in_vitro",
       "cancer_type": "Prostate cancer",
       "key_finding": "Multi-omics integrated analysis identifies FOXA1 and the DNA repair complex Ku70/Ku80 as primary targets of ivermectin in prostate cancer, explaining its ability to induce DNA damage and inhibit tumor cell survival.",
       "evidence_level": 6,
       "doi": "10.1038/s41419-022-05182-0",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9436997/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9436997/",
+      "evidence_level_label": "Étude cellulaire in vitro",
+      "species": "Cellules in vitro + analyse multi-omique",
+      "dose_context": "5-10 µM in vitro"
     },
     {
       "id": 6,
@@ -83,12 +98,15 @@
       "authors": "Dogra N et al.",
       "year": 2018,
       "molecule": "Fenbendazole",
-      "study_type": "in vitro",
+      "study_type": "in_vitro",
       "cancer_type": "Multiple (lung, colorectal, gastric, lymphoma cell lines)",
       "key_finding": "Fenbendazole destabilizes microtubules, interferes with GLUT4 glucose uptake, downregulates BCL-2, and activates p53-dependent apoptosis, causing cancer cell death via multiple simultaneous pathways.",
       "evidence_level": 6,
       "doi": "10.1038/s41598-018-30158-6",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6085345/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6085345/",
+      "evidence_level_label": "Étude cellulaire in vitro",
+      "species": "Cellules in vitro (poumon, colorectal, gastrique, lymphome)",
+      "dose_context": "1-5 µM in vitro"
     },
     {
       "id": 7,
@@ -98,12 +116,15 @@
       "authors": "Duan Q et al.",
       "year": 2013,
       "molecule": "Fenbendazole",
-      "study_type": "in vitro",
+      "study_type": "in_vitro",
       "cancer_type": "Multiple cancer cell lines (hypoxia-selected)",
       "key_finding": "Fenbendazole exhibits selective cytotoxicity toward hypoxic, drug-resistant cancer cells, overlapping mechanistically with nitroheterocyclic cytotoxins, supporting its evaluation as a radiosensitizer in solid tumors.",
       "evidence_level": 6,
       "doi": null,
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3580766/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3580766/",
+      "evidence_level_label": "Étude cellulaire in vitro",
+      "species": "Cellules in vitro (hypoxie-sélectionnées)",
+      "dose_context": "1-10 µM in vitro"
     },
     {
       "id": 8,
@@ -113,12 +134,15 @@
       "authors": "Mrkvová Z et al.",
       "year": 2019,
       "molecule": "Fenbendazole",
-      "study_type": "in vitro",
+      "study_type": "in_vitro",
       "cancer_type": "Melanoma",
       "key_finding": "Fenbendazole and albendazole activate wild-type p53 in melanoma cells by downregulating its negative regulators Mdm2 and MdmX, identifying a p53 reactivation mechanism in tumors that retain wild-type p53.",
       "evidence_level": 6,
       "doi": "10.3390/molecules24112152",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6600429/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6600429/",
+      "evidence_level_label": "Étude cellulaire in vitro",
+      "species": "Cellules in vitro (mélanome A375)",
+      "dose_context": "0.5-5 µM in vitro"
     },
     {
       "id": 9,
@@ -133,7 +157,10 @@
       "key_finding": "Systematic review of benzimidazole anthelmintics (including fenbendazole and mebendazole) as repurposed anticancer agents, highlighting their shared mechanisms of microtubule disruption, glucose metabolism inhibition, and apoptosis induction.",
       "evidence_level": 1,
       "doi": "10.4110/in.2020.20.e29",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7458798/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7458798/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue)",
+      "dose_context": "Non applicable (revue de synthèse)"
     },
     {
       "id": 10,
@@ -143,12 +170,15 @@
       "authors": "Yamaguchi T et al.",
       "year": 2021,
       "molecule": "Fenbendazole",
-      "study_type": "case series/report",
+      "study_type": "case_report",
       "cancer_type": "Non-small cell lung cancer",
       "key_finding": "Case report of a patient with NSCLC who self-administered fenbendazole based on social media anecdotes and developed drug-induced liver injury, underscoring the hepatotoxicity risk and need for clinical evaluation.",
       "evidence_level": 4,
       "doi": "10.1159/000516276",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8255718/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8255718/",
+      "evidence_level_label": "Série / Rapport de cas",
+      "species": "Humain (rapport de cas)",
+      "dose_context": "Fenbendazole 222 mg/j (automédication, formulation vétérinaire)"
     },
     {
       "id": 11,
@@ -158,12 +188,15 @@
       "authors": "Wang X et al.",
       "year": 2024,
       "molecule": "Fenbendazole",
-      "study_type": "in vivo",
+      "study_type": "in_vivo",
       "cancer_type": "Ovarian cancer",
       "key_finding": "Transcriptomic analysis combined with in vitro and xenograft in vivo models shows fenbendazole inhibits ovarian cancer growth by suppressing cell cycle progression and PI3K/AKT signaling.",
       "evidence_level": 5,
       "doi": "10.1186/s12885-024-13361-9",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11686899/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11686899/",
+      "evidence_level_label": "Étude animale in vivo",
+      "species": "Cellules in vitro + souris (xénogreffe)",
+      "dose_context": "In vitro : 0.5-2 µM ; In vivo : souris, voie non précisée"
     },
     {
       "id": 12,
@@ -178,7 +211,10 @@
       "key_finding": "Extensive literature review synthesizing preclinical and early clinical evidence for mebendazole in oncology, concluding it represents a strong drug repurposing candidate with a favorable safety profile and multiple anti-cancer mechanisms.",
       "evidence_level": 1,
       "doi": "10.3390/cancers11091284",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6769799/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6769799/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue)",
+      "dose_context": "Non applicable (revue de synthèse)"
     },
     {
       "id": 13,
@@ -188,12 +224,15 @@
       "authors": "Bai RY et al.",
       "year": 2011,
       "molecule": "Mébendazole",
-      "study_type": "in vivo",
+      "study_type": "in_vivo",
       "cancer_type": "Glioblastoma (GBM)",
       "key_finding": "Mebendazole significantly extended survival in two independent mouse GBM models by inhibiting tubulin polymerization and blocking VEGFR2 signaling, leading to the initiation of human clinical trials.",
       "evidence_level": 5,
       "doi": "10.1093/neuonc/nor077",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3158014/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3158014/",
+      "evidence_level_label": "Étude animale in vivo",
+      "species": "Souris (modèles GBM orthotopiques)",
+      "dose_context": "50 mg/kg oral, souris"
     },
     {
       "id": 14,
@@ -203,12 +242,15 @@
       "authors": "Elayapillai S et al.",
       "year": 2021,
       "molecule": "Mébendazole",
-      "study_type": "in vivo",
+      "study_type": "in_vivo",
       "cancer_type": "Ovarian cancer",
       "key_finding": "Mebendazole demonstrated significant antitumor activity in cisplatin-resistant high-grade serous ovarian cancer patient-derived xenograft models, inhibiting tumor growth through disruption of MAPK and p53 signaling.",
       "evidence_level": 5,
       "doi": "10.1016/j.ygyno.2020.10.010",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8820236/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8820236/",
+      "evidence_level_label": "Étude animale in vivo",
+      "species": "Souris (xénogreffe PDX ovarien)",
+      "dose_context": "Non spécifié dans le résumé (modèle PDX)"
     },
     {
       "id": 15,
@@ -218,12 +260,15 @@
       "authors": "Ren LW et al.",
       "year": 2022,
       "molecule": "Mébendazole",
-      "study_type": "in vitro",
+      "study_type": "in_vitro",
       "cancer_type": "Glioblastoma",
       "key_finding": "Mebendazole and fenbendazole induce simultaneous apoptosis and pyroptosis in human glioblastoma cells by arresting the cell cycle at G2/M, identifying dual cell-death induction as a key mechanism against GBM.",
       "evidence_level": 6,
       "doi": "10.1038/s41401-021-00752-y",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8724275/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8724275/",
+      "evidence_level_label": "Étude cellulaire in vitro",
+      "species": "Cellules in vitro (GBM humain U87, LN229)",
+      "dose_context": "0.5-2 µM in vitro"
     },
     {
       "id": 16,
@@ -233,12 +278,15 @@
       "authors": "Hegazy SK et al.",
       "year": 2022,
       "molecule": "Mébendazole",
-      "study_type": "clinical trial",
+      "study_type": "clinical_trial",
       "cancer_type": "Metastatic colorectal cancer",
       "key_finding": "Phase 2 randomized double-blind placebo-controlled trial (n=40) found mebendazole 500 mg BID added to bevacizumab + FOLFOX4 improved overall response rate from 10% to 65% and extended median PFS from 3 to 9.25 months in metastatic colorectal cancer.",
       "evidence_level": 2,
       "doi": "10.1016/j.lfs.2022.120536",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/35385794/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35385794/",
+      "evidence_level_label": "Essai contrôlé randomisé (RCT)",
+      "species": "Humain (essai clinique Phase II)",
+      "dose_context": "500 mg BID oral (humain, n=40, Phase II RCT)"
     },
     {
       "id": 17,
@@ -253,7 +301,10 @@
       "key_finding": "Review of preclinical and clinical trial evidence for mebendazole in pediatric and adult brain cancers, summarizing ongoing phase 1/2 trials and the rationale for combining mebendazole with standard-of-care temozolomide.",
       "evidence_level": 1,
       "doi": "10.3390/ijms24021334",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9862092/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9862092/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue)",
+      "dose_context": "Non applicable (revue de synthèse — mentionne essais Phase I/II en cours)"
     },
     {
       "id": 18,
@@ -263,12 +314,15 @@
       "authors": "Larsen AR et al.",
       "year": 2015,
       "molecule": "Mébendazole",
-      "study_type": "in vivo",
+      "study_type": "in_vivo",
       "cancer_type": "Medulloblastoma",
       "key_finding": "Mebendazole potently inhibits Hedgehog signaling by blocking Smoothened (SMO) activity and slows growth of Hh-driven human medulloblastoma cells at clinically attainable concentrations, in vitro and in xenograft models.",
       "evidence_level": 5,
       "doi": "10.1158/1535-7163.MCT-14-0755-T",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4297232/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4297232/",
+      "evidence_level_label": "Étude animale in vivo",
+      "species": "Souris (xénogreffe médulloblastome) + cellules in vitro",
+      "dose_context": "In vitro : 0.3-1 µM ; In vivo : non spécifié"
     },
     {
       "id": 19,
@@ -278,12 +332,15 @@
       "authors": "Rodrigues AJ et al.",
       "year": 2024,
       "molecule": "Mébendazole",
-      "study_type": "in vivo",
+      "study_type": "in_vivo",
       "cancer_type": "Triple-negative breast cancer (CNS metastasis)",
       "key_finding": "Mebendazole demonstrates preclinical efficacy against triple-negative breast cancer leptomeningeal metastases, achieving CNS penetration and tumor growth inhibition in mouse models at clinically relevant doses.",
       "evidence_level": 5,
       "doi": "10.1007/s11060-024-04654-x",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11093727/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11093727/",
+      "evidence_level_label": "Étude animale in vivo",
+      "species": "Souris (modèle métastases CNS)",
+      "dose_context": "Doses cliniquement pertinentes, voie orale (souris)"
     },
     {
       "id": 20,
@@ -293,12 +350,15 @@
       "authors": "Florio R et al.",
       "year": 2021,
       "molecule": "Mébendazole",
-      "study_type": "in vitro",
+      "study_type": "in_vitro",
       "cancer_type": "Multiple solid tumor cell lines",
       "key_finding": "Systematic screening of benzimidazole anthelmintics including mebendazole identifies enantioselective cytotoxicity in cancer cells and provides structure-activity relationship insights for optimizing anticancer benzimidazoles.",
       "evidence_level": 6,
       "doi": "10.3390/ph14040372",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8072969/"
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8072969/",
+      "evidence_level_label": "Étude cellulaire in vitro",
+      "species": "Cellules in vitro (panel tumeurs solides)",
+      "dose_context": "IC50 submicromolaire, screening in vitro"
     },
     {
       "id": 21,
@@ -308,12 +368,15 @@
       "authors": "Gandini S et al.",
       "year": 2014,
       "molecule": "Metformine",
-      "study_type": "meta-analysis",
+      "study_type": "meta_analysis",
       "cancer_type": "Multiple (tous types)",
       "key_finding": "La metformine est associée à une réduction significative du risque de cancer et de mortalité cancéreuse chez les diabétiques, avec un rapport de risque global de 0,75, après correction des biais (immortal time bias).",
       "evidence_level": 1,
       "doi": "10.1158/1940-6207.CAPR-13-0424",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/24985407/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24985407/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "Humain (méta-analyse, patients diabétiques)",
+      "dose_context": "Doses antidiabétiques standard (500-2000 mg/j oral)"
     },
     {
       "id": 22,
@@ -328,7 +391,10 @@
       "key_finding": "Dans cet essai randomisé de phase III (MA.32, n=3649), la metformine n'améliore pas la survie sans maladie invasive chez les femmes non diabétiques avec cancer du sein précoce, suggérant que l'effet bénéfique observé en épidémiologie pourrait être lié au contrôle glycémique.",
       "evidence_level": 2,
       "doi": "10.1001/jama.2022.6147",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/35608580/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35608580/",
+      "evidence_level_label": "Essai contrôlé randomisé (RCT)",
+      "species": "Humain (essai Phase III, n=3649)",
+      "dose_context": "850 mg BID oral (humain, essai MA.32, non-diabétiques)"
     },
     {
       "id": 23,
@@ -343,7 +409,10 @@
       "key_finding": "Revue systématique des essais cliniques en cours : la metformine montre un potentiel antitumoral dans des sous-groupes sélectionnés (hyperinsulinémie, diabète type 2), mais les résultats sont hétérogènes et nécessitent une stratification des patients.",
       "evidence_level": 1,
       "doi": "10.1007/s00432-023-05391-w",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37698682/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37698682/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue)",
+      "dose_context": "Non applicable (revue des essais cliniques en cours)"
     },
     {
       "id": 24,
@@ -353,12 +422,15 @@
       "authors": "Decensi A et al.",
       "year": 2010,
       "molecule": "Metformine",
-      "study_type": "meta-analysis",
+      "study_type": "meta_analysis",
       "cancer_type": "Multiple (tous types, patients diabétiques)",
       "key_finding": "Première grande méta-analyse (n=11 études épidémiologiques) montrant que la metformine réduit de 31% le risque global de cancer chez les diabétiques de type 2, avec des effets particulièrement marqués pour les cancers colorectal, hépatique et pancréatique.",
       "evidence_level": 1,
       "doi": "10.1158/1940-6207.CAPR-10-0157",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/20947488/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20947488/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "Humain (méta-analyse, 11 études épidémiologiques)",
+      "dose_context": "Doses antidiabétiques standard (variable selon études)"
     },
     {
       "id": 25,
@@ -373,7 +445,10 @@
       "key_finding": "Dans cet essai randomisé multicentrique scandinave (DIRECT, n=75), le disulfirame + cuivre ajouté à la chimiothérapie de lomustine ne prolonge pas la survie globale des patients atteints de glioblastome récidivant, principalement dû à la métabolisation rapide du disulfirame en MeDDC inactif.",
       "evidence_level": 2,
       "doi": "10.1001/jamanetworkopen.2023.4149",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37000452/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37000452/",
+      "evidence_level_label": "Essai contrôlé randomisé (RCT)",
+      "species": "Humain (essai RCT, DIRECT, n=75)",
+      "dose_context": "400 mg/j oral + cuivre 1.5 mg/j (humain)"
     },
     {
       "id": 26,
@@ -388,7 +463,10 @@
       "key_finding": "Revue complète des mécanismes d'action antitumoraux du disulfirame : inhibition de l'aldéhyde déshydrogénase (ALDH), ciblage de NPL4, activation du stress oxydatif via le cuivre, et effets immunomodulateurs sur les cellules T et les MDSC, soutenant son repositionnement en oncologie.",
       "evidence_level": 1,
       "doi": "10.1007/s12672-023-00729-9",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37326784/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37326784/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue)",
+      "dose_context": "Non applicable (revue de synthèse)"
     },
     {
       "id": 27,
@@ -403,7 +481,10 @@
       "key_finding": "Le complexe disulfirame/cuivre (DSF/Cu) exerce une activité cytotoxique puissante sur les cellules cancéreuses nasopharyngées ET les fibroblastes associés aux tumeurs via l'activation des voies ROS/MAPK et la ferroptose, proposant un mécanisme dual original.",
       "evidence_level": 6,
       "doi": "10.3390/cancers12010138",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/31935835/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31935835/",
+      "evidence_level_label": "Étude cellulaire in vitro",
+      "species": "Cellules in vitro (cancer nasopharyngé + fibroblastes)",
+      "dose_context": "DSF 0.1-1 µM + CuCl₂ 1 µM in vitro"
     },
     {
       "id": 28,
@@ -418,7 +499,10 @@
       "key_finding": "Revue de synthèse documentant le repositionnement du disulfirame : son efficacité antitumorale passe notamment par l'inhibition du protéasome, la dégradation de p97/NPL4, et la génération d'espèces réactives de l'oxygène en présence de cuivre; les essais cliniques restent limités par la pharmacocinétique.",
       "evidence_level": 1,
       "doi": "10.1097/CM9.0000000000002909",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/38275022/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38275022/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue)",
+      "dose_context": "Non applicable (revue de synthèse)"
     },
     {
       "id": 29,
@@ -433,7 +517,10 @@
       "key_finding": "Revue systématique concluant que le propranolol a un potentiel prometteur comme thérapie adjuvante en oncologie, en particulier en période périopératoire pour réduire le risque de récidive, mais que des essais randomisés de plus grande envergure sont nécessaires pour définir sa place.",
       "evidence_level": 1,
       "doi": "10.1007/s00432-025-06262-2",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/40652143/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40652143/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue systématique)",
+      "dose_context": "Non applicable (revue systématique — doses variables selon études incluses)"
     },
     {
       "id": 30,
@@ -448,7 +535,10 @@
       "key_finding": "Dans cet essai de phase II (n=38), le blocage périopératoire combiné des récepteurs β-adrénergiques (propranolol) et COX-2 (étodolac) réduit significativement les biomarqueurs de métastases dans les tumeurs mammaires réséquées, offrant une preuve de concept pour cibler le stress chirurgical.",
       "evidence_level": 2,
       "doi": "10.1158/1078-0432.CCR-17-0152",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/28490464/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28490464/",
+      "evidence_level_label": "Essai contrôlé randomisé (RCT)",
+      "species": "Humain (essai Phase II, n=38)",
+      "dose_context": "Propranolol 20 mg × 2/j + étodolac 400 mg × 2/j, périopératoire (humain)"
     },
     {
       "id": 31,
@@ -463,7 +553,10 @@
       "key_finding": "Dans cette large analyse poolée de 6 cohortes européennes (n > 55 000 patientes), l'utilisation du propranolol ou des bêta-bloquants non sélectifs n'est pas associée à une amélioration significative de la survie du cancer du sein, nuançant les résultats positifs d'études précédentes.",
       "evidence_level": 3,
       "doi": "10.1186/s13058-016-0782-5",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27906047/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27906047/",
+      "evidence_level_label": "Cohorte / Cas-témoin",
+      "species": "Humain (cohorte poolée, n>55 000)",
+      "dose_context": "Doses antihypertensives standard (variable selon cohortes)"
     },
     {
       "id": 32,
@@ -478,7 +571,10 @@
       "key_finding": "Le propranolol sensibilise les cellules de cancer de la prostate aux inhibiteurs du métabolisme glucidique (2-déoxy-D-glucose) et inhibe la progression tumorale in vitro en ciblant la signalisation β-adrénergique, ouvrant la voie à des combinaisons thérapeutiques.",
       "evidence_level": 6,
       "doi": "10.1038/s41598-018-25340-9",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29728578/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29728578/",
+      "evidence_level_label": "Étude cellulaire in vitro",
+      "species": "Cellules in vitro (prostate PC-3, LNCaP)",
+      "dose_context": "50-100 µM in vitro + 2-DG combinaison"
     },
     {
       "id": 33,
@@ -493,7 +589,10 @@
       "key_finding": "Dans cet essai randomisé de phase 2 (n=112), l'ajout de l'hydroxychloroquine à la gemcitabine + nab-paclitaxel n'améliore pas la survie globale dans le cancer du pancréas avancé, bien que l'inhibition de l'autophagie soit confirmée biologiquement.",
       "evidence_level": 2,
       "doi": "10.1001/jamaoncol.2019.0684",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/31120501/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31120501/",
+      "evidence_level_label": "Essai contrôlé randomisé (RCT)",
+      "species": "Humain (essai Phase II RCT, n=112)",
+      "dose_context": "HCQ 600 mg BID oral + gemcitabine/nab-paclitaxel (humain)"
     },
     {
       "id": 34,
@@ -508,7 +607,10 @@
       "key_finding": "L'ajout d'hydroxychloroquine à haute dose à la chimiothérapie néoadjuvante (gemcitabine/nab-paclitaxel) améliore la réponse pathologique tumorale et réduit le marqueur CA19-9 chez les patients opérables, avec inhibition confirmée de l'autophagie, suggérant un bénéfice en néoadjuvant.",
       "evidence_level": 2,
       "doi": "10.1158/1078-0432.CCR-19-4042",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/32156749/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32156749/",
+      "evidence_level_label": "Essai contrôlé randomisé (RCT)",
+      "species": "Humain (essai Phase II, néoadjuvant)",
+      "dose_context": "HCQ 1200 mg/j oral (haute dose) + gemcitabine/nab-paclitaxel (humain)"
     },
     {
       "id": 35,
@@ -523,7 +625,10 @@
       "key_finding": "Revue fondatrice documentant les bases moléculaires de l'utilisation de la chloroquine et hydroxychloroquine comme agents antitumoraux : inhibition de l'autophagie lysosomale, sensitisation aux chimiothérapies, et survol des essais cliniques en cours, établissant le cadre conceptuel du repositionnement.",
       "evidence_level": 1,
       "doi": "10.4161/mco.29911",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27308318/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27308318/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue)",
+      "dose_context": "Non applicable (revue de synthèse)"
     },
     {
       "id": 36,
@@ -538,7 +643,10 @@
       "key_finding": "Analyse ReDO exhaustive des données précliniques et cliniques : CQ/HCQ agissent via l'inhibition de l'autophagie, la perturbation des lysosomes, et des effets immunomodulateurs ; les preuves précliniques sont solides mais les essais cliniques montrent des résultats hétérogènes nécessitant une meilleure sélection des biomarqueurs.",
       "evidence_level": 1,
       "doi": "10.3332/ecancer.2017.781",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29225688/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29225688/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue ReDO)",
+      "dose_context": "Non applicable (revue de synthèse ReDO)"
     },
     {
       "id": 37,
@@ -553,7 +661,10 @@
       "key_finding": "Perspective critique sur le potentiel des stratégies de repositionnement de médicaments hors-brevet en oncologie pour l'équité en santé mondiale : les obstacles financiers (absence de brevet = absence d'incitation pour l'industrie pharmaceutique) représentent la barrière principale à la mise en œuvre clinique.",
       "evidence_level": 1,
       "doi": "10.1186/s12939-025-02598-w",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/40842013/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40842013/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue/perspective)",
+      "dose_context": "Non applicable (perspective sur équité en santé)"
     },
     {
       "id": 38,
@@ -568,7 +679,10 @@
       "key_finding": "Article fondamental de référence identifiant les freins au repositionnement en oncologie : absence de financement pour les molécules off-patent, modèle économique pharmaceutique inadapté, barrières réglementaires, et nécessité de nouveaux modèles de financement académique et philanthropique.",
       "evidence_level": 1,
       "doi": "10.1016/j.trecan.2017.06.007",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/28780930/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28780930/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue)",
+      "dose_context": "Non applicable (revue de synthèse — pipeline repositionnement)"
     },
     {
       "id": 39,
@@ -583,7 +697,10 @@
       "key_finding": "Analyse complète du pipeline de repositionnement en oncologie : de l'identification des candidats (données épidémiologiques, in vitro, in vivo) jusqu'à l'adoption clinique, en détaillant les obstacles réglementaires, les enjeux de remboursement, et les modèles d'essais cliniques adaptés aux molécules génériques.",
       "evidence_level": 1,
       "doi": "10.1016/j.semcancer.2020.01.008",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/31982510/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31982510/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue)",
+      "dose_context": "Non applicable (revue de synthèse)"
     },
     {
       "id": 40,
@@ -598,7 +715,10 @@
       "key_finding": "Revue sur la stratégie de repositionnement basé sur les effets hors-cibles de médicaments approuvés : analyse comment des médicaments développés pour d'autres pathologies (antidiabétiques, antipsychotiques, antiparasitaires) peuvent cibler des voies oncogéniques, avec des exemples incluant la metformine, le disulfirame et la chloroquine.",
       "evidence_level": 1,
       "doi": "10.1016/j.semcancer.2020.02.003",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/32044472/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32044472/",
+      "evidence_level_label": "Méta-analyse / Revue systématique",
+      "species": "N/A (revue)",
+      "dose_context": "Non applicable (revue de synthèse — effets hors-cibles)"
     }
   ],
   "total": 40,

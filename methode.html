@@ -472,6 +472,9 @@
           <li><a href="#biais"><span class="toc-num">07</span>Biais potentiels identifiés</a></li>
           <li><a href="#limites"><span class="toc-num">08</span>Limites</a></li>
           <li><a href="#maintenance"><span class="toc-num">09</span>Mise à jour et maintenance</a></li>
+          <li><a href="#preclinique-clinique"><span class="toc-num">10</span>Distinction préclinique / clinique</a></li>
+          <li><a href="#posologies"><span class="toc-num">11</span>Posologies : contexte et vérification</a></li>
+          <li><a href="#securite"><span class="toc-num">12</span>Sécurité et effets indésirables</a></li>
         </ol>
       </nav>
 
@@ -879,6 +882,212 @@
 
         <div class="alert-box info">
           <strong>Fichiers de données :</strong> Les données sont stockées au format JSON dans le répertoire <code>data/</code> — <code>sources.json</code> (bibliographie), <code>molecules.json</code> (fiches molécules), <code>essais.json</code> (essais cliniques), <code>changelog.json</code> (historique des modifications). Ces fichiers constituent la source de vérité du projet.
+        </div>
+      </section>
+
+      <!-- SECTION 10: Distinction préclinique/clinique -->
+      <section class="content-section" id="preclinique-clinique">
+        <h2>
+          <span class="section-num">10</span>
+          Distinction stricte préclinique / clinique
+        </h2>
+        <p>
+          L'une des erreurs d'interprétation les plus fréquentes et les plus dangereuses consiste à confondre signal préclinique et preuve clinique. Ce projet applique une distinction stricte et explicite à chaque étude référencée.
+        </p>
+
+        <div class="table-wrapper">
+          <table class="data-table" aria-label="Distinction préclinique vs clinique">
+            <thead>
+              <tr>
+                <th>Niveau</th>
+                <th>Modèle</th>
+                <th>Informations obtenues</th>
+                <th>Valeur translationnelle</th>
+                <th>Ce que ça ne prouve PAS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="evidence-badge evidence-6">In vitro</span></td>
+                <td>Cellules en culture (2D / 3D)</td>
+                <td>Effet cytotoxique direct, mécanismes moléculaires</td>
+                <td class="text-danger">Très faible</td>
+                <td>Efficacité chez l'animal ou l'humain, doses atteignables in vivo</td>
+              </tr>
+              <tr>
+                <td><span class="evidence-badge evidence-5">In vivo</span></td>
+                <td>Souris, rats (souvent xénogreffes)</td>
+                <td>Efficacité sur tumeur dans un organisme entier, pharmacocinétique</td>
+                <td class="text-warning" style="color: var(--color-orange);">Faible à modérée</td>
+                <td>Résultats transposables à l'humain (différences métaboliques, immunitaires)</td>
+              </tr>
+              <tr>
+                <td><span class="evidence-badge evidence-4">Case report</span></td>
+                <td>Observation clinique unique</td>
+                <td>Hypothèse clinique, signal de tolérance/toxicité individuel</td>
+                <td class="text-warning">Très faible</td>
+                <td>Efficacité populationnelle, causalité (biais de survie majeur)</td>
+              </tr>
+              <tr>
+                <td><span class="evidence-badge evidence-3">Cohorte</span></td>
+                <td>Population humaine observée</td>
+                <td>Associations épidémiologiques (signal), données de sécurité réelles</td>
+                <td class="text-primary">Modérée</td>
+                <td>Causalité directe sans essai contrôlé randomisé</td>
+              </tr>
+              <tr>
+                <td><span class="evidence-badge evidence-2">RCT</span></td>
+                <td>Essai humain randomisé contrôlé</td>
+                <td>Efficacité causale, sécurité comparative, dose optimale</td>
+                <td style="color: var(--color-teal);">Élevée</td>
+                <td>Extrapolation à des populations non représentées dans l'essai</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Le fossé préclinique-clinique : un fait documenté</h3>
+        <p>
+          Selon <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12592109/" target="_blank" rel="noopener noreferrer">les données de la littérature sur le repositionnement (Frontiers Pharmacol., 2025)</a>, le taux d'échec entre la phase préclinique et la commercialisation d'un médicament est de <strong>90 à 95 %</strong>. Pour les molécules repositionnées, ce taux reste entre 25 et 70 % selon les estimations. La majorité des molécules prometteuses en cellules ou animaux ne franchissent pas l'étape humaine. Ce chiffre illustre pourquoi un signal in vitro enthousiaste, même reproduit sur plusieurs modèles cellulaires indépendants, ne constitue qu'un point de départ, non une conclusion.
+        </p>
+
+        <div class="alert-box warning">
+          <strong>Règle appliquée dans ce projet :</strong> Chaque étude est étiquetée avec son modèle (in vitro / in vivo animal / humain). Les molécules sans essai humain publié sont explicitement signalées. La distinction est maintenue dans toutes les fiches et dans le champ <code>species</code> du fichier <code>sources.json</code>.
+        </div>
+      </section>
+
+      <!-- SECTION 11: Posologies -->
+      <section class="content-section" id="posologies">
+        <h2>
+          <span class="section-num">11</span>
+          Posologies : contexte et vérification
+        </h2>
+        <p>
+          Les doses sont l'un des éléments les plus mal contextualisés dans les discussions publiques sur le repositionnement. Ce projet applique des règles strictes de contextualisation.
+        </p>
+
+        <h3>Quatre catégories de doses — distinctes et non interchangeables</h3>
+        <div class="bias-list">
+          <div class="bias-card">
+            <div class="bias-number">A</div>
+            <div class="bias-content">
+              <strong>Doses antiparasitaires approuvées (humain)</strong>
+              <p>Doses validées par les autorités réglementaires (FDA, EMA, OMS) pour l'indication d'origine. Ce sont les seules doses pour lesquelles les profils de sécurité humaine sont établis. Exemple : ivermectine 150-200 µg/kg dose unique pour l'onchocercose ; mébendazole 100 mg dose unique pour l'oxyurose.</p>
+              <div class="bias-mitigation">Statut dans ce projet : doses vérifiées sur les notices officielles et les recommandations OMS. Mentions explicites dans chaque fiche molécule.</div>
+            </div>
+          </div>
+          <div class="bias-card">
+            <div class="bias-number">B</div>
+            <div class="bias-content">
+              <strong>Doses précliniques in vitro</strong>
+              <p>Concentrations testées sur cellules en culture. Exprimées en µM ou nM. Ces concentrations sont souvent 10 à 1 000 fois supérieures aux concentrations plasmatiques atteignables chez l'humain aux doses approuvées. Exemple : ivermectine IC50 5-20 µM in vitro, alors que la Cmax plasmatique à 200 µg/kg est ~15-56 ng/mL (~17-64 nM).</p>
+              <div class="bias-mitigation">Règle appliquée : l'écart entre IC50 in vitro et concentration plasmatique humaine atteignable est systématiquement signalé lorsque les données pharmacocinétiques sont disponibles.</div>
+            </div>
+          </div>
+          <div class="bias-card">
+            <div class="bias-number">C</div>
+            <div class="bias-content">
+              <strong>Doses animales (in vivo préclinique)</strong>
+              <p>Doses testées sur souris ou rats, exprimées en mg/kg. La traduction allométrique vers l'humain n'est pas directe. Un facteur 10-30 peut séparer la dose efficace chez la souris de la dose humaine équivalente. Exemple : mébendazole 50 mg/kg chez la souris (Bai 2011).</p>
+              <div class="bias-mitigation">Règle appliquée : les doses animales sont toujours présentées avec l'espèce concernée et une mention explicite de la non-transposabilité directe.</div>
+            </div>
+          </div>
+          <div class="bias-card">
+            <div class="bias-number">D</div>
+            <div class="bias-content">
+              <strong>Doses oncologiques humaines (essais cliniques)</strong>
+              <p>Doses testées dans des essais cliniques oncologiques formels. C'est la seule catégorie directement pertinente pour une évaluation clinique. Exemple : mébendazole 500 mg BID oral en continu (Hegazy 2022, Phase II RCT).</p>
+              <div class="bias-mitigation">Règle appliquée : seules les doses issues d'essais humains publiés sont présentées comme données cliniques. Les données d'automédication ou des protocoles informels sont mentionnés séparément, avec avertissement explicite.</div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Usages informels : mention systématique avec avertissement</h3>
+        <p>
+          Certaines molécules (notamment fenbendazole) circulent sur internet avec des protocoles d'automédication non validés. Ce projet les mentionne factuellement lorsqu'ils existent, accompagnés d'un avertissement sur :
+        </p>
+        <ul>
+          <li>L'absence de validation clinique des doses et protocoles informels</li>
+          <li>Les risques liés aux formulations vétérinaires (excipients non testés pour l'humain)</li>
+          <li>Le biais de survie dans les témoignages individuels</li>
+          <li>Les cas documentés de toxicité liés à l'automédication (ex. hépatotoxicité au fenbendazole : <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8255718/" target="_blank" rel="noopener noreferrer">Yamaguchi 2021, PMC8255718</a>)</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 12: Sécurité -->
+      <section class="content-section" id="securite">
+        <h2>
+          <span class="section-num">12</span>
+          Sécurité et effets indésirables
+        </h2>
+        <p>
+          Le profil de sécurité à doses antiparasitaires approuvées est distinct du profil de sécurité à doses antitumorales. Cette distinction est fondamentale et souvent omise dans les discussions publiques.
+        </p>
+
+        <h3>Principe général</h3>
+        <p>
+          Un médicament bien toléré à faible dose antiparasitaire peut présenter une toxicité significative à des doses antitumorales plus élevées. La fenêtre thérapeutique doit être établie séparément pour chaque indication. Le fait qu'une molécule soit «&nbsp;naturelle&nbsp;», ancienne ou bon marché ne préjuge pas de sa sécurité à des doses supérieures.
+        </p>
+
+        <div class="table-wrapper">
+          <table class="data-table" aria-label="Profils de sécurité par molécule">
+            <thead>
+              <tr>
+                <th>Molécule</th>
+                <th>Profil antiparasitaire</th>
+                <th>Alertes oncologiques</th>
+                <th>Données humaines onco</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-warning"><strong>Ivermectine</strong></td>
+                <td>Très bien tolérée. Réactions de Mazzotti légères possibles (parasitémie).</td>
+                <td>Aucune donnée à doses antitumorales humaines. IC50 in vitro non atteignable à doses approuvées.</td>
+                <td class="text-danger">Aucun essai clinique onco publié</td>
+              </tr>
+              <tr>
+                <td class="text-danger"><strong>Fenbendazole</strong></td>
+                <td>Usage vétérinaire uniquement. Non approuvé pour l'humain.</td>
+                <td>Hépatotoxicité documentée par automédication (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8255718/" target="_blank">Yamaguchi 2021</a>). Excipients vétérinaires non testés chez l'humain.</td>
+                <td class="text-danger">Aucun essai clinique humain</td>
+              </tr>
+              <tr>
+                <td class="text-success"><strong>Mébendazole</strong></td>
+                <td>Excellente tolérance. Effets GI mineurs possibles à hautes doses.</td>
+                <td>500 mg BID bien toléré (Hegazy 2022). Élévation transitoire enzymes hépatiques possible.</td>
+                <td class="text-success">Phase II RCT (Hegazy 2022, n=40)</td>
+              </tr>
+              <tr>
+                <td style="color: var(--color-teal);"><strong>Metformine</strong></td>
+                <td>Troubles GI courants. Risque rare d'acidose lactique (insuffisance rénale).</td>
+                <td>Profil sécurité bien établi. Essai MA.32 (n=3649) sans signal de sécurité inattendu.</td>
+                <td class="text-success">Phase III RCT (MA.32, n=3649)</td>
+              </tr>
+              <tr>
+                <td class="text-warning"><strong>Disulfirame</strong></td>
+                <td>Réaction antabuse (alcool + DSF). Neuropathie périphérique au long cours.</td>
+                <td>Interactions médicamenteuses importantes. Métabolisation rapide in vivo (problème PK identifié dans DIRECT).</td>
+                <td class="text-warning">RCT DIRECT 2023 — résultat négatif</td>
+              </tr>
+              <tr>
+                <td style="color: var(--color-primary);"><strong>Propranolol</strong></td>
+                <td>Bradycardie, hypotension. Contre-indiqué asthme/BPCO.</td>
+                <td>Contexte périopératoire oncologique : surveillance cardiologique requise.</td>
+                <td class="text-success">Phase II périopératoire (n=38)</td>
+              </tr>
+              <tr>
+                <td style="color: var(--color-purple);"><strong>Chloroquine/HCQ</strong></td>
+                <td>Toxicité rétinienne au long cours (dose-dépendante). Troubles cardiaques rares.</td>
+                <td>Toxicité rétinienne : surveillance ophtalmologique obligatoire en oncologie long terme.</td>
+                <td class="text-success">Phase II (Karasic 2019, Zeh 2020)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert-box danger">
+          <strong>Rappel fondamental :</strong> Aucune des molécules de ce projet ne doit être utilisée en automédication à des fins oncologiques. Les doses antitumorales actives ne sont pas établies pour la majorité d'entre elles. Consultez toujours un professionnel de santé qualifié.
         </div>
       </section>
 
