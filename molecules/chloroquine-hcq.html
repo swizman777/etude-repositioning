@@ -329,6 +329,7 @@
       <nav><ul class="nav-links">
         <li><a href="../index.html">Accueil</a></li>
         <li><a href="../dashboard.html">Dashboard</a></li>
+          <li><a href="../signaux-atypiques.html">Signaux atypiques</a></li>
         <li><a href="../methode.html">Méthodologie</a></li>
         <li><a href="../documentation.html">Documentation</a></li>
       </ul></nav>
@@ -701,6 +702,55 @@
         </div>
       </div>
 
+      
+      <!-- ── GRILLE RISQUES AUTOMÉDICATION (v1.3.0) ── -->
+      <div class="mol-section" id="risk-grid-section">
+        <div class="mol-section-title">
+          <span class="mol-section-num" style="background:rgba(239,68,68,0.1);color:var(--color-danger);">⚠</span>
+          <h2>Grille risques — Automédication oncologique</h2>
+        </div>
+        <div class="alert-box warning" style="margin-bottom:var(--space-5);">
+          <strong>Évaluation structurée des risques</strong> liés à l'utilisation de cette molécule en automédication oncologique, selon 5 critères indépendants.
+        </div>
+        <div class="safety-grid">
+          <div class="safety-card" style="border-left:3px solid var(--color-orange);">
+            <div class="safety-card-label">Dose / Formulation</div>
+            <div class="safety-card-content">
+              <span style="font-family:var(--font-display);font-size:var(--text-xs);font-weight:700;color:var(--color-orange);">● Modéré</span><br>
+              <span style="font-size:var(--text-xs);color:var(--color-text-faint);line-height:1.6;">Médicaments humains approuvés (Plaquenil® — lupus, paludisme). Doses standard connues. Marge thérapeutique étroite pour la chloroquine.</span>
+            </div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-danger);">
+            <div class="safety-card-label">Interactions médicamenteuses</div>
+            <div class="safety-card-content">
+              <span style="font-family:var(--font-display);font-size:var(--text-xs);font-weight:700;color:var(--color-danger);">● Élevé</span><br>
+              <span style="font-size:var(--text-xs);color:var(--color-text-faint);line-height:1.6;">Allongement QT — interaction avec macrolides, fluoroquinolones, antiarythmiques. Risque cardiaque accru avec certaines chimiothérapies. ECG de surveillance requis.</span>
+            </div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-orange);">
+            <div class="safety-card-label">Retard de soins</div>
+            <div class="safety-card-content">
+              <span style="font-family:var(--font-display);font-size:var(--text-xs);font-weight:700;color:var(--color-orange);">● Modéré</span><br>
+              <span style="font-size:var(--text-xs);color:var(--color-text-faint);line-height:1.6;">Essais cliniques réalisés (combinaison avec chimio). Risque si utilisé seul comme alternative.</span>
+            </div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-orange);">
+            <div class="safety-card-label">Preuves sécurité</div>
+            <div class="safety-card-content">
+              <span style="font-family:var(--font-display);font-size:var(--text-xs);font-weight:700;color:var(--color-orange);">● Modéré</span><br>
+              <span style="font-size:var(--text-xs);color:var(--color-text-faint);line-height:1.6;">Profil connu : rétinopathie (usage prolongé), cardiotoxicité (QT), myopathie. Surveillance ophtalmologique et cardiaque nécessaire. Surdosage potentiellement fatal.</span>
+            </div>
+          </div>
+          <div class="safety-card" style="border-left:3px solid var(--color-danger);">
+            <div class="safety-card-label">Toxicité cardiaque</div>
+            <div class="safety-card-content">
+              <span style="font-family:var(--font-display);font-size:var(--text-xs);font-weight:700;color:var(--color-danger);">● Élevé</span><br>
+              <span style="font-size:var(--text-xs);color:var(--color-text-faint);line-height:1.6;">Allongement QTc dose-dépendant. Cas de torsades de pointes et arrêts cardiaques documentés, surtout en association médicamenteuse.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- ── 08. GRAPHIQUES ── -->
       <div class="mol-section">
         <div class="mol-section-title">
@@ -905,5 +955,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+<script src="../assets/js/tts.js" defer></script>
 </body>
 </html>

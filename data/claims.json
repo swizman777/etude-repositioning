@@ -1,0 +1,164 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-04-11",
+  "description": "Base de données structurée des claims viraux en oncologie alternative. Chaque entrée est analysée avec le même cadre méthodologique que les molécules repositionnées.",
+  "evidence_framework": {
+    "levels": {
+      "1": "Méta-analyse / Revue systématique",
+      "2": "Essai clinique randomisé (RCT)",
+      "3": "Cohorte / Cas-contrôle",
+      "4": "Rapport de cas / Série de cas",
+      "5": "In vivo animal",
+      "6": "In vitro cellulaire",
+      "7": "Aucune donnée publiée / Anecdotique"
+    },
+    "plausibility": ["Mécanisme établi", "Mécanisme plausible", "Mécanisme spéculatif", "Aucun mécanisme identifié"],
+    "risk_levels": ["Faible", "Incertain", "Modéré", "Élevé", "Documenté"]
+  },
+  "claims": [
+    {
+      "id": "dandelion-root",
+      "title": "Racine de pissenlit « tue 95% des cellules cancéreuses »",
+      "short_title": "Racine de pissenlit",
+      "claim_text": "L'extrait de racine de pissenlit (DRE) tue 95% des cellules de cancer colorectal en 48h sans toxicité sur les cellules saines. Remède naturel miracle contre le cancer.",
+      "source_type": "viral_social_media",
+      "virality": "Très haute (millions de vues, partagé sur LinkedIn, Facebook, TikTok, forums santé)",
+      "evidence_level": 6,
+      "evidence_label": "In vitro + xénogreffe souris",
+      "plausibility": "Mécanisme plausible",
+      "human_data": "1 essai Phase I (NCT01945775, Windsor Cancer Research Group, Canada) — résultats non publiés à ce jour",
+      "what_study_actually_says": "L'étude Ovadje 2016 (PMID 27564258, Oncotarget) montre bien >95% de mort cellulaire dans des LIGNÉES CELLULAIRES in vitro (HT-29, HCT116) à une concentration de 2-3.5 mg/mL. Confirmé in vivo sur xénogreffes souris (réduction 90% croissance tumorale). MAIS : aucune donnée humaine publiée. L'essai Phase I existe mais les résultats ne sont pas publics.",
+      "gap_analysis": "Le claim viral omet systématiquement : (1) résultats in vitro uniquement — tuer des cellules dans une boîte ≠ traiter un cancer humain ; (2) la concentration efficace (mg/mL) est incomparablement supérieure à ce qu'une tisane ou un supplément délivre ; (3) l'essai clinique humain n'a pas de résultat publié.",
+      "risk_assessment": {
+        "dose_formulation": { "level": "Faible", "detail": "DRE à doses alimentaires/supplémentaires — toxicité faible connue" },
+        "interactions": { "level": "Incertain", "detail": "Interactions avec chimiothérapies non étudiées. Potentiel d'interférence pharmacocinétique." },
+        "retard_soins": { "level": "Élevé", "detail": "Risque majeur si le patient abandonne/retarde un traitement conventionnel pour un produit sans preuve humaine." },
+        "statut_reglementaire": { "level": "Faible", "detail": "Supplément alimentaire légal. Pas de contrôle qualité pharmaceutique." },
+        "preuves_securite": { "level": "Incertain", "detail": "Profil toxicologique humain non systématiquement étudié au-delà des doses alimentaires." }
+      },
+      "conclusion": "Signal préclinique authentique et publié dans une revue à comité de lecture. Mais le saut entre 'tue 95% des cellules in vitro' et 'guérit le cancer chez l'humain' est immense et non démontré. L'éthanol tue aussi 100% des cellules cancéreuses in vitro. L'essai Phase I humain existe mais ses résultats ne sont pas publiés.",
+      "sources": [
+        { "ref": "Ovadje P et al. 2016 — Oncotarget", "pmid": "27564258", "url": "https://pubmed.ncbi.nlm.nih.gov/27564258/" },
+        { "ref": "Ovadje P et al. 2012 — Pancréas", "pmid": "22647733", "url": "https://pubmed.ncbi.nlm.nih.gov/22647733/" },
+        { "ref": "Essai Phase I NCT01945775", "url": "https://clinicaltrials.gov/study/NCT01945775" }
+      ],
+      "color": "#22c55e",
+      "icon": "🌿"
+    },
+    {
+      "id": "h2o2-peroxide",
+      "title": "Peroxyde d'hydrogène (H₂O₂) « oxygénothérapie anticancer »",
+      "short_title": "H₂O₂ / Peroxyde",
+      "claim_text": "Le peroxyde d'hydrogène à 35% guérit le cancer en oxygénant les cellules tumorales. Le cancer ne survit pas en milieu riche en oxygène. Le CDC aurait validé cette approche.",
+      "source_type": "viral_social_media",
+      "virality": "Haute (forums alternatifs, vidéos YouTube, groupes Facebook)",
+      "evidence_level": 7,
+      "evidence_label": "Aucune donnée humaine oncologique",
+      "plausibility": "Mécanisme spéculatif",
+      "human_data": "0 essai clinique oncologique. 1 essai (NCT04929535) sur application TOPIQUE de H₂O₂ 30% pour lésions cutanées précancéreuses (kératose actinique) — contexte complètement différent.",
+      "what_study_actually_says": "L'hypothèse originale (Warburg 1924) que le cancer prospère en milieu hypoxique est partiellement vraie mais la conclusion 'oxygéner = tuer le cancer' est invalidée par la recherche moderne. Les cellules cancéreuses survivent aussi en milieu oxygéné. Aucune étude publiée ne montre d'effet anticancéreux de l'ingestion ou injection de H₂O₂.",
+      "gap_analysis": "Le claim confond : (1) effet Warburg (métabolisme glycolytique des tumeurs) avec 'le cancer meurt en présence d'oxygène' — FAUX ; (2) application topique de H₂O₂ (dermatologie) avec ingestion/injection systémique ; (3) le CDC n'a jamais validé le H₂O₂ comme traitement anticancéreux — au contraire, la FDA a émis des avertissements.",
+      "risk_assessment": {
+        "dose_formulation": { "level": "Documenté", "detail": "H₂O₂ 35% ingéré : ulcères buccaux/œsophagiens/gastriques, embolie gazeuse potentiellement fatale. TOXICITÉ GRAVE." },
+        "interactions": { "level": "Élevé", "detail": "Oxydant puissant — interaction destructrice avec de nombreux médicaments." },
+        "retard_soins": { "level": "Élevé", "detail": "Abandon du traitement conventionnel au profit d'une thérapie sans preuve = risque vital." },
+        "statut_reglementaire": { "level": "Élevé", "detail": "FDA warning 2006 : H₂O₂ à usage interne = produit dangereux. Non approuvé pour usage médical interne." },
+        "preuves_securite": { "level": "Documenté", "detail": "Cas de décès documentés suite à ingestion/injection IV de H₂O₂. Embolie gazeuse létale." }
+      },
+      "conclusion": "Aucune base scientifique pour l'ingestion de H₂O₂ comme traitement anticancéreux. Le mécanisme invoqué (cancer = anaérobie) est une simplification obsolète. La toxicité à 35% est grave et documentée, incluant des décès. Le CDC et la FDA déconseillent formellement.",
+      "sources": [
+        { "ref": "Medical News Today — H₂O₂ cancer claims analysis", "url": "https://www.medicalnewstoday.com/articles/323591" },
+        { "ref": "NCT04929535 — H₂O₂ topique kératose (non oncologie)", "url": "https://clinicaltrials.gov/study/NCT04929535" },
+        { "ref": "FDA Warning on H₂O₂ 35%", "url": "https://www.fda.gov/consumers/consumer-updates/hydrogen-peroxide-marketed-alternative-medicine" }
+      ],
+      "color": "#ef4444",
+      "icon": "⚗️"
+    },
+    {
+      "id": "gcmaf",
+      "title": "GcMAF « protéine miracle anticancer »",
+      "short_title": "GcMAF",
+      "claim_text": "Le GcMAF (Gc protein-derived Macrophage Activating Factor) guérit le cancer en activant les macrophages. Les études prouvent une éradication complète des tumeurs. Des médecins ont été assassinés pour cacher cette découverte.",
+      "source_type": "viral_conspiracy",
+      "virality": "Très haute (théories conspirationnistes, forums alternatifs, vidéos virales sur les 'médecins hollistiques assassinés')",
+      "evidence_level": 7,
+      "evidence_label": "Publications rétractées / frauduleuses",
+      "plausibility": "Aucun mécanisme identifié",
+      "human_data": "Publications de Yamamoto (2008-2009) — TOUTES RÉTRACTÉES pour fraude. Séries de cas (Ruggiero 2013, PMC3812199) — 20 patients, critère nagalase uniquement, non validé.",
+      "what_study_actually_says": "Les publications originales de Yamamoto et al. (2008, 2009) prétendant l'éradication complète de cancers du sein et colorectal ont été RÉTRACTÉES par l'International Journal of Cancer pour fraude : utilisation de noms de co-auteurs non consentants, données fabriquées, critères d'évaluation non validés (nagalase seul). Des analyses tierces n'ont jamais identifié de mécanisme actif.",
+      "gap_analysis": "Le claim viral omet : (1) TOUTES les études clés sont rétractées pour fraude ; (2) le critère nagalase n'est pas un marqueur tumoral validé ; (3) le GcMAF commercial est un produit non contrôlé, fabriqué dans des conditions non pharmaceutiques ; (4) les théories conspirationnistes sur les 'médecins assassinés' n'ont aucune base factuelle (Snopes 2017).",
+      "risk_assessment": {
+        "dose_formulation": { "level": "Élevé", "detail": "Produit biologique non contrôlé, fabriqué hors cadre pharmaceutique. Contamination microbiologique possible." },
+        "interactions": { "level": "Incertain", "detail": "Immunomodulateur potentiel — interaction avec immunothérapies standard inconnue." },
+        "retard_soins": { "level": "Élevé", "detail": "Nombreux patients ayant abandonné des traitements efficaces au profit du GcMAF." },
+        "statut_reglementaire": { "level": "Documenté", "detail": "INTERDIT dans la plupart des pays (UK MHRA saisies 2015, FDA non approuvé). Vendu illégalement." },
+        "preuves_securite": { "level": "Documenté", "detail": "Aucune étude de sécurité publiée. Cliniques GcMAF fermées par les autorités sanitaires (UK, Suisse)." }
+      },
+      "conclusion": "Fraude scientifique documentée. Les publications fondatrices sont rétractées. Le produit est interdit à la vente dans la plupart des juridictions. L'Anticancer Fund qualifie le GcMAF de 'story of exploitation and lies'. Aucun bénéfice thérapeutique démontré.",
+      "sources": [
+        { "ref": "Retraction Watch — Yamamoto GcMAF papers retracted 2014", "url": "https://retractionwatch.com/2014/07/25/paper-about-widely-touted-but-unapproved-cure-for-cancer-autism-retracted/" },
+        { "ref": "Anticancer Fund — GcMAF: exploitation and lies", "url": "https://www.anticancerfund.org/en/gcmaf-story-exploitation-and-lies" },
+        { "ref": "Ruggiero 2013 (série de cas non validée)", "pmid": "PMC3812199", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3812199/" }
+      ],
+      "color": "#a78bfa",
+      "icon": "🧬"
+    },
+    {
+      "id": "russia-enteromix",
+      "title": "Vaccin anticancéreux russe Enteromix « 100% efficacité »",
+      "short_title": "Vaccin russe Enteromix",
+      "claim_text": "La Russie a développé un vaccin mRNA anticancéreux (Enteromix) avec 100% d'efficacité, disponible gratuitement dès 2025. Cure définitive du cancer.",
+      "source_type": "viral_social_media",
+      "virality": "Très haute (>1800 partages Africa, relayé YouTube, Facebook, LinkedIn — viral fin 2024/2025)",
+      "evidence_level": 7,
+      "evidence_label": "Phase I en cours — aucun résultat publié",
+      "plausibility": "Mécanisme plausible",
+      "human_data": "Phase I ouverte monocentrique (48 volontaires) lancée en juin 2025 par le Centre Radiologique National russe. AUCUN résultat publié dans une revue à comité de lecture.",
+      "what_study_actually_says": "Le vaccin Enteromix est un vaccin mRNA personnalisé développé par l'Agence Fédérale Médicale et Biologique russe (FMBA). Veronika Skvortsova (directrice FMBA) a annoncé la fin des essais précliniques en septembre 2025. Un essai Phase I (48 patients) est en cours. Le directeur général du Centre Oncologique Blokhin a déclaré : 'La technologie est révolutionnaire mais ce n'est pas une panacée, un comprimé miracle pour tous les cancers.'",
+      "gap_analysis": "Le claim viral transforme : (1) 'essais précliniques terminés' en '100% efficacité' (les données précliniques ne permettent pas cette conclusion) ; (2) 'Phase I en cours' en 'disponible gratuitement dès 2025' (Phase I = première étude de sécurité humaine, pas d'efficacité démontrée) ; (3) vaccin personnalisé mRNA (technologie réelle utilisée par BioNTech/Moderna aussi) en 'cure du cancer' (les vaccins mRNA oncologiques sont des traitements individualisés, pas des cures universelles).",
+      "risk_assessment": {
+        "dose_formulation": { "level": "Incertain", "detail": "Vaccin non disponible — aucune donnée de formulation publique." },
+        "interactions": { "level": "Incertain", "detail": "Non évaluées (Phase I en cours)." },
+        "retard_soins": { "level": "Élevé", "detail": "Patients attendant un vaccin hypothétique au lieu de traiter immédiatement." },
+        "statut_reglementaire": { "level": "Incertain", "detail": "Phase I en Russie — aucune approbation réglementaire dans aucun pays." },
+        "preuves_securite": { "level": "Incertain", "detail": "Phase I = première évaluation sécurité. Données non publiées." }
+      },
+      "conclusion": "Technologie réelle (vaccins mRNA personnalisés oncologiques) portée par plusieurs acteurs mondiaux (BioNTech, Moderna, Gritstone). Mais l'Enteromix n'a aucun résultat publié — la Phase I est en cours avec 48 patients seulement. Le claim '100% efficacité' et 'disponible 2025' est factuellement faux selon les propres déclarations russes.",
+      "sources": [
+        { "ref": "CEDMO Hub — Analyse fact-check Enteromix 2025", "url": "https://cedmohub.eu/exaggerated-claims-about-russias-cancer-vaccine-enteromix-sweep-across-africa/" },
+        { "ref": "Centre Radiologique National russe — annonce Phase I", "url": "https://nmicr.ru/about/news/vaktsinaciya-ot-raka/" }
+      ],
+      "color": "#38bdf8",
+      "icon": "💉"
+    },
+    {
+      "id": "baking-soda",
+      "title": "Bicarbonate de soude « alcaliniser pour tuer le cancer »",
+      "short_title": "Bicarbonate de soude",
+      "claim_text": "Le bicarbonate de soude (NaHCO₃) guérit le cancer en alcalinisant le corps. Le cancer ne survit pas en milieu alcalin. Vernon Johnston a guéri un cancer de la prostate stade 4 avec du bicarbonate et du sirop d'érable.",
+      "source_type": "viral_social_media",
+      "virality": "Haute (YouTube millions de vues, livres d'auteurs alternatifs, Simoncini, Vernon Johnston)",
+      "evidence_level": 5,
+      "evidence_label": "In vivo animal (souris)",
+      "plausibility": "Mécanisme plausible",
+      "human_data": "0 essai clinique humain contrôlé. 1 cas anecdotique (Vernon Johnston — non publié dans revue à comité de lecture).",
+      "what_study_actually_says": "L'étude clé (Robey 2009, PMID 19276390, Cancer Research) montre que le NaHCO₃ oral AUGMENTE bien le pH tumoral chez la souris et RÉDUIT les métastases spontanées dans un modèle de cancer du sein. L'étude Estrella 2013 (PMID 23936808) confirme la survie prolongée. Des nanoparticules lipidiques de bicarbonate (PMC6660974, 2019) améliorent l'efficacité de la doxorubicine chez la souris. MAIS : aucune étude humaine contrôlée.",
+      "gap_analysis": "Le claim viral omet : (1) toutes les données sont murines (souris) — physiologie humaine ≠ souris pour la régulation pH ; (2) le corps humain maintient son pH sanguin dans une fenêtre ultra-étroite (7.35-7.45) via des tampons puissants — l'ingestion de bicarbonate ne 'alcalinise' pas significativement le sang ni les tumeurs humaines ; (3) le cas Vernon Johnston est non vérifié scientifiquement et coïncide avec un traitement conventionnel ; (4) l'alcalose métabolique iatrogène est dangereuse.",
+      "risk_assessment": {
+        "dose_formulation": { "level": "Modéré", "detail": "NaHCO₃ alimentaire = faible toxicité aux doses normales. Risque d'alcalose si doses élevées chroniques." },
+        "interactions": { "level": "Modéré", "detail": "Modifie l'absorption de nombreux médicaments (pH-dépendants). Interaction avec anticoagulants, lithium." },
+        "retard_soins": { "level": "Élevé", "detail": "Risque majeur si le patient remplace un traitement curatif par du bicarbonate." },
+        "statut_reglementaire": { "level": "Faible", "detail": "Produit alimentaire légal. Pas d'interdiction, pas d'indication médicale." },
+        "preuves_securite": { "level": "Modéré", "detail": "Sécurité connue aux doses alimentaires. Alcalose métabolique et déséquilibre électrolytique à hautes doses." }
+      },
+      "conclusion": "Signal préclinique murin réel (Robey 2009, Cancer Research — revue de premier plan). L'idée de moduler le pH tumoral est un axe de recherche légitime. Mais aucune preuve humaine ne soutient l'ingestion de bicarbonate comme traitement anticancéreux. Le cas Vernon Johnston est anecdotique et non vérifié. Le risque principal est le retard thérapeutique.",
+      "sources": [
+        { "ref": "Robey 2009 — Cancer Research (pH tumoral NaHCO₃)", "pmid": "19276390", "url": "https://pubmed.ncbi.nlm.nih.gov/19276390/" },
+        { "ref": "Estrella 2013 — Cancer Research (métastases)", "pmid": "23936808", "url": "https://pubmed.ncbi.nlm.nih.gov/23936808/" },
+        { "ref": "NP bicarbonate + doxorubicine 2019", "pmid": "PMC6660974", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6660974/" }
+      ],
+      "color": "#eab308",
+      "icon": "🧪"
+    }
+  ]
+}

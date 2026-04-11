@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Analyse méthodique de 5 claims viraux en oncologie alternative : racine de pissenlit, H₂O₂, GcMAF, vaccin russe Enteromix, bicarbonate de soude. Données sourcées, niveaux de preuve, grille de risques." />
+  <title>Signaux atypiques — Claims viraux analysés | RepoOnco</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* ── Styles spécifiques page Signaux atypiques ── */
+    .sa-hero {
+      background: linear-gradient(135deg, rgba(239,68,68,0.06) 0%, rgba(167,139,250,0.04) 50%, rgba(6,10,19,0) 80%);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-10) 0 var(--space-8);
+    }
+    .sa-hero h1 {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      margin-bottom: var(--space-3);
+    }
+    .sa-hero p {
+      color: var(--color-text-muted);
+      max-width: 700px;
+      font-size: var(--text-sm);
+      line-height: 1.7;
+    }
+    .sa-hero .sa-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-3);
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      background: rgba(239,68,68,0.1);
+      color: var(--color-danger);
+      border: 1px solid rgba(239,68,68,0.2);
+      margin-bottom: var(--space-4);
+    }
+
+    /* KPI bar */
+    .sa-kpi-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--space-4);
+      margin: var(--space-6) 0 var(--space-8);
+    }
+    .sa-kpi {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: var(--space-4);
+      text-align: center;
+    }
+    .sa-kpi-value {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .sa-kpi-label {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      margin-top: var(--space-1);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Claims cards */
+    .claim-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      margin-bottom: var(--space-6);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .claim-card:hover {
+      border-color: var(--color-border-strong);
+    }
+    .claim-card-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-5) var(--space-6);
+      cursor: pointer;
+      user-select: none;
+    }
+    .claim-card-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .claim-card-title-group {
+      flex: 1;
+      min-width: 0;
+    }
+    .claim-card-title {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.3;
+    }
+    .claim-card-subtitle {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      font-family: var(--font-display);
+      margin-top: var(--space-1);
+    }
+    .claim-card-badges {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .claim-badge {
+      font-size: 10px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .claim-badge.evidence {
+      background: rgba(148,163,184,0.1);
+      color: var(--color-text-muted);
+      border: 1px solid rgba(148,163,184,0.15);
+    }
+    .claim-badge.plausibility {
+      border: 1px solid rgba(148,163,184,0.15);
+    }
+    .claim-card-toggle {
+      font-size: 18px;
+      color: var(--color-text-faint);
+      transition: transform 0.25s;
+      flex-shrink: 0;
+      margin-left: var(--space-2);
+    }
+    .claim-card.open .claim-card-toggle {
+      transform: rotate(180deg);
+    }
+    .claim-card-body {
+      display: none;
+      padding: 0 var(--space-6) var(--space-6);
+    }
+    .claim-card.open .claim-card-body {
+      display: block;
+    }
+
+    /* Sections within claim card */
+    .claim-section {
+      margin-bottom: var(--space-5);
+    }
+    .claim-section-label {
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-2);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .claim-section p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+    .claim-viral-quote {
+      background: var(--color-surface-3);
+      border-left: 3px solid var(--color-danger);
+      padding: var(--space-3) var(--space-4);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      font-style: italic;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: var(--space-4);
+    }
+
+    /* Risk grid within card */
+    .claim-risk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-3);
+    }
+    .claim-risk-item {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-3);
+    }
+    .claim-risk-item-label {
+      font-family: var(--font-display);
+      font-size: 10px;
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-1);
+    }
+    .claim-risk-item-level {
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      margin-bottom: var(--space-1);
+    }
+    .claim-risk-item-detail {
+      font-size: 11px;
+      color: var(--color-text-faint);
+      line-height: 1.5;
+    }
+    .risk-faible { color: var(--color-success); }
+    .risk-incertain { color: var(--color-warning); }
+    .risk-modere { color: var(--color-orange); }
+    .risk-eleve { color: var(--color-danger); }
+    .risk-documente { color: #f87171; }
+
+    /* Sources list */
+    .claim-sources {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .claim-source-link {
+      font-size: var(--text-xs);
+      font-family: var(--font-display);
+      color: var(--color-primary);
+      text-decoration: none;
+      padding: var(--space-2) var(--space-3);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      transition: all 0.15s;
+      display: block;
+    }
+    .claim-source-link:hover {
+      background: rgba(56,189,248,0.06);
+      border-color: var(--color-border-strong);
+    }
+
+    /* Conclusion badge */
+    .claim-conclusion {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: var(--space-4) var(--space-5);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      line-height: 1.7;
+    }
+
+    /* Charts section */
+    .sa-charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-6);
+    }
+    .sa-chart-container {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: var(--space-5);
+    }
+    .sa-chart-title {
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-4);
+    }
+    .sa-chart-wrapper {
+      position: relative;
+      height: 280px;
+    }
+
+    /* Framework legend */
+    .sa-framework {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: var(--space-5);
+      margin-bottom: var(--space-8);
+    }
+    .sa-framework h3 {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+    }
+    .sa-framework-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-4);
+    }
+    .sa-fw-col h4 {
+      font-family: var(--font-display);
+      font-size: 10px;
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-2);
+    }
+    .sa-fw-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sa-fw-col li {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      padding: 2px 0;
+      font-family: var(--font-display);
+    }
+    .sa-fw-col li strong {
+      color: var(--color-text);
+      min-width: 30px;
+      display: inline-block;
+    }
+
+    @media (max-width: 600px) {
+      .claim-card-header { flex-wrap: wrap; padding: var(--space-4); }
+      .claim-card-badges { width: 100%; margin-top: var(--space-2); }
+      .sa-charts-grid { grid-template-columns: 1fr; }
+      .claim-risk-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="./index.html" class="site-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo RepoOnco">
+          <path d="M16 2L28.66 9.5V24.5L16 30L3.34 24.5V9.5L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="16" cy="16" r="4" fill="currentColor" opacity="0.3"/>
+          <circle cx="16" cy="8" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="12" r="2" fill="currentColor"/>
+          <circle cx="22.93" cy="20" r="2" fill="currentColor"/>
+          <circle cx="16" cy="24" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="20" r="2" fill="currentColor"/>
+          <circle cx="9.07" cy="12" r="2" fill="currentColor"/>
+          <line x1="16" y1="8" x2="22.93" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="12" x2="22.93" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="22.93" y1="20" x2="16" y2="24" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="16" y1="24" x2="9.07" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="20" x2="9.07" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="9.07" y1="12" x2="16" y2="8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+        </svg>
+        <span>RepoOnco<span class="logo-sub">Base documentaire</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="./index.html">Accueil</a></li>
+          <li><a href="./dashboard.html">Dashboard</a></li>
+          <li><a href="./signaux-atypiques.html" class="active">Signaux atypiques</a></li>
+          <li><a href="./methode.html">Méthodologie</a></li>
+          <li><a href="./documentation.html">Documentation</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar">
+    <div class="status-item"><span class="status-dot red"></span> 5 claims analysés</div>
+    <div class="status-item"><span class="status-dot yellow"></span> 0 / 5 avec données cliniques</div>
+    <div class="status-item"><span class="status-dot blue"></span> Cadre méthodologique identique</div>
+  </div>
+
+  <!-- HERO -->
+  <main>
+    <div class="sa-hero">
+      <div class="container">
+        <div class="sa-badge">⚠ ANALYSE CRITIQUE</div>
+        <h1>Signaux atypiques</h1>
+        <p>
+          Analyse méthodique de 5 claims viraux en oncologie alternative, évalués avec le même cadre de preuves
+          que les molécules repositionnées. Chaque affirmation est confrontée aux publications PubMed/PMC existantes,
+          aux essais cliniques enregistrés et à une grille de risques structurée.
+        </p>
+      </div>
+    </div>
+
+    <!-- KPI BAR -->
+    <div class="container">
+      <div class="sa-kpi-bar">
+        <div class="sa-kpi">
+          <div class="sa-kpi-value" style="color: var(--color-danger);">5</div>
+          <div class="sa-kpi-label">Claims analysés</div>
+        </div>
+        <div class="sa-kpi">
+          <div class="sa-kpi-value" style="color: var(--color-warning);">0</div>
+          <div class="sa-kpi-label">Essais cliniques publiés</div>
+        </div>
+        <div class="sa-kpi">
+          <div class="sa-kpi-value" style="color: var(--color-success);">2</div>
+          <div class="sa-kpi-label">Signal préclinique réel</div>
+        </div>
+        <div class="sa-kpi">
+          <div class="sa-kpi-value" style="color: var(--color-danger);">1</div>
+          <div class="sa-kpi-label">Fraude documentée</div>
+        </div>
+        <div class="sa-kpi">
+          <div class="sa-kpi-value" style="color: var(--color-danger);">5/5</div>
+          <div class="sa-kpi-label">Risque retard soins</div>
+        </div>
+      </div>
+
+      <!-- FRAMEWORK LEGEND -->
+      <div class="sa-framework">
+        <h3>Cadre d'évaluation</h3>
+        <div class="sa-framework-grid">
+          <div class="sa-fw-col">
+            <h4>Niveaux de preuve</h4>
+            <ul>
+              <li><strong>N1</strong> Méta-analyse / Revue systématique</li>
+              <li><strong>N2</strong> Essai clinique randomisé (RCT)</li>
+              <li><strong>N3</strong> Cohorte / Cas-contrôle</li>
+              <li><strong>N4</strong> Rapport de cas</li>
+              <li><strong>N5</strong> In vivo animal</li>
+              <li><strong>N6</strong> In vitro cellulaire</li>
+              <li><strong>N7</strong> Aucune donnée / Anecdotique</li>
+            </ul>
+          </div>
+          <div class="sa-fw-col">
+            <h4>Plausibilité</h4>
+            <ul>
+              <li>Mécanisme établi</li>
+              <li>Mécanisme plausible</li>
+              <li>Mécanisme spéculatif</li>
+              <li>Aucun mécanisme identifié</li>
+            </ul>
+          </div>
+          <div class="sa-fw-col">
+            <h4>Niveaux de risque</h4>
+            <ul>
+              <li><strong style="color:var(--color-success)">●</strong> Faible</li>
+              <li><strong style="color:var(--color-warning)">●</strong> Incertain</li>
+              <li><strong style="color:var(--color-orange)">●</strong> Modéré</li>
+              <li><strong style="color:var(--color-danger)">●</strong> Élevé</li>
+              <li><strong style="color:#f87171">●</strong> Documenté</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════
+           CLAIM 1 — Racine de pissenlit
+      ═══════════════════════════════════════════════ -->
+      <div class="claim-card open" data-claim="dandelion-root">
+        <div class="claim-card-header" onclick="this.parentElement.classList.toggle('open')">
+          <span class="claim-card-icon">🌿</span>
+          <div class="claim-card-title-group">
+            <div class="claim-card-title">Racine de pissenlit « tue 95% des cellules cancéreuses »</div>
+            <div class="claim-card-subtitle">Viralité : très haute · Millions de vues</div>
+          </div>
+          <div class="claim-card-badges">
+            <span class="claim-badge evidence">N6 — In vitro</span>
+            <span class="claim-badge plausibility" style="color:var(--color-success);border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.06);">Mécanisme plausible</span>
+          </div>
+          <span class="claim-card-toggle">▾</span>
+        </div>
+        <div class="claim-card-body">
+          <div class="claim-section">
+            <div class="claim-section-label">📢 Le claim viral</div>
+            <div class="claim-viral-quote">
+              « L'extrait de racine de pissenlit (DRE) tue 95% des cellules de cancer colorectal en 48h sans toxicité sur les cellules saines. Remède naturel miracle contre le cancer. »
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">🔬 Ce que la science dit réellement</div>
+            <p>
+              L'étude <a href="https://pubmed.ncbi.nlm.nih.gov/27564258/" target="_blank" rel="noopener">Ovadje 2016 (Oncotarget)</a> montre bien &gt;95% de mort cellulaire dans des <strong>lignées cellulaires in vitro</strong> (HT-29, HCT116) à une concentration de 2–3.5 mg/mL. Confirmé in vivo sur xénogreffes souris (réduction 90% croissance tumorale). <strong>Mais :</strong> aucune donnée humaine publiée. L'essai Phase I existe mais les résultats ne sont pas publics.
+            </p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">🔎 Analyse de l'écart</div>
+            <p>
+              Le claim viral omet systématiquement : (1) résultats in vitro uniquement — tuer des cellules dans une boîte ≠ traiter un cancer humain ; (2) la concentration efficace (mg/mL) est incomparablement supérieure à ce qu'une tisane ou un supplément délivre ; (3) l'essai clinique humain (<a href="https://clinicaltrials.gov/study/NCT01945775" target="_blank" rel="noopener">NCT01945775</a>) n'a pas de résultat publié.
+            </p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">📊 Données cliniques humaines</div>
+            <p>1 essai Phase I (NCT01945775, Windsor Cancer Research Group, Canada) — résultats non publiés à ce jour.</p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">⚠ Grille de risques</div>
+            <div class="claim-risk-grid">
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Dose / Formulation</div>
+                <div class="claim-risk-item-level risk-faible">● Faible</div>
+                <div class="claim-risk-item-detail">DRE à doses alimentaires/supplémentaires — toxicité faible connue</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Interactions</div>
+                <div class="claim-risk-item-level risk-incertain">● Incertain</div>
+                <div class="claim-risk-item-detail">Interactions avec chimiothérapies non étudiées. Potentiel d'interférence pharmacocinétique.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Retard de soins</div>
+                <div class="claim-risk-item-level risk-eleve">● Élevé</div>
+                <div class="claim-risk-item-detail">Risque majeur si le patient abandonne/retarde un traitement conventionnel pour un produit sans preuve humaine.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Statut réglementaire</div>
+                <div class="claim-risk-item-level risk-faible">● Faible</div>
+                <div class="claim-risk-item-detail">Supplément alimentaire légal. Pas de contrôle qualité pharmaceutique.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Preuves sécurité</div>
+                <div class="claim-risk-item-level risk-incertain">● Incertain</div>
+                <div class="claim-risk-item-detail">Profil toxicologique humain non systématiquement étudié au-delà des doses alimentaires.</div>
+              </div>
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">✅ Conclusion</div>
+            <div class="claim-conclusion">
+              Signal préclinique authentique et publié dans une revue à comité de lecture. Mais le saut entre « tue 95% des cellules in vitro » et « guérit le cancer chez l'humain » est immense et non démontré. L'éthanol tue aussi 100% des cellules cancéreuses in vitro. L'essai Phase I humain existe mais ses résultats ne sont pas publiés.
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">📚 Sources</div>
+            <div class="claim-sources">
+              <a href="https://pubmed.ncbi.nlm.nih.gov/27564258/" target="_blank" rel="noopener" class="claim-source-link">Ovadje P et al. 2016 — Oncotarget (PMID: 27564258)</a>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/22647733/" target="_blank" rel="noopener" class="claim-source-link">Ovadje P et al. 2012 — Pancréas (PMID: 22647733)</a>
+              <a href="https://clinicaltrials.gov/study/NCT01945775" target="_blank" rel="noopener" class="claim-source-link">Essai Phase I NCT01945775 — ClinicalTrials.gov</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════
+           CLAIM 2 — H₂O₂
+      ═══════════════════════════════════════════════ -->
+      <div class="claim-card" data-claim="h2o2-peroxide">
+        <div class="claim-card-header" onclick="this.parentElement.classList.toggle('open')">
+          <span class="claim-card-icon">⚗️</span>
+          <div class="claim-card-title-group">
+            <div class="claim-card-title">Peroxyde d'hydrogène (H₂O₂) « oxygénothérapie anticancer »</div>
+            <div class="claim-card-subtitle">Viralité : haute · Forums, YouTube, Facebook</div>
+          </div>
+          <div class="claim-card-badges">
+            <span class="claim-badge evidence">N7 — Aucune donnée</span>
+            <span class="claim-badge plausibility" style="color:var(--color-danger);border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.06);">Mécanisme spéculatif</span>
+          </div>
+          <span class="claim-card-toggle">▾</span>
+        </div>
+        <div class="claim-card-body">
+          <div class="claim-section">
+            <div class="claim-section-label">📢 Le claim viral</div>
+            <div class="claim-viral-quote">
+              « Le peroxyde d'hydrogène à 35% guérit le cancer en oxygénant les cellules tumorales. Le cancer ne survit pas en milieu riche en oxygène. Le CDC aurait validé cette approche. »
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">🔬 Ce que la science dit réellement</div>
+            <p>
+              L'hypothèse originale (Warburg 1924) que le cancer prospère en milieu hypoxique est partiellement vraie mais la conclusion « oxygéner = tuer le cancer » est invalidée par la recherche moderne. Les cellules cancéreuses survivent aussi en milieu oxygéné. Aucune étude publiée ne montre d'effet anticancéreux de l'ingestion ou injection de H₂O₂.
+            </p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">🔎 Analyse de l'écart</div>
+            <p>
+              Le claim confond : (1) effet Warburg (métabolisme glycolytique des tumeurs) avec « le cancer meurt en présence d'oxygène » — <strong>faux</strong> ; (2) application topique de H₂O₂ (dermatologie) avec ingestion/injection systémique ; (3) le CDC n'a jamais validé le H₂O₂ comme traitement anticancéreux — au contraire, la <a href="https://www.fda.gov/consumers/consumer-updates/hydrogen-peroxide-marketed-alternative-medicine" target="_blank" rel="noopener">FDA a émis des avertissements</a>.
+            </p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">📊 Données cliniques humaines</div>
+            <p>0 essai clinique oncologique. 1 essai (<a href="https://clinicaltrials.gov/study/NCT04929535" target="_blank" rel="noopener">NCT04929535</a>) sur application topique de H₂O₂ 30% pour lésions cutanées précancéreuses (kératose actinique) — contexte complètement différent.</p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">⚠ Grille de risques</div>
+            <div class="claim-risk-grid">
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Dose / Formulation</div>
+                <div class="claim-risk-item-level risk-documente">● Documenté</div>
+                <div class="claim-risk-item-detail">H₂O₂ 35% ingéré : ulcères buccaux/œsophagiens/gastriques, embolie gazeuse potentiellement fatale. TOXICITÉ GRAVE.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Interactions</div>
+                <div class="claim-risk-item-level risk-eleve">● Élevé</div>
+                <div class="claim-risk-item-detail">Oxydant puissant — interaction destructrice avec de nombreux médicaments.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Retard de soins</div>
+                <div class="claim-risk-item-level risk-eleve">● Élevé</div>
+                <div class="claim-risk-item-detail">Abandon du traitement conventionnel au profit d'une thérapie sans preuve = risque vital.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Statut réglementaire</div>
+                <div class="claim-risk-item-level risk-eleve">● Élevé</div>
+                <div class="claim-risk-item-detail">FDA warning 2006 : H₂O₂ à usage interne = produit dangereux. Non approuvé pour usage médical interne.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Preuves sécurité</div>
+                <div class="claim-risk-item-level risk-documente">● Documenté</div>
+                <div class="claim-risk-item-detail">Cas de décès documentés suite à ingestion/injection IV de H₂O₂. Embolie gazeuse létale.</div>
+              </div>
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">✅ Conclusion</div>
+            <div class="claim-conclusion">
+              Aucune base scientifique pour l'ingestion de H₂O₂ comme traitement anticancéreux. Le mécanisme invoqué (cancer = anaérobie) est une simplification obsolète. La toxicité à 35% est grave et documentée, incluant des décès. Le CDC et la FDA déconseillent formellement.
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">📚 Sources</div>
+            <div class="claim-sources">
+              <a href="https://www.medicalnewstoday.com/articles/323591" target="_blank" rel="noopener" class="claim-source-link">Medical News Today — H₂O₂ cancer claims analysis</a>
+              <a href="https://clinicaltrials.gov/study/NCT04929535" target="_blank" rel="noopener" class="claim-source-link">NCT04929535 — H₂O₂ topique kératose (non oncologie)</a>
+              <a href="https://www.fda.gov/consumers/consumer-updates/hydrogen-peroxide-marketed-alternative-medicine" target="_blank" rel="noopener" class="claim-source-link">FDA Warning on H₂O₂ 35%</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════
+           CLAIM 3 — GcMAF
+      ═══════════════════════════════════════════════ -->
+      <div class="claim-card" data-claim="gcmaf">
+        <div class="claim-card-header" onclick="this.parentElement.classList.toggle('open')">
+          <span class="claim-card-icon">🧬</span>
+          <div class="claim-card-title-group">
+            <div class="claim-card-title">GcMAF « protéine miracle anticancer »</div>
+            <div class="claim-card-subtitle">Viralité : très haute · Théories conspirationnistes</div>
+          </div>
+          <div class="claim-card-badges">
+            <span class="claim-badge evidence">N7 — Rétractées</span>
+            <span class="claim-badge plausibility" style="color:var(--color-danger);border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.06);">Aucun mécanisme</span>
+          </div>
+          <span class="claim-card-toggle">▾</span>
+        </div>
+        <div class="claim-card-body">
+          <div class="claim-section">
+            <div class="claim-section-label">📢 Le claim viral</div>
+            <div class="claim-viral-quote">
+              « Le GcMAF (Gc protein-derived Macrophage Activating Factor) guérit le cancer en activant les macrophages. Les études prouvent une éradication complète des tumeurs. Des médecins ont été assassinés pour cacher cette découverte. »
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">🔬 Ce que la science dit réellement</div>
+            <p>
+              Les publications originales de Yamamoto et al. (2008, 2009) prétendant l'éradication complète de cancers du sein et colorectal ont été <strong>RÉTRACTÉES par l'International Journal of Cancer pour fraude</strong> : utilisation de noms de co-auteurs non consentants, données fabriquées, critères d'évaluation non validés (nagalase seul). Aucune analyse tierce n'a identifié de mécanisme actif.
+            </p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">🔎 Analyse de l'écart</div>
+            <p>
+              Le claim viral omet : (1) <strong>toutes les études clés sont rétractées pour fraude</strong> (<a href="https://retractionwatch.com/2014/07/25/paper-about-widely-touted-but-unapproved-cure-for-cancer-autism-retracted/" target="_blank" rel="noopener">Retraction Watch 2014</a>) ; (2) le critère nagalase n'est pas un marqueur tumoral validé ; (3) le GcMAF commercial est un produit non contrôlé, fabriqué hors cadre pharmaceutique ; (4) les théories sur les « médecins assassinés » n'ont aucune base factuelle.
+            </p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">📊 Données cliniques humaines</div>
+            <p>Publications de Yamamoto (2008-2009) — TOUTES RÉTRACTÉES. Séries de cas (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3812199/" target="_blank" rel="noopener">Ruggiero 2013</a>) — 20 patients, critère nagalase uniquement, non validé.</p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">⚠ Grille de risques</div>
+            <div class="claim-risk-grid">
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Dose / Formulation</div>
+                <div class="claim-risk-item-level risk-eleve">● Élevé</div>
+                <div class="claim-risk-item-detail">Produit biologique non contrôlé, fabriqué hors cadre pharmaceutique. Contamination microbiologique possible.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Interactions</div>
+                <div class="claim-risk-item-level risk-incertain">● Incertain</div>
+                <div class="claim-risk-item-detail">Immunomodulateur potentiel — interaction avec immunothérapies standard inconnue.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Retard de soins</div>
+                <div class="claim-risk-item-level risk-eleve">● Élevé</div>
+                <div class="claim-risk-item-detail">Nombreux patients ayant abandonné des traitements efficaces au profit du GcMAF.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Statut réglementaire</div>
+                <div class="claim-risk-item-level risk-documente">● Documenté</div>
+                <div class="claim-risk-item-detail">INTERDIT dans la plupart des pays (UK MHRA saisies 2015, FDA non approuvé). Vendu illégalement.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Preuves sécurité</div>
+                <div class="claim-risk-item-level risk-documente">● Documenté</div>
+                <div class="claim-risk-item-detail">Aucune étude de sécurité publiée. Cliniques GcMAF fermées par les autorités sanitaires (UK, Suisse).</div>
+              </div>
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">✅ Conclusion</div>
+            <div class="claim-conclusion">
+              Fraude scientifique documentée. Les publications fondatrices sont rétractées. Le produit est interdit à la vente dans la plupart des juridictions. L'<a href="https://www.anticancerfund.org/en/gcmaf-story-exploitation-and-lies" target="_blank" rel="noopener">Anticancer Fund</a> qualifie le GcMAF de « story of exploitation and lies ». Aucun bénéfice thérapeutique démontré.
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">📚 Sources</div>
+            <div class="claim-sources">
+              <a href="https://retractionwatch.com/2014/07/25/paper-about-widely-touted-but-unapproved-cure-for-cancer-autism-retracted/" target="_blank" rel="noopener" class="claim-source-link">Retraction Watch — Yamamoto GcMAF papers retracted 2014</a>
+              <a href="https://www.anticancerfund.org/en/gcmaf-story-exploitation-and-lies" target="_blank" rel="noopener" class="claim-source-link">Anticancer Fund — GcMAF: exploitation and lies</a>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3812199/" target="_blank" rel="noopener" class="claim-source-link">Ruggiero 2013 — Série de cas non validée (PMC3812199)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════
+           CLAIM 4 — Vaccin russe Enteromix
+      ═══════════════════════════════════════════════ -->
+      <div class="claim-card" data-claim="russia-enteromix">
+        <div class="claim-card-header" onclick="this.parentElement.classList.toggle('open')">
+          <span class="claim-card-icon">💉</span>
+          <div class="claim-card-title-group">
+            <div class="claim-card-title">Vaccin anticancéreux russe Enteromix « 100% efficacité »</div>
+            <div class="claim-card-subtitle">Viralité : très haute · &gt;1800 partages, viral Afrique 2024-2025</div>
+          </div>
+          <div class="claim-card-badges">
+            <span class="claim-badge evidence">N7 — Phase I non publiée</span>
+            <span class="claim-badge plausibility" style="color:var(--color-success);border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.06);">Mécanisme plausible</span>
+          </div>
+          <span class="claim-card-toggle">▾</span>
+        </div>
+        <div class="claim-card-body">
+          <div class="claim-section">
+            <div class="claim-section-label">📢 Le claim viral</div>
+            <div class="claim-viral-quote">
+              « La Russie a développé un vaccin mRNA anticancéreux (Enteromix) avec 100% d'efficacité, disponible gratuitement dès 2025. Cure définitive du cancer. »
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">🔬 Ce que la science dit réellement</div>
+            <p>
+              Le vaccin Enteromix est un vaccin mRNA personnalisé développé par l'Agence Fédérale Médicale et Biologique russe (FMBA). Veronika Skvortsova (directrice FMBA) a annoncé la fin des essais précliniques en septembre 2025. Un essai Phase I (48 patients) est en cours. Le directeur du Centre Oncologique Blokhin a déclaré : « La technologie est révolutionnaire mais ce n'est pas une panacée, un comprimé miracle pour tous les cancers. »
+            </p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">🔎 Analyse de l'écart</div>
+            <p>
+              Le claim viral transforme : (1) « essais précliniques terminés » en « 100% efficacité » (les données précliniques ne permettent pas cette conclusion) ; (2) « Phase I en cours » en « disponible gratuitement dès 2025 » (Phase I = première étude de sécurité humaine) ; (3) vaccin personnalisé mRNA (technologie aussi portée par BioNTech/Moderna) en « cure du cancer » universelle. Voir <a href="https://cedmohub.eu/exaggerated-claims-about-russias-cancer-vaccine-enteromix-sweep-across-africa/" target="_blank" rel="noopener">CEDMO Hub fact-check</a>.
+            </p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">📊 Données cliniques humaines</div>
+            <p>Phase I ouverte monocentrique (48 volontaires) lancée en juin 2025 par le Centre Radiologique National russe. AUCUN résultat publié dans une revue à comité de lecture.</p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">⚠ Grille de risques</div>
+            <div class="claim-risk-grid">
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Dose / Formulation</div>
+                <div class="claim-risk-item-level risk-incertain">● Incertain</div>
+                <div class="claim-risk-item-detail">Vaccin non disponible — aucune donnée de formulation publique.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Interactions</div>
+                <div class="claim-risk-item-level risk-incertain">● Incertain</div>
+                <div class="claim-risk-item-detail">Non évaluées (Phase I en cours).</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Retard de soins</div>
+                <div class="claim-risk-item-level risk-eleve">● Élevé</div>
+                <div class="claim-risk-item-detail">Patients attendant un vaccin hypothétique au lieu de traiter immédiatement.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Statut réglementaire</div>
+                <div class="claim-risk-item-level risk-incertain">● Incertain</div>
+                <div class="claim-risk-item-detail">Phase I en Russie — aucune approbation réglementaire dans aucun pays.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Preuves sécurité</div>
+                <div class="claim-risk-item-level risk-incertain">● Incertain</div>
+                <div class="claim-risk-item-detail">Phase I = première évaluation sécurité. Données non publiées.</div>
+              </div>
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">✅ Conclusion</div>
+            <div class="claim-conclusion">
+              Technologie réelle (vaccins mRNA personnalisés oncologiques) portée par plusieurs acteurs mondiaux (BioNTech, Moderna, Gritstone). Mais l'Enteromix n'a aucun résultat publié — la Phase I est en cours avec 48 patients seulement. Le claim « 100% efficacité » et « disponible 2025 » est factuellement faux selon les propres déclarations russes.
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">📚 Sources</div>
+            <div class="claim-sources">
+              <a href="https://cedmohub.eu/exaggerated-claims-about-russias-cancer-vaccine-enteromix-sweep-across-africa/" target="_blank" rel="noopener" class="claim-source-link">CEDMO Hub — Analyse fact-check Enteromix 2025</a>
+              <a href="https://nmicr.ru/about/news/vaktsinaciya-ot-raka/" target="_blank" rel="noopener" class="claim-source-link">Centre Radiologique National russe — annonce Phase I</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════
+           CLAIM 5 — Bicarbonate de soude
+      ═══════════════════════════════════════════════ -->
+      <div class="claim-card" data-claim="baking-soda">
+        <div class="claim-card-header" onclick="this.parentElement.classList.toggle('open')">
+          <span class="claim-card-icon">🧪</span>
+          <div class="claim-card-title-group">
+            <div class="claim-card-title">Bicarbonate de soude « alcaliniser pour tuer le cancer »</div>
+            <div class="claim-card-subtitle">Viralité : haute · YouTube, livres, Simoncini, Vernon Johnston</div>
+          </div>
+          <div class="claim-card-badges">
+            <span class="claim-badge evidence">N5 — In vivo souris</span>
+            <span class="claim-badge plausibility" style="color:var(--color-success);border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.06);">Mécanisme plausible</span>
+          </div>
+          <span class="claim-card-toggle">▾</span>
+        </div>
+        <div class="claim-card-body">
+          <div class="claim-section">
+            <div class="claim-section-label">📢 Le claim viral</div>
+            <div class="claim-viral-quote">
+              « Le bicarbonate de soude (NaHCO₃) guérit le cancer en alcalinisant le corps. Le cancer ne survit pas en milieu alcalin. Vernon Johnston a guéri un cancer de la prostate stade 4 avec du bicarbonate et du sirop d'érable. »
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">🔬 Ce que la science dit réellement</div>
+            <p>
+              L'étude clé (<a href="https://pubmed.ncbi.nlm.nih.gov/19276390/" target="_blank" rel="noopener">Robey 2009, Cancer Research</a>) montre que le NaHCO₃ oral augmente bien le pH tumoral chez la souris et réduit les métastases spontanées dans un modèle de cancer du sein. <a href="https://pubmed.ncbi.nlm.nih.gov/23936808/" target="_blank" rel="noopener">Estrella 2013</a> confirme la survie prolongée. Des <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6660974/" target="_blank" rel="noopener">nanoparticules lipidiques de bicarbonate (2019)</a> améliorent l'efficacité de la doxorubicine chez la souris. <strong>Mais :</strong> aucune étude humaine contrôlée.
+            </p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">🔎 Analyse de l'écart</div>
+            <p>
+              Le claim viral omet : (1) toutes les données sont murines — physiologie humaine ≠ souris pour la régulation pH ; (2) le corps humain maintient son pH sanguin dans une fenêtre ultra-étroite (7.35–7.45) via des tampons puissants — l'ingestion de bicarbonate ne « alcalinise » pas significativement le sang ni les tumeurs humaines ; (3) le cas Vernon Johnston est non vérifié scientifiquement et coïncide avec un traitement conventionnel ; (4) l'alcalose métabolique iatrogène est dangereuse.
+            </p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">📊 Données cliniques humaines</div>
+            <p>0 essai clinique humain contrôlé. 1 cas anecdotique (Vernon Johnston — non publié dans revue à comité de lecture).</p>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">⚠ Grille de risques</div>
+            <div class="claim-risk-grid">
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Dose / Formulation</div>
+                <div class="claim-risk-item-level risk-modere">● Modéré</div>
+                <div class="claim-risk-item-detail">NaHCO₃ alimentaire = faible toxicité aux doses normales. Risque d'alcalose si doses élevées chroniques.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Interactions</div>
+                <div class="claim-risk-item-level risk-modere">● Modéré</div>
+                <div class="claim-risk-item-detail">Modifie l'absorption de nombreux médicaments (pH-dépendants). Interaction avec anticoagulants, lithium.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Retard de soins</div>
+                <div class="claim-risk-item-level risk-eleve">● Élevé</div>
+                <div class="claim-risk-item-detail">Risque majeur si le patient remplace un traitement curatif par du bicarbonate.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Statut réglementaire</div>
+                <div class="claim-risk-item-level risk-faible">● Faible</div>
+                <div class="claim-risk-item-detail">Produit alimentaire légal. Pas d'interdiction, pas d'indication médicale.</div>
+              </div>
+              <div class="claim-risk-item">
+                <div class="claim-risk-item-label">Preuves sécurité</div>
+                <div class="claim-risk-item-level risk-modere">● Modéré</div>
+                <div class="claim-risk-item-detail">Sécurité connue aux doses alimentaires. Alcalose métabolique et déséquilibre électrolytique à hautes doses.</div>
+              </div>
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">✅ Conclusion</div>
+            <div class="claim-conclusion">
+              Signal préclinique murin réel (<a href="https://pubmed.ncbi.nlm.nih.gov/19276390/" target="_blank" rel="noopener">Robey 2009, Cancer Research</a> — revue de premier plan). L'idée de moduler le pH tumoral est un axe de recherche légitime. Mais aucune preuve humaine ne soutient l'ingestion de bicarbonate comme traitement anticancéreux. Le cas Vernon Johnston est anecdotique et non vérifié. Le risque principal est le retard thérapeutique.
+            </div>
+          </div>
+          <div class="claim-section">
+            <div class="claim-section-label">📚 Sources</div>
+            <div class="claim-sources">
+              <a href="https://pubmed.ncbi.nlm.nih.gov/19276390/" target="_blank" rel="noopener" class="claim-source-link">Robey 2009 — Cancer Research (pH tumoral NaHCO₃, PMID: 19276390)</a>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/23936808/" target="_blank" rel="noopener" class="claim-source-link">Estrella 2013 — Cancer Research (métastases, PMID: 23936808)</a>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6660974/" target="_blank" rel="noopener" class="claim-source-link">NP bicarbonate + doxorubicine 2019 (PMC6660974)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════
+           SECTION GRAPHIQUES
+      ═══════════════════════════════════════════════ -->
+      <div class="content-section" style="margin-top:var(--space-8);">
+        <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4);padding-bottom:var(--space-3);border-bottom:1px solid var(--color-border);">
+          <span style="font-family:var(--font-display);font-size:var(--text-xs);color:var(--color-text-faint);background:var(--color-surface-2);padding:2px 8px;border-radius:4px;">VIZ</span>
+          <h2 style="font-size:var(--text-lg);font-weight:600;">Visualisations analytiques</h2>
+        </div>
+
+        <div class="sa-charts-grid">
+          <!-- Chart 1: Timeline viralité -->
+          <div class="sa-chart-container">
+            <div class="sa-chart-title">Timeline — Niveau de preuve vs viralité</div>
+            <div class="sa-chart-wrapper">
+              <canvas id="chart-claims-timeline" aria-label="Timeline viralité vs preuves des claims"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 2: Heatmap risques -->
+          <div class="sa-chart-container">
+            <div class="sa-chart-title">Heatmap — Risques par claim</div>
+            <div class="sa-chart-wrapper" style="height:320px;">
+              <canvas id="chart-claims-heatmap" aria-label="Heatmap risques claims"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 3: Radar plausibilité -->
+          <div class="sa-chart-container" style="grid-column: 1 / -1; max-width: 560px; margin: 0 auto;">
+            <div class="sa-chart-title">Radar — Plausibilité &amp; preuves multicritère</div>
+            <div class="sa-chart-wrapper" style="height:320px;">
+              <canvas id="chart-claims-radar" aria-label="Radar plausibilité multicritère"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BACK LINK -->
+      <div style="margin-top:var(--space-8); margin-bottom:var(--space-12); display:flex; gap:var(--space-3); flex-wrap:wrap;">
+        <a href="./dashboard.html" class="btn-primary" style="font-size:var(--text-sm);">← Dashboard molécules</a>
+        <a href="./methode.html" class="btn-ghost" style="font-size:var(--text-sm);">Méthodologie</a>
+      </div>
+
+    </div><!-- /.container -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>
+      RepoOnco — Base documentaire sur le repositionnement médicamenteux en oncologie &middot;
+      Usage personnel &amp; scientifique &middot;
+      <a href="./methode.html">Méthodologie</a> &middot;
+      <a href="./documentation.html">Documentation</a>
+    </p>
+    <p style="margin-top:var(--space-2);">
+      Données issues d'une veille bibliographique structurée. Cette base ne constitue pas un avis médical.
+    </p>
+  </footer>
+
+</div><!-- /.site-wrapper -->
+
+<!-- TTS module -->
+<script src="./assets/js/tts.js" defer></script>
+
+<script>
+'use strict';
+document.addEventListener('DOMContentLoaded', () => {
+  Chart.defaults.color = '#94a3b8';
+  Chart.defaults.borderColor = 'rgba(148, 163, 184, 0.1)';
+  Chart.defaults.font.family = "'Inter', 'Helvetica Neue', sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.plugins.tooltip.backgroundColor = '#111a2e';
+  Chart.defaults.plugins.tooltip.borderColor = 'rgba(56,189,248,0.25)';
+  Chart.defaults.plugins.tooltip.borderWidth = 1;
+  Chart.defaults.plugins.tooltip.cornerRadius = 8;
+
+  const COLORS = {
+    green: '#22c55e',
+    red: '#ef4444',
+    purple: '#a78bfa',
+    blue: '#38bdf8',
+    yellow: '#eab308',
+    orange: '#f97316',
+  };
+
+  /* ═══════════════════════════════
+     CHART 1 — Timeline (horizontal bar: evidence level)
+  ═══════════════════════════════ */
+  const ctxTimeline = document.getElementById('chart-claims-timeline');
+  if (ctxTimeline) {
+    new Chart(ctxTimeline, {
+      type: 'bar',
+      data: {
+        labels: ['Pissenlit', 'H₂O₂', 'GcMAF', 'Enteromix', 'Bicarbonate'],
+        datasets: [{
+          label: 'Niveau de preuve (1=fort, 7=aucun)',
+          data: [6, 7, 7, 7, 5],
+          backgroundColor: [
+            'rgba(34,197,94,0.5)',
+            'rgba(239,68,68,0.5)',
+            'rgba(167,139,250,0.5)',
+            'rgba(56,189,248,0.5)',
+            'rgba(234,179,8,0.5)',
+          ],
+          borderColor: [COLORS.green, COLORS.red, COLORS.purple, COLORS.blue, COLORS.yellow],
+          borderWidth: 1,
+          borderRadius: 4,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => {
+                const labels = {
+                  5: 'N5 — In vivo animal',
+                  6: 'N6 — In vitro cellulaire',
+                  7: 'N7 — Aucune donnée / Anecdotique',
+                };
+                return ' ' + (labels[ctx.parsed.x] || 'N' + ctx.parsed.x);
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 8,
+            ticks: {
+              stepSize: 1,
+              callback: v => 'N' + v,
+            },
+            title: {
+              display: true,
+              text: 'Niveau de preuve (1=fort → 7=aucun)',
+              color: '#475569',
+              font: { size: 10 },
+            },
+            grid: { color: 'rgba(148,163,184,0.08)' },
+          },
+          y: { grid: { display: false } },
+        },
+      },
+    });
+  }
+
+  /* ═══════════════════════════════
+     CHART 2 — Heatmap risques (matrix via scatter)
+  ═══════════════════════════════ */
+  const ctxHeatmap = document.getElementById('chart-claims-heatmap');
+  if (ctxHeatmap) {
+    const riskCategories = ['Dose/Form.', 'Interactions', 'Retard soins', 'Réglementaire', 'Sécurité'];
+    const claims = ['Pissenlit', 'H₂O₂', 'GcMAF', 'Enteromix', 'Bicarbonate'];
+
+    // Risk values: 1=Faible, 2=Incertain, 3=Modéré, 4=Élevé, 5=Documenté
+    const riskMatrix = [
+      [1, 2, 4, 1, 2], // Pissenlit
+      [5, 4, 4, 4, 5], // H₂O₂
+      [4, 2, 4, 5, 5], // GcMAF
+      [2, 2, 4, 2, 2], // Enteromix
+      [3, 3, 4, 1, 3], // Bicarbonate
+    ];
+
+    const dataPoints = [];
+    riskMatrix.forEach((row, ci) => {
+      row.forEach((val, ri) => {
+        dataPoints.push({ x: ri, y: ci, v: val });
+      });
+    });
+
+    const riskColors = ['', 'rgba(34,197,94,0.7)', 'rgba(234,179,8,0.7)', 'rgba(249,115,22,0.7)', 'rgba(239,68,68,0.7)', 'rgba(248,113,113,0.9)'];
+    const riskLabels = ['', 'Faible', 'Incertain', 'Modéré', 'Élevé', 'Documenté'];
+
+    new Chart(ctxHeatmap, {
+      type: 'bubble',
+      data: {
+        datasets: [{
+          data: dataPoints.map(p => ({ x: p.x, y: p.y, r: 16 })),
+          backgroundColor: dataPoints.map(p => riskColors[p.v]),
+          borderColor: 'rgba(0,0,0,0.2)',
+          borderWidth: 1,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => {
+                const ci = ctx.parsed.y;
+                const ri = ctx.parsed.x;
+                return claims[ci] + ' — ' + riskCategories[ri] + ': ' + riskLabels[riskMatrix[ci][ri]];
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            min: -0.5,
+            max: 4.5,
+            ticks: {
+              stepSize: 1,
+              callback: (v) => riskCategories[v] || '',
+            },
+            grid: { color: 'rgba(148,163,184,0.06)' },
+          },
+          y: {
+            min: -0.5,
+            max: 4.5,
+            ticks: {
+              stepSize: 1,
+              callback: (v) => claims[v] || '',
+            },
+            grid: { color: 'rgba(148,163,184,0.06)' },
+          },
+        },
+      },
+    });
+  }
+
+  /* ═══════════════════════════════
+     CHART 3 — Radar plausibilité
+  ═══════════════════════════════ */
+  const ctxRadar = document.getElementById('chart-claims-radar');
+  if (ctxRadar) {
+    // Axes: Preuve publiée (0-10), Plausibilité bio (0-10), Données humaines (0-10), Sécurité (0-10), Phase clinique (0-10)
+    new Chart(ctxRadar, {
+      type: 'radar',
+      data: {
+        labels: ['Preuves publiées', 'Plausibilité bio.', 'Données humaines', 'Profil sécurité', 'Phase clinique'],
+        datasets: [
+          {
+            label: 'Pissenlit',
+            data: [7, 6, 2, 7, 3],
+            borderColor: COLORS.green,
+            backgroundColor: 'rgba(34,197,94,0.1)',
+            pointBackgroundColor: COLORS.green,
+            borderWidth: 2,
+          },
+          {
+            label: 'H₂O₂',
+            data: [1, 2, 0, 1, 0],
+            borderColor: COLORS.red,
+            backgroundColor: 'rgba(239,68,68,0.08)',
+            pointBackgroundColor: COLORS.red,
+            borderWidth: 2,
+          },
+          {
+            label: 'GcMAF',
+            data: [0, 1, 0, 1, 0],
+            borderColor: COLORS.purple,
+            backgroundColor: 'rgba(167,139,250,0.08)',
+            pointBackgroundColor: COLORS.purple,
+            borderWidth: 2,
+          },
+          {
+            label: 'Enteromix',
+            data: [1, 7, 1, 5, 2],
+            borderColor: COLORS.blue,
+            backgroundColor: 'rgba(56,189,248,0.08)',
+            pointBackgroundColor: COLORS.blue,
+            borderWidth: 2,
+          },
+          {
+            label: 'Bicarbonate',
+            data: [6, 5, 0, 5, 0],
+            borderColor: COLORS.yellow,
+            backgroundColor: 'rgba(234,179,8,0.08)',
+            pointBackgroundColor: COLORS.yellow,
+            borderWidth: 2,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { font: { size: 11 }, padding: 12, usePointStyle: true, pointStyle: 'circle' },
+          },
+        },
+        scales: {
+          r: {
+            beginAtZero: true,
+            max: 10,
+            ticks: { stepSize: 2, color: '#475569', backdropColor: 'transparent' },
+            grid: { color: 'rgba(148,163,184,0.1)' },
+            pointLabels: { color: '#94a3b8', font: { size: 11 } },
+            angleLines: { color: 'rgba(148,163,184,0.1)' },
+          },
+        },
+      },
+    });
+  }
+});
+</script>
+</body>
+</html>
